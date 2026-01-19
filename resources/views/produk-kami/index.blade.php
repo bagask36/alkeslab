@@ -19,8 +19,7 @@
     }
     
     .product-header {
-        text-align: center;
-        margin-bottom: 4rem;
+        margin-bottom: 3rem;
     }
     
     .product-header h2 {
@@ -28,6 +27,13 @@
         font-weight: 700;
         color: #212529;
         margin-bottom: 1rem;
+        line-height: 1.3;
+    }
+    
+    .product-header p {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.6;
     }
     
     .product-image-container {

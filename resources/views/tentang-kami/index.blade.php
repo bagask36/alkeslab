@@ -403,7 +403,7 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-5 align-items-center">
                 <!-- Left Column: About Text -->
-                <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="col-lg-6 mb-5 mb-lg-0 order-lg-1">
                     <h2 class="about-title">Tentang Kami</h2>
                     <p class="about-description">
                         PT. Alkeslab Primatama adalah perusahaan yang bergerak di bidang distribusi alat kesehatan 
@@ -413,7 +413,7 @@
                 </div>
                 
                 <!-- Right Column: Feature Cards -->
-                <div class="col-lg-6">
+                <div class="col-lg-6 order-lg-2">
                     <div class="feature-card">
                         <i class="bi bi-star-fill feature-icon"></i>
                         <h4>Banyak Brand Terpercaya</h4>
@@ -515,7 +515,7 @@
     <section class="page-section py-5" id="clients" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
             <div class="row align-items-center">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
                     <span class="clients-section-label">Klien Kami</span>
                     <h2 class="clients-heading">Perusahaan yang mempercayai kami</h2>
                     <p class="clients-subtitle">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
@@ -534,7 +534,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 order-lg-1">
                     @if($clients->count() > 0)
                         <div class="clients-card">
                             <div class="clients-card-inner">

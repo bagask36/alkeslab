@@ -286,11 +286,11 @@
     <section class="page-section py-5" id="layanan" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
             <div class="row align-items-center mb-5">
-                <div class="col-lg-4">
+                <div class="col-lg-4 order-lg-1">
                     <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: #2c3e50;">Layanan Kami</h2>
                     <p class="text-muted" style="font-size: 1.1rem;">Solusi lengkap untuk kebutuhan alat kesehatan Anda</p>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 order-lg-2">
                     <div class="row g-4">
                         @if($layanan->count() > 0)
                             @foreach ($layanan as $item)
@@ -479,13 +479,13 @@
     <section id="produk" class="page-section py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
         <div class="container px-4 px-lg-5">
             <div class="row align-items-center">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-4 mb-5 mb-lg-0 order-lg-2">
                     <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: #2c3e50; line-height: 1.2;">
                         Kategori<br>Produk
                     </h2>
                     <p class="text-muted" style="font-size: 1.1rem;">Berbagai kategori produk alat kesehatan berkualitas untuk kebutuhan medis Anda</p>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 order-lg-1">
                     @if($product->count() > 0)
                         <div class="row g-4">
                             @foreach ($product as $item)
@@ -643,7 +643,7 @@
     <section class="page-section py-5" id="klien" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
             <div class="row align-items-center">
-                <div class="col-lg-4 mb-5 mb-lg-0">
+                <div class="col-lg-4 mb-5 mb-lg-0 order-lg-1">
                     <span class="clients-section-label">Klien Kami</span>
                     <h2 class="clients-heading">Perusahaan yang mempercayai kami</h2>
                     <p class="clients-subtitle">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
@@ -662,7 +662,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-8 order-lg-2">
                     @if($clients->count() > 0)
                         <div class="clients-card">
                             <div class="clients-card-inner">
