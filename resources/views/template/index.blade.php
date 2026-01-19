@@ -48,133 +48,135 @@
     <style>
         /* WhatsApp Buttons - Fixed Position */
         .whatsapp-btn {
-            position: fixed;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            cursor: pointer;
-            z-index: 999;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid white;
+            position: fixed !important;
+            right: 30px !important;
+            width: 60px !important;
+            height: 60px !important;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%) !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: white !important;
+            font-size: 28px !important;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4) !important;
+            cursor: pointer !important;
+            z-index: 9999 !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            border: 3px solid white !important;
+            pointer-events: auto !important;
         }
         
         .whatsapp-btn:hover {
-            transform: scale(1.15) translateY(-3px);
-            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            transform: scale(1.15) translateY(-3px) !important;
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6) !important;
         }
         
         .whatsapp-btn:active {
-            transform: scale(1.05);
+            transform: scale(1.05) !important;
         }
         
         /* WhatsApp Button 1 - Admin (atas) */
         #whatsapp1 {
-            bottom: 180px;
+            bottom: 180px !important;
         }
         
         /* WhatsApp Button 2 - Sales (tengah) */
         #whatsapp2 {
-            bottom: 100px;
+            bottom: 100px !important;
         }
         
         /* Back to Top Button */
         #back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
-            border: none;
-            border-radius: 50%;
-            color: white;
-            font-size: 20px;
-            box-shadow: 0 4px 20px rgba(30, 48, 243, 0.4);
-            cursor: pointer;
-            z-index: 999;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid white;
-            padding: 0;
+            position: fixed !important;
+            bottom: 30px !important;
+            right: 30px !important;
+            width: 50px !important;
+            height: 50px !important;
+            background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%) !important;
+            border: none !important;
+            border-radius: 50% !important;
+            color: white !important;
+            font-size: 20px !important;
+            box-shadow: 0 4px 20px rgba(30, 48, 243, 0.4) !important;
+            cursor: pointer !important;
+            z-index: 9999 !important;
+            display: none !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            border: 3px solid white !important;
+            padding: 0 !important;
+            pointer-events: auto !important;
         }
         
         #back-to-top:hover {
-            background: linear-gradient(135deg, #1a28d9 0%, #1e30f3 100%);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(30, 48, 243, 0.6);
+            background: linear-gradient(135deg, #1a28d9 0%, #1e30f3 100%) !important;
+            transform: translateY(-5px) !important;
+            box-shadow: 0 8px 30px rgba(30, 48, 243, 0.6) !important;
         }
         
         #back-to-top:active {
-            transform: translateY(-2px);
+            transform: translateY(-2px) !important;
         }
         
         #back-to-top.show {
-            display: flex;
+            display: flex !important;
         }
         
         #back-to-top i {
-            line-height: 1;
+            line-height: 1 !important;
         }
         
         /* Responsive - Tablet */
         @media (max-width: 768px) {
             .whatsapp-btn {
-                width: 55px;
-                height: 55px;
-                font-size: 24px;
-                right: 20px;
+                width: 55px !important;
+                height: 55px !important;
+                font-size: 24px !important;
+                right: 20px !important;
             }
             
             #whatsapp1 {
-                bottom: 160px;
+                bottom: 160px !important;
             }
             
             #whatsapp2 {
-                bottom: 90px;
+                bottom: 90px !important;
             }
             
             #back-to-top {
-                width: 45px;
-                height: 45px;
-                font-size: 18px;
-                right: 20px;
-                bottom: 20px;
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 18px !important;
+                right: 20px !important;
+                bottom: 20px !important;
             }
         }
         
         /* Responsive - Mobile */
         @media (max-width: 576px) {
             .whatsapp-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
-                right: 15px;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 22px !important;
+                right: 15px !important;
             }
             
             #whatsapp1 {
-                bottom: 140px;
+                bottom: 140px !important;
             }
             
             #whatsapp2 {
-                bottom: 80px;
+                bottom: 80px !important;
             }
             
             #back-to-top {
-                width: 40px;
-                height: 40px;
-                font-size: 16px;
-                right: 15px;
-                bottom: 15px;
+                width: 40px !important;
+                height: 40px !important;
+                font-size: 16px !important;
+                right: 15px !important;
+                bottom: 15px !important;
             }
         }
         
@@ -182,7 +184,7 @@
         @media (max-width: 991.98px) {
             .whatsapp-btn,
             #back-to-top {
-                z-index: 1050;
+                z-index: 9999 !important;
             }
         }
         
@@ -272,14 +274,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Tombol WhatsApp 1 -->
-    <div id="whatsapp1" class="whatsapp-btn" title="Admin Alkeslab Primatama"
-        onclick="window.open('https://wa.me/6282280848541', '_blank')">
+    <div id="whatsapp1" class="whatsapp-btn" title="Admin Alkeslab Primatama" role="button" tabindex="0">
         <i class="fab fa-whatsapp"></i>
     </div>
 
     <!-- Tombol WhatsApp 2 -->
-    <div id="whatsapp2" class="whatsapp-btn" title="Sales Alkeslab Primatama"
-        onclick="window.open('https://wa.me/6282260895899', '_blank')">
+    <div id="whatsapp2" class="whatsapp-btn" title="Sales Alkeslab Primatama" role="button" tabindex="0">
         <i class="fab fa-whatsapp"></i>
     </div>
 
@@ -289,8 +289,40 @@
     </button>
 
     <script>
-        // Wait for DOM to be ready
-        document.addEventListener('DOMContentLoaded', function() {
+        // Initialize WhatsApp buttons and scroll to top
+        function initFloatingButtons() {
+            // WhatsApp Button 1 - Admin
+            const whatsapp1 = document.getElementById('whatsapp1');
+            if (whatsapp1) {
+                whatsapp1.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open('https://wa.me/6282280848541', '_blank');
+                });
+                whatsapp1.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.open('https://wa.me/6282280848541', '_blank');
+                    }
+                });
+            }
+            
+            // WhatsApp Button 2 - Sales
+            const whatsapp2 = document.getElementById('whatsapp2');
+            if (whatsapp2) {
+                whatsapp2.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open('https://wa.me/6282260895899', '_blank');
+                });
+                whatsapp2.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        window.open('https://wa.me/6282260895899', '_blank');
+                    }
+                });
+            }
+            
             // Scroll to Top Function
             function scrollToTop() {
                 window.scrollTo({
@@ -299,23 +331,40 @@
                 });
             }
             
-            // Get back to top button
+            // Back to Top Button
             const backToTop = document.getElementById('back-to-top');
-            
             if (backToTop) {
                 // Show/hide back to top button on scroll
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
+                function handleScroll() {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+                    if (scrollTop > 300) {
                         backToTop.classList.add('show');
                     } else {
                         backToTop.classList.remove('show');
                     }
-                });
+                }
+                
+                // Add scroll event listener
+                window.addEventListener('scroll', handleScroll, { passive: true });
                 
                 // Add click event to back to top button
-                backToTop.addEventListener('click', scrollToTop);
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    scrollToTop();
+                });
+                
+                // Initial check
+                handleScroll();
             }
-        });
+        }
+        
+        // Run when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFloatingButtons);
+        } else {
+            initFloatingButtons();
+        }
     </script>
 
     @stack('js')
