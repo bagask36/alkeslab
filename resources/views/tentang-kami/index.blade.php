@@ -92,30 +92,103 @@
         text-decoration: underline;
     }
     
-    /* Clients grid */
+    .clients-section-label {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1e30f3;
+        background: rgba(30, 48, 243, 0.08);
+        margin-bottom: 0.75rem;
+    }
+    
+    .clients-heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+    }
+    
+    .clients-subtitle {
+        font-size: 0.98rem;
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+    }
+    
+    .clients-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .clients-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        background: #f1f3ff;
+        color: #1e30f3;
+        font-weight: 500;
+    }
+    
+    .clients-meta-item i {
+        font-size: 1rem;
+    }
+    
+    .clients-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2.25rem 2rem;
+        box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+        border: 1px solid rgba(15, 23, 42, 0.04);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .clients-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(30, 48, 243, 0.08), transparent 55%);
+        pointer-events: none;
+    }
+    
+    .clients-card-inner {
+        position: relative;
+        z-index: 1;
+    }
+    
     .clients-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.75rem;
     }
     
     .client-item {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        background: #f8f9ff;
+        border-radius: 16px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 150px;
+        min-height: 90px;
+    }
+    
+    .client-item-large {
+        grid-column: span 2;
     }
     
     .client-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        background: #ffffff;
     }
     
     .client-item img {
@@ -123,17 +196,14 @@
         height: auto;
         object-fit: contain;
         filter: grayscale(100%);
-        transition: filter 0.3s ease;
+        opacity: 0.9;
+        transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     }
     
     .client-item:hover img {
         filter: grayscale(0%);
-    }
-    
-    .client-item-large {
-        grid-column: 1 / -1;
-        padding: 3rem;
-        min-height: 250px;
+        opacity: 1;
+        transform: scale(1.02);
     }
     
     /* Address section */
@@ -306,39 +376,59 @@
     </section>
 
     <!-- Clients Section -->
-    <section class="page-section" id="clients">
+    <section class="page-section py-5" id="clients" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
-                    <h2 class="mt-0">Klien Kami</h2>
-                    <hr class="divider" />
-                    <p class="text-muted">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <span class="clients-section-label">Klien Kami</span>
+                    <h2 class="clients-heading">Perusahaan yang mempercayai kami</h2>
+                    <p class="clients-subtitle">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
+                    <div class="clients-meta">
+                        <div class="clients-meta-item">
+                            <i class="bi bi-building"></i>
+                            <span>Rumah sakit dan klinik</span>
+                        </div>
+                        <div class="clients-meta-item">
+                            <i class="bi bi-heart"></i>
+                            <span>Laboratorium dan fasilitas medis</span>
+                        </div>
+                        <div class="clients-meta-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Berbagai wilayah di Indonesia</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    @if($clients->count() > 0)
+                        <div class="clients-card">
+                            <div class="clients-card-inner">
+                                <div class="clients-grid">
+                                    @foreach ($clients as $client)
+                                        @if($client->image_size === 'large')
+                                            <div class="client-item client-item-large">
+                                                <img src="{{ asset('storage/' . $client->image) }}" 
+                                                     alt="{{ $client->name }}" 
+                                                     class="img-fluid">
+                                            </div>
+                                        @else
+                                            <div class="client-item">
+                                                <img src="{{ asset('storage/' . $client->image) }}" 
+                                                     alt="{{ $client->name }}" 
+                                                     class="img-fluid">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="text-center py-5">
+                            <i class="bi bi-people" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
+                            <p class="text-muted mt-3">Tidak ada klien tersedia saat ini</p>
+                        </div>
+                    @endif
                 </div>
             </div>
-            @if($clients->count() > 0)
-                <div class="clients-grid">
-                    @foreach ($clients as $client)
-                        @if($client->image_size === 'large')
-                            <div class="client-item client-item-large">
-                                <img src="{{ asset('storage/' . $client->image) }}" 
-                                     alt="{{ $client->name }}" 
-                                     class="img-fluid">
-                            </div>
-                        @else
-                            <div class="client-item">
-                                <img src="{{ asset('storage/' . $client->image) }}" 
-                                     alt="{{ $client->name }}" 
-                                     class="img-fluid">
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-            @else
-                <div class="text-center py-5">
-                    <i class="bi bi-people" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
-                    <p class="text-muted mt-3">Tidak ada klien tersedia saat ini</p>
-                </div>
-            @endif
         </div>
     </section>
 

@@ -640,45 +640,59 @@
         </style>
     </section>
 
-    <!-- Call to Action -->
-    <section class="page-section bg-dark text-white">
-        <div class="container px-4 px-lg-5 text-center">
-            <h2 class="mb-4">Butuh Bantuan? Hubungi Kami Sekarang!</h2>
-            <p class="text-white-75 mb-4">Tim kami siap membantu Anda menemukan solusi terbaik untuk kebutuhan alat kesehatan Anda</p>
-            <a class="btn btn-light btn-xl" href="/kontak-kami">Hubungi Kami</a>
-        </div>
-    </section>
-
-    <!-- Klien Kami Section -->
-    <section class="page-section" id="klien">
+    <section class="page-section py-5" id="klien" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
-            <h2 class="text-center mt-0">Klien Kami</h2>
-            <hr class="divider" />
-            <p class="text-center text-muted mb-5">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
-            @if($clients->count() > 0)
-                <div class="clients-grid">
-                    @foreach ($clients as $client)
-                        @if($client->image_size === 'large')
-                            <div class="client-item client-item-large">
-                                <img src="{{ asset('storage/' . $client->image) }}" 
-                                     alt="{{ $client->name }}" 
-                                     class="img-fluid">
-                            </div>
-                        @else
-                            <div class="client-item">
-                                <img src="{{ asset('storage/' . $client->image) }}" 
-                                     alt="{{ $client->name }}" 
-                                     class="img-fluid">
-                            </div>
-                        @endif
-                    @endforeach
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <span class="clients-section-label">Klien Kami</span>
+                    <h2 class="clients-heading">Perusahaan yang mempercayai kami</h2>
+                    <p class="clients-subtitle">Perusahaan terpercaya yang mempercayai layanan dan produk kami</p>
+                    <div class="clients-meta">
+                        <div class="clients-meta-item">
+                            <i class="bi bi-building"></i>
+                            <span>Rumah sakit dan klinik</span>
+                        </div>
+                        <div class="clients-meta-item">
+                            <i class="bi bi-heart"></i>
+                            <span>Laboratorium dan fasilitas medis</span>
+                        </div>
+                        <div class="clients-meta-item">
+                            <i class="bi bi-geo-alt"></i>
+                            <span>Berbagai wilayah di Indonesia</span>
+                        </div>
+                    </div>
                 </div>
-            @else
-                <div class="text-center py-5">
-                    <i class="bi bi-people" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
-                    <p class="text-muted mt-3">Tidak ada klien tersedia saat ini</p>
+                <div class="col-lg-8">
+                    @if($clients->count() > 0)
+                        <div class="clients-card">
+                            <div class="clients-card-inner">
+                                <div class="clients-grid">
+                                    @foreach ($clients as $client)
+                                        @if($client->image_size === 'large')
+                                            <div class="client-item client-item-large">
+                                                <img src="{{ asset('storage/' . $client->image) }}" 
+                                                     alt="{{ $client->name }}" 
+                                                     class="img-fluid">
+                                            </div>
+                                        @else
+                                            <div class="client-item">
+                                                <img src="{{ asset('storage/' . $client->image) }}" 
+                                                     alt="{{ $client->name }}" 
+                                                     class="img-fluid">
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    @else
+                        <div class="text-center py-5">
+                            <i class="bi bi-people" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
+                            <p class="text-muted mt-3">Tidak ada klien tersedia saat ini</p>
+                        </div>
+                    @endif
                 </div>
-            @endif
+            </div>
         </div>
     </section>
 @endsection
