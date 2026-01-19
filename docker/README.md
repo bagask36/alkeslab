@@ -34,8 +34,8 @@ docker-compose exec app php artisan migrate
 
 ### 4. Akses aplikasi
 - Web: http://localhost:8081
-- MySQL: localhost:3307
-- Redis: localhost:6379
+- MySQL: localhost:3308
+- Redis: localhost:6380
 
 ## Perintah Berguna
 

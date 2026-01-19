@@ -38,7 +38,7 @@ services:
     container_name: alkeslab-mysql
     restart: unless-stopped
     ports:
-      - "3307:3306"
+      - "3308:3306"
     environment:
       MYSQL_DATABASE: alkeslab_db
       MYSQL_ROOT_PASSWORD: root
@@ -57,7 +57,7 @@ services:
     container_name: alkeslab-redis
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "6380:6379"
     networks:
       - alkeslab-network
 
