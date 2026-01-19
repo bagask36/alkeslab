@@ -66,29 +66,103 @@
     }
     
     /* Clients section */
+    .clients-section-label {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1e30f3;
+        background: rgba(30, 48, 243, 0.08);
+        margin-bottom: 0.75rem;
+    }
+    
+    .clients-heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+    }
+    
+    .clients-subtitle {
+        font-size: 0.98rem;
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+    }
+    
+    .clients-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .clients-meta-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        background: #f1f3ff;
+        color: #1e30f3;
+        font-weight: 500;
+    }
+    
+    .clients-meta-item i {
+        font-size: 1rem;
+    }
+    
+    .clients-card {
+        background: white;
+        border-radius: 24px;
+        padding: 2.25rem 2rem;
+        box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
+        border: 1px solid rgba(15, 23, 42, 0.04);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .clients-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top left, rgba(30, 48, 243, 0.08), transparent 55%);
+        pointer-events: none;
+    }
+    
+    .clients-card-inner {
+        position: relative;
+        z-index: 1;
+    }
+    
     .clients-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 1.75rem;
     }
     
     .client-item {
-        background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        background: #f8f9ff;
+        border-radius: 16px;
+        padding: 1.25rem 1.5rem;
+        box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
         transition: all 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        min-height: 150px;
+        min-height: 90px;
+    }
+    
+    .client-item-large {
+        grid-column: span 2;
     }
     
     .client-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+        background: #ffffff;
     }
     
     .client-item img {
@@ -96,17 +170,14 @@
         height: auto;
         object-fit: contain;
         filter: grayscale(100%);
-        transition: filter 0.3s ease;
+        opacity: 0.9;
+        transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     }
     
     .client-item:hover img {
         filter: grayscale(0%);
-    }
-    
-    .client-item-large {
-        grid-column: 1 / -1;
-        padding: 3rem;
-        min-height: 250px;
+        opacity: 1;
+        transform: scale(1.02);
     }
     
     /* Product/Layanan cards */
@@ -239,7 +310,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="service-card h-100">
                                     <div class="service-icon-wrapper">
-                                        <i class="bi-hospital service-icon"></i>
+                                        <i class="fas fa-hospital service-icon"></i>
                                     </div>
                                     <h4 class="service-title">Distribusi Alat Kesehatan</h4>
                                     <p class="service-description">Penyediaan alat kesehatan berkualitas tinggi</p>
@@ -248,7 +319,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="service-card h-100">
                                     <div class="service-icon-wrapper">
-                                        <i class="bi-tools service-icon"></i>
+                                        <i class="fas fa-tools service-icon"></i>
                                     </div>
                                     <h4 class="service-title">Servis & Perawatan</h4>
                                     <p class="service-description">Layanan maintenance dan perawatan alat medis</p>
@@ -257,7 +328,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="service-card h-100">
                                     <div class="service-icon-wrapper">
-                                        <i class="bi-shield-check service-icon"></i>
+                                        <i class="fas fa-shield-alt service-icon"></i>
                                     </div>
                                     <h4 class="service-title">Kualitas Terjamin</h4>
                                     <p class="service-description">Produk dan layanan dengan standar tinggi</p>
@@ -266,7 +337,7 @@
                             <div class="col-md-6 col-lg-3">
                                 <div class="service-card h-100">
                                     <div class="service-icon-wrapper">
-                                        <i class="bi-people service-icon"></i>
+                                        <i class="fas fa-users service-icon"></i>
                                     </div>
                                     <h4 class="service-title">Tim Profesional</h4>
                                     <p class="service-description">Didukung oleh tim ahli berpengalaman</p>
