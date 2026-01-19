@@ -154,12 +154,18 @@
         @foreach ($products as $product)
             <section class="page-section product-section" id="{{ $product->slug }}">
                 <div class="container px-4 px-lg-5">
-                    <div class="product-header">
-                        <h2>{{ $product->description }}</h2>
-                        <hr class="divider" />
-                    </div>
-                    <div class="row gx-4 gx-lg-5 justify-content-center">
-                        <div class="col-lg-10">
+                    <div class="row gx-5 align-items-center">
+                        <!-- Title Column - Alternating Left/Right -->
+                        <div class="col-lg-4 mb-5 mb-lg-0 order-lg-{{ $loop->odd ? '1' : '2' }}">
+                            <div class="product-header">
+                                <h2>{{ $product->description }}</h2>
+                                <hr class="divider" />
+                                <p>Produk alat kesehatan berkualitas tinggi untuk kebutuhan medis Anda</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Content Column - Alternating Right/Left -->
+                        <div class="col-lg-8 order-lg-{{ $loop->odd ? '2' : '1' }}">
                             <div class="product-image-container">
                                 <a href="{{ $product->whatsapp_link }}" target="_blank">
                                     <img src="{{ asset('storage/' . $product->image) }}" 
@@ -167,7 +173,7 @@
                                          class="img-fluid">
                                 </a>
                             </div>
-                            <div class="text-center">
+                            <div class="text-center mt-4">
                                 <a href="{{ $product->whatsapp_link }}" 
                                    class="product-whatsapp-btn" 
                                    target="_blank">
