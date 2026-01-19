@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use App\Models\Product;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,7 +22,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         // Share 'products' data with all views
-        $products = Product::all();
-        view()->share('products', $products);
+        try {
+            if (\Schema::hasTable('products')) {
+                $products = Product::all();
+                view()->share('products', $products);
+            }
+        } catch (\Exception $e) {
+            // Table doesn't exist yet or connection failed
+            view()->share('products', collect());
+        }
     }
 }
