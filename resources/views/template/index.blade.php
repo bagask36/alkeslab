@@ -14,9 +14,10 @@
     <!-- Bootstrap Icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+    <!-- Google fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <!-- SimpleLightbox plugin CSS-->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
@@ -43,6 +44,204 @@
     </script>
 
     @stack('css')
+    
+    <style>
+        /* WhatsApp Buttons - Fixed Position */
+        .whatsapp-btn {
+            position: fixed;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid white;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.15) translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+        }
+        
+        .whatsapp-btn:active {
+            transform: scale(1.05);
+        }
+        
+        /* WhatsApp Button 1 - Admin (atas) */
+        #whatsapp1 {
+            bottom: 180px;
+        }
+        
+        /* WhatsApp Button 2 - Sales (tengah) */
+        #whatsapp2 {
+            bottom: 100px;
+        }
+        
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            box-shadow: 0 4px 20px rgba(30, 48, 243, 0.4);
+            cursor: pointer;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid white;
+            padding: 0;
+        }
+        
+        #back-to-top:hover {
+            background: linear-gradient(135deg, #1a28d9 0%, #1e30f3 100%);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(30, 48, 243, 0.6);
+        }
+        
+        #back-to-top:active {
+            transform: translateY(-2px);
+        }
+        
+        #back-to-top.show {
+            display: flex;
+        }
+        
+        #back-to-top i {
+            line-height: 1;
+        }
+        
+        /* Responsive - Tablet */
+        @media (max-width: 768px) {
+            .whatsapp-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 24px;
+                right: 20px;
+            }
+            
+            #whatsapp1 {
+                bottom: 160px;
+            }
+            
+            #whatsapp2 {
+                bottom: 90px;
+            }
+            
+            #back-to-top {
+                width: 45px;
+                height: 45px;
+                font-size: 18px;
+                right: 20px;
+                bottom: 20px;
+            }
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 576px) {
+            .whatsapp-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+                right: 15px;
+            }
+            
+            #whatsapp1 {
+                bottom: 140px;
+            }
+            
+            #whatsapp2 {
+                bottom: 80px;
+            }
+            
+            #back-to-top {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+                right: 15px;
+                bottom: 15px;
+            }
+        }
+        
+        /* Ensure buttons don't overlap with footer on mobile */
+        @media (max-width: 991.98px) {
+            .whatsapp-btn,
+            #back-to-top {
+                z-index: 1050;
+            }
+        }
+        
+        /* Global Font - Poppins */
+        :root {
+            --bs-font-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+            --bs-body-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+            --bs-btn-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+        }
+        
+        * {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        }
+        
+        body,
+        html {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6,
+        .h1, .h2, .h3, .h4, .h5, .h6,
+        .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        }
+        
+        .navbar,
+        .nav-link,
+        .navbar-brand,
+        .btn,
+        button,
+        input,
+        textarea,
+        select,
+        label,
+        .form-control,
+        .form-label,
+        .card,
+        .card-title,
+        .card-text,
+        p,
+        span,
+        a,
+        li,
+        ul,
+        ol,
+        div,
+        section,
+        article,
+        header,
+        footer,
+        .masthead,
+        .page-section,
+        .text-center,
+        .lead,
+        .small,
+        .text-muted {
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
+        }
+    </style>
 </head>
 <body id="page-top">
     <!-- Navigation-->
@@ -85,9 +284,39 @@
     </div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" class="btn btn-primary" title="Go to top" onclick="scrollToTop()">
+    <button id="back-to-top" class="btn btn-primary" title="Kembali ke atas">
         <i class="fas fa-angle-up"></i>
     </button>
+
+    <script>
+        // Wait for DOM to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Scroll to Top Function
+            function scrollToTop() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }
+            
+            // Get back to top button
+            const backToTop = document.getElementById('back-to-top');
+            
+            if (backToTop) {
+                // Show/hide back to top button on scroll
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+                
+                // Add click event to back to top button
+                backToTop.addEventListener('click', scrollToTop);
+            }
+        });
+    </script>
 
     @stack('js')
 </body>
