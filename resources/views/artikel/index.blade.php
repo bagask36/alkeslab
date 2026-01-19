@@ -496,7 +496,9 @@
                     </p>
                 </div>
             </div>
+        </div>
             
+        <div class="container px-4 px-lg-5">
             <!-- Articles Grid - Separate Row Below -->
             @if($articles->count() > 0 || (isset($latest_post) && $latest_post))
                 <div class="row gx-4 gx-lg-5">
