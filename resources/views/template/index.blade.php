@@ -265,7 +265,7 @@
     <script src="{{ asset('new-template/js/scripts.js') }}"></script>
     
     <!-- ScrollReveal library -->
-    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js"></script>
     
     <!-- Custom JS from old template -->
     <script src="{{ asset('app/js/scripts.js') }}"></script>
@@ -366,6 +366,141 @@
             document.addEventListener('DOMContentLoaded', initFloatingButtons);
         } else {
             initFloatingButtons();
+        }
+    </script>
+
+    <!-- ScrollReveal Initialization -->
+    <script>
+        // Initialize ScrollReveal when DOM is ready
+        function initScrollReveal() {
+            if (typeof ScrollReveal !== 'undefined') {
+                // Create ScrollReveal instance with default config
+                const sr = ScrollReveal({
+                    origin: 'bottom',
+                    distance: '30px',
+                    duration: 1000,
+                    delay: 100,
+                    reset: false,
+                    easing: 'ease-out',
+                    mobile: true,
+                    viewFactor: 0.2,
+                    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 }
+                });
+
+                // Animate sections
+                sr.reveal('.page-section', {
+                    interval: 100
+                });
+
+                // Animate headings
+                sr.reveal('h1, h2, h3, .berita-heading, .clients-heading, .articles-heading', {
+                    origin: 'top',
+                    distance: '40px',
+                    duration: 1200,
+                    delay: 150
+                });
+
+                // Animate cards
+                sr.reveal('.berita-card, .article-card, .product-card, .service-card, .category-card, .client-item, .feature-card, .vision-mission-card, .address-card, .clients-card', {
+                    origin: 'bottom',
+                    distance: '30px',
+                    duration: 800,
+                    delay: 100,
+                    interval: 150
+                });
+
+                // Animate featured content
+                sr.reveal('.berita-featured, .featured-article', {
+                    origin: 'left',
+                    distance: '50px',
+                    duration: 1200,
+                    delay: 200
+                });
+
+                // Animate images
+                sr.reveal('img, .berita-card-image-container, .product-image-container, .category-image-wrapper, .service-icon-wrapper', {
+                    origin: 'bottom',
+                    distance: '30px',
+                    duration: 1000,
+                    delay: 150,
+                    scale: 0.9
+                });
+
+                // Animate buttons and links
+                sr.reveal('.btn, .berita-featured-link, .product-whatsapp-btn, .category-button, .product-card-button', {
+                    origin: 'bottom',
+                    distance: '20px',
+                    duration: 800,
+                    delay: 300
+                });
+
+                // Animate badges and labels
+                sr.reveal('.berita-label, .berita-featured-badge, .berita-card-badge, .clients-section-label, .articles-section-label', {
+                    origin: 'top',
+                    distance: '20px',
+                    duration: 600,
+                    delay: 100,
+                    scale: 0.8
+                });
+
+                // Animate text content
+                sr.reveal('.berita-subtitle, .clients-subtitle, .articles-subtitle, .about-description, p.lead', {
+                    origin: 'bottom',
+                    distance: '25px',
+                    duration: 900,
+                    delay: 200
+                });
+
+                // Animate pagination
+                sr.reveal('.berita-pagination, .pagination', {
+                    origin: 'bottom',
+                    distance: '30px',
+                    duration: 800,
+                    delay: 400
+                });
+
+                // Animate meta information
+                sr.reveal('.berita-card-meta, .article-meta, .contact-info', {
+                    origin: 'bottom',
+                    distance: '20px',
+                    duration: 700,
+                    delay: 250
+                });
+
+                // Animate empty states
+                sr.reveal('.berita-empty, .text-center.py-5', {
+                    origin: 'bottom',
+                    distance: '40px',
+                    duration: 1000,
+                    delay: 200
+                });
+
+                // Animate grid items with stagger
+                sr.reveal('.row .col-lg-4, .row .col-lg-6, .row .col-md-6', {
+                    origin: 'bottom',
+                    distance: '30px',
+                    duration: 800,
+                    delay: 100,
+                    interval: 100
+                });
+
+                // Animate navigation items (if needed)
+                sr.reveal('.navbar-nav .nav-item', {
+                    origin: 'top',
+                    distance: '20px',
+                    duration: 600,
+                    delay: 50,
+                    interval: 50
+                });
+            }
+        }
+
+        // Initialize ScrollReveal when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initScrollReveal);
+        } else {
+            // If DOM is already loaded, wait a bit for other scripts
+            setTimeout(initScrollReveal, 100);
         }
     </script>
 
