@@ -47,7 +47,7 @@
         <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
             <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="navbar-logo me-2" style="height: 50px; width: auto;">
             <span class="text-primary fw-bold d-none d-md-inline">PT. ALKESLAB PRIMATAMA</span>
-            <span class="text-primary fw-bold d-md-none">ALKESLAB</span>
+            <span class="text-primary fw-bold d-md-none"></span>
         </a>
 
         <!-- Mobile Toggler -->
@@ -110,7 +110,7 @@
     <div class="offcanvas-header border-bottom">
         <div class="d-flex align-items-center">
             <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="navbar-logo me-2" style="height: 40px; width: auto;">
-            <span class="text-primary fw-bold">ALKESLAB</span>
+            <span class="text-primary fw-bold"></span>
         </div>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>

@@ -12,26 +12,81 @@
         background-attachment: fixed;
     }
     
+    /* About Section Title */
+    .about-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.75rem;
+    }
+    
+    .about-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b35 0%, #ff8c42 100%);
+        border-radius: 2px;
+    }
+    
+    .about-description {
+        font-size: 1.05rem;
+        line-height: 1.8;
+        color: #4a5568;
+        margin-top: 1.5rem;
+    }
+    
     /* Feature cards */
     .feature-card {
         background: white;
-        border-radius: 15px;
-        padding: 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 1.75rem;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
         height: 100%;
-        border-left: 4px solid var(--bs-primary);
+        border-left: 4px solid #1e30f3;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1.25rem;
+    }
+    
+    .feature-card:last-child {
+        margin-bottom: 0;
     }
     
     .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(30, 48, 243, 0.15);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(30, 48, 243, 0.15);
+        border-left-color: #ff6b35;
     }
     
     .feature-icon {
-        font-size: 2.5rem;
-        color: var(--bs-primary);
+        font-size: 2.25rem;
+        color: #1e30f3;
         margin-bottom: 1rem;
+        transition: color 0.3s ease;
+    }
+    
+    .feature-card:hover .feature-icon {
+        color: #ff6b35;
+    }
+    
+    .feature-card h4 {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+    }
+    
+    .feature-card p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: #6c757d;
+        margin-bottom: 0;
     }
     
     /* Vision/Mission cards */
@@ -207,37 +262,122 @@
     }
     
     /* Address section */
+    .address-section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        position: relative;
+        padding-bottom: 0.75rem;
+        display: inline-block;
+    }
+    
+    .address-section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background: white;
+        border-radius: 2px;
+    }
+    
     .address-card {
         background: white;
         border-radius: 20px;
-        padding: 2.5rem;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        padding: 2.75rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
         transition: all 0.3s ease;
     }
     
     .address-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    }
+    
+    .address-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid #f0f0f0;
+    }
+    
+    .address-card-header i {
+        font-size: 2rem;
+        color: #1e30f3;
+        margin-right: 0.75rem;
+    }
+    
+    .address-card-header h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #1e30f3;
+        margin: 0;
     }
     
     .address-card iframe {
         border-radius: 15px;
         width: 100%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
     .contact-info {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid #f0f0f0;
     }
     
-    .contact-info p {
-        margin-bottom: 0.5rem;
-        color: #6c757d;
+    .contact-info-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-bottom: 1.25rem;
+        padding: 0.75rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .contact-info-item:hover {
+        background: #f8f9ff;
+    }
+    
+    .contact-info-item:last-child {
+        margin-bottom: 0;
+    }
+    
+    .contact-info-item i {
+        color: #1e30f3;
+        margin-right: 0.75rem;
+        font-size: 1.25rem;
+        margin-top: 0.25rem;
+        flex-shrink: 0;
+    }
+    
+    .contact-info-item p {
+        margin: 0;
+        color: #4a5568;
         font-size: 1rem;
+        line-height: 1.6;
     }
     
-    .contact-info i {
-        color: var(--bs-primary);
-        margin-right: 0.5rem;
+    .contact-info-item strong {
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 0.25rem;
+    }
+    
+    .contact-info-item a {
+        color: #1e30f3;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+    
+    .contact-info-item a:hover {
+        color: #ff6b35;
     }
 </style>
 @endpush
@@ -259,39 +399,35 @@
     </header>
 
     <!-- About Section -->
-    <section class="page-section" id="about">
+    <section class="page-section" id="about" style="padding: 5rem 0;">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="mt-0">Tentang Kami</h2>
-                    <hr class="divider" />
-                    <p class="text-muted mb-5">
+            <div class="row gx-5 align-items-center">
+                <!-- Left Column: About Text -->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h2 class="about-title">Tentang Kami</h2>
+                    <p class="about-description">
                         PT. Alkeslab Primatama adalah perusahaan yang bergerak di bidang distribusi alat kesehatan 
                         yang mencakup Radiologi, Laboratorium, Barang Medis Habis Pakai (BMHP). Kami juga 
                         menyediakan Jasa Servis & Perawatan Alat Kesehatan dengan tim profesional dan berpengalaman.
                     </p>
                 </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 mt-4">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-card text-center">
+                
+                <!-- Right Column: Feature Cards -->
+                <div class="col-lg-6">
+                    <div class="feature-card">
                         <i class="bi bi-star-fill feature-icon"></i>
-                        <h4 class="h5 mb-3">Banyak Brand Terpercaya</h4>
-                        <p class="text-muted mb-0">Menyediakan banyak brand alat kesehatan berkualitas tinggi dari berbagai produsen terkemuka</p>
+                        <h4>Banyak Brand Terpercaya</h4>
+                        <p>Menyediakan banyak brand alat kesehatan berkualitas tinggi dari berbagai produsen terkemuka</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-card text-center">
+                    <div class="feature-card">
                         <i class="bi bi-shield-check feature-icon"></i>
-                        <h4 class="h5 mb-3">Layanan Purna Jual Prima</h4>
-                        <p class="text-muted mb-0">Memiliki layanan purna jual yang prima dengan dukungan teknis dan maintenance berkala</p>
+                        <h4>Layanan Purna Jual Prima</h4>
+                        <p>Memiliki layanan purna jual yang prima dengan dukungan teknis dan maintenance berkala</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="feature-card text-center">
+                    <div class="feature-card">
                         <i class="bi bi-people feature-icon"></i>
-                        <h4 class="h5 mb-3">SDM Berkualitas</h4>
-                        <p class="text-muted mb-0">Didukung SDM berkualitas dan manajemen yang baik untuk memberikan pelayanan terbaik</p>
+                        <h4>SDM Berkualitas</h4>
+                        <p>Didukung SDM berkualitas dan manajemen yang baik untuk memberikan pelayanan terbaik</p>
                     </div>
                 </div>
             </div>
@@ -433,49 +569,60 @@
     </section>
 
     <!-- Address Section -->
-    <section class="page-section bg-dark text-white" id="address">
+    <section class="page-section bg-light text-primary" id="address" style="padding: 5rem 0;">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
-                    <h2 class="text-white mt-0">Alamat Kami</h2>
-                    <hr class="divider divider-light" />
+            <!-- Title Row -->
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="address-section-title text-primary">Alamat Kami</h2>
                 </div>
             </div>
+            
+            <!-- Card Row - Separate row below title -->
             <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
+                <div class="col-12 col-lg-10">
                     <div class="address-card">
-                        <h3 class="text-center mb-4" style="color: #1e30f3;">
-                            <i class="bi bi-building me-2"></i>HEAD OFFICE & WAREHOUSE
-                        </h3>
+                        <div class="address-card-header">
+                            <i class="bi bi-building"></i>
+                            <h3>HEAD OFFICE & WAREHOUSE</h3>
+                        </div>
+                        
                         <div class="mb-4">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1034.9873891408463!2d106.83947878647712!3d-6.56998393584498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c694a19088e3%3A0xd66931f4835b2a77!2sPT.ALKESLAB%20PRIMATAMA!5e0!3m2!1sen!2sid!4v1728397491555!5m2!1sen!2sid"
                                 width="100%" 
-                                height="300" 
+                                height="350" 
                                 style="border:0; border-radius: 15px;" 
                                 allowfullscreen="" 
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
-                        <div class="contact-info text-center">
-                            <p class="mb-3">
+                        
+                        <div class="contact-info">
+                            <div class="contact-info-item">
                                 <i class="bi bi-geo-alt-fill"></i>
-                                <strong>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
-                                Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</strong>
-                            </p>
-                            <p class="mb-2">
+                                <p>
+                                    <strong>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
+                                    Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</strong>
+                                </p>
+                            </div>
+                            <div class="contact-info-item">
                                 <i class="bi bi-telephone-fill"></i>
-                                <a href="tel:082280848541" class="text-decoration-none" style="color: #1e30f3;">
-                                    <strong>0822 8084 8541</strong> (Admin)
-                                </a>
-                            </p>
-                            <p class="mb-0">
+                                <p>
+                                    <a href="tel:082280848541">
+                                        <strong>0822 8084 8541</strong> (Admin)
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="contact-info-item">
                                 <i class="bi bi-telephone-fill"></i>
-                                <a href="tel:082124529567" class="text-decoration-none" style="color: #1e30f3;">
-                                    <strong>0821 2452 9567</strong> (Sales Marketing)
-                                </a>
-                            </p>
+                                <p>
+                                    <a href="tel:082124529567">
+                                        <strong>0821 2452 9567</strong> (Sales Marketing)
+                                    </a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
