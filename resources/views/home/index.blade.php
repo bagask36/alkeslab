@@ -212,92 +212,362 @@
     </section>
 
     <!-- Services / Layanan Section -->
-    <section class="page-section" id="layanan">
+    <section class="page-section py-5" id="layanan" style="background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);">
         <div class="container px-4 px-lg-5">
-            <h2 class="text-center mt-0">Layanan Kami</h2>
-            <hr class="divider" />
-            @if($layanan->count() > 0)
-                <div class="row gx-4 gx-lg-5">
-                    @foreach ($layanan as $item)
-                        <div class="col-lg-3 col-md-6 text-center">
-                            <div class="mt-5">
-                                <div class="mb-2">
-                                    <img src="{{ asset('storage/' . $item->image) }}" 
-                                         alt="{{ $item->name }}" 
-                                         class="service-icon"
-                                         style="width: 80px; height: 80px; object-fit: contain;">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-4">
+                    <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: #2c3e50;">Layanan Kami</h2>
+                    <p class="text-muted" style="font-size: 1.1rem;">Solusi lengkap untuk kebutuhan alat kesehatan Anda</p>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row g-4">
+                        @if($layanan->count() > 0)
+                            @foreach ($layanan as $item)
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="service-card h-100">
+                                        <div class="service-icon-wrapper">
+                                            <img src="{{ asset('storage/' . $item->image) }}" 
+                                                 alt="{{ $item->name }}" 
+                                                 class="service-icon-img">
+                                        </div>
+                                        <h4 class="service-title">{{ $item->name }}</h4>
+                                        <p class="service-description">Layanan profesional untuk kebutuhan medis Anda</p>
+                                    </div>
                                 </div>
-                                <h3 class="h4 mb-2">{{ $item->name }}</h3>
-                                <p class="text-muted mb-0">Layanan profesional untuk kebutuhan medis Anda</p>
+                            @endforeach
+                        @else
+                            <div class="col-md-6 col-lg-3">
+                                <div class="service-card h-100">
+                                    <div class="service-icon-wrapper">
+                                        <i class="bi-hospital service-icon"></i>
+                                    </div>
+                                    <h4 class="service-title">Distribusi Alat Kesehatan</h4>
+                                    <p class="service-description">Penyediaan alat kesehatan berkualitas tinggi</p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-heart-pulse service-icon"></i></div>
-                            <h3 class="h4 mb-2">Distribusi Alat Kesehatan</h3>
-                            <p class="text-muted mb-0">Penyediaan alat kesehatan berkualitas tinggi</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-tools service-icon"></i></div>
-                            <h3 class="h4 mb-2">Servis & Perawatan</h3>
-                            <p class="text-muted mb-0">Layanan maintenance dan perawatan alat medis</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-shield-check service-icon"></i></div>
-                            <h3 class="h4 mb-2">Kualitas Terjamin</h3>
-                            <p class="text-muted mb-0">Produk dan layanan dengan standar tinggi</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <div class="mb-2"><i class="bi-people service-icon"></i></div>
-                            <h3 class="h4 mb-2">Tim Profesional</h3>
-                            <p class="text-muted mb-0">Didukung oleh tim ahli berpengalaman</p>
-                        </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="service-card h-100">
+                                    <div class="service-icon-wrapper">
+                                        <i class="bi-tools service-icon"></i>
+                                    </div>
+                                    <h4 class="service-title">Servis & Perawatan</h4>
+                                    <p class="service-description">Layanan maintenance dan perawatan alat medis</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="service-card h-100">
+                                    <div class="service-icon-wrapper">
+                                        <i class="bi-shield-check service-icon"></i>
+                                    </div>
+                                    <h4 class="service-title">Kualitas Terjamin</h4>
+                                    <p class="service-description">Produk dan layanan dengan standar tinggi</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="service-card h-100">
+                                    <div class="service-icon-wrapper">
+                                        <i class="bi-people service-icon"></i>
+                                    </div>
+                                    <h4 class="service-title">Tim Profesional</h4>
+                                    <p class="service-description">Didukung oleh tim ahli berpengalaman</p>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            @endif
+            </div>
         </div>
+        
+        <style>
+            .service-card {
+                background: white;
+                border-radius: 20px;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .service-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #1e30f3 0%, #1a28d9 100%);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 12px 40px rgba(30, 48, 243, 0.15);
+            }
+            
+            .service-card:hover::before {
+                transform: scaleX(1);
+            }
+            
+            .service-icon-wrapper {
+                width: 90px;
+                height: 90px;
+                margin: 0 auto 1.5rem;
+                background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .service-icon-wrapper::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+                opacity: 0;
+                transition: opacity 0.4s;
+            }
+            
+            .service-card:hover .service-icon-wrapper {
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: 0 8px 25px rgba(30, 48, 243, 0.3);
+            }
+            
+            .service-card:hover .service-icon-wrapper::before {
+                opacity: 1;
+            }
+            
+            .service-icon {
+                font-size: 2.5rem;
+                color: white;
+                z-index: 1;
+                position: relative;
+            }
+            
+            .service-icon-img {
+                width: 50px;
+                height: 50px;
+                object-fit: contain;
+                filter: brightness(0) invert(1);
+                z-index: 1;
+                position: relative;
+            }
+            
+            .service-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 0.75rem;
+                transition: color 0.3s;
+            }
+            
+            .service-card:hover .service-title {
+                color: #1e30f3;
+            }
+            
+            .service-description {
+                font-size: 0.95rem;
+                color: #6c757d;
+                line-height: 1.6;
+                margin: 0;
+            }
+            
+            @media (max-width: 768px) {
+                .service-card {
+                    padding: 1.5rem 1rem;
+                }
+                
+                .service-icon-wrapper {
+                    width: 80px;
+                    height: 80px;
+                }
+                
+                .service-icon {
+                    font-size: 2rem;
+                }
+                
+                .service-title {
+                    font-size: 1.1rem;
+                }
+            }
+        </style>
     </section>
 
     <!-- Portfolio / Produk Section -->
-    <div id="produk" class="page-section">
+    <section id="produk" class="page-section py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
         <div class="container px-4 px-lg-5">
-            <h2 class="text-center mt-0">Kategori Produk</h2>
-            <hr class="divider" />
-            @if($product->count() > 0)
-                <div class="row gx-4 gx-lg-5">
-                    @foreach ($product as $item)
-                        <div class="col-lg-4 col-md-6 mb-4">
-                            <div class="product-card">
-                                <img src="{{ asset('storage/' . $item->icon) }}" 
-                                     alt="{{ $item->description }}" 
-                                     class="product-card-image">
-                                <h3 class="product-card-title">{{ $item->description }}</h3>
-                                <a href="/produk-kami#{{ $item->slug }}" class="product-card-button">
-                                    Selengkapnya
-                                    <i class="bi bi-arrow-right"></i>
-                                </a>
-                            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h2 class="fw-bold mb-3" style="font-size: 2.5rem; color: #2c3e50; line-height: 1.2;">
+                        Kategori<br>Produk
+                    </h2>
+                    <p class="text-muted" style="font-size: 1.1rem;">Berbagai kategori produk alat kesehatan berkualitas untuk kebutuhan medis Anda</p>
+                </div>
+                <div class="col-lg-8">
+                    @if($product->count() > 0)
+                        <div class="row g-4">
+                            @foreach ($product as $item)
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="category-card h-100">
+                                        <div class="category-image-wrapper">
+                                            <img src="{{ asset('storage/' . $item->icon) }}" 
+                                                 alt="{{ $item->description }}" 
+                                                 class="category-image">
+                                        </div>
+                                        <h4 class="category-title">{{ $item->description }}</h4>
+                                        <a href="/produk-kami#{{ $item->slug }}" class="category-button">
+                                            Selengkapnya →
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
+                    @else
+                        <div class="text-center py-5">
+                            <i class="bi bi-box-seam" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
+                            <p class="text-muted mt-3">Tidak ada produk tersedia saat ini</p>
+                        </div>
+                    @endif
                 </div>
-            @else
-                <div class="text-center py-5">
-                    <i class="bi bi-box-seam" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
-                    <p class="text-muted mt-3">Tidak ada produk tersedia saat ini</p>
-                </div>
-            @endif
+            </div>
         </div>
-    </div>
+        
+        <style>
+            .category-card {
+                background: white;
+                border-radius: 20px;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                border: 1px solid rgba(0, 0, 0, 0.05);
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .category-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: linear-gradient(90deg, #1e30f3 0%, #1a28d9 100%);
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .category-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 40px rgba(30, 48, 243, 0.15);
+            }
+            
+            .category-card:hover::before {
+                transform: scaleX(1);
+            }
+            
+            .category-image-wrapper {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 1.5rem;
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                border-radius: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                padding: 15px;
+            }
+            
+            .category-card:hover .category-image-wrapper {
+                background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+                transform: scale(1.1) rotate(5deg);
+                box-shadow: 0 8px 25px rgba(30, 48, 243, 0.3);
+            }
+            
+            .category-image {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .category-card:hover .category-image {
+                filter: brightness(0) invert(1);
+            }
+            
+            .category-title {
+                font-size: 1.15rem;
+                font-weight: 600;
+                color: #2c3e50;
+                margin-bottom: 1.25rem;
+                transition: color 0.3s;
+                min-height: 55px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .category-card:hover .category-title {
+                color: #1e30f3;
+            }
+            
+            .category-button {
+                background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+                color: white;
+                border: none;
+                padding: 10px 25px;
+                border-radius: 25px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                transition: all 0.3s ease;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
+                margin-top: auto;
+                box-shadow: 0 4px 15px rgba(30, 48, 243, 0.2);
+            }
+            
+            .category-button:hover {
+                background: linear-gradient(135deg, #1a28d9 0%, #1e30f3 100%);
+                transform: translateX(5px);
+                color: white;
+                box-shadow: 0 6px 20px rgba(30, 48, 243, 0.3);
+            }
+            
+            @media (max-width: 768px) {
+                .category-card {
+                    padding: 1.5rem 1rem;
+                }
+                
+                .category-image-wrapper {
+                    width: 80px;
+                    height: 80px;
+                }
+                
+                .category-title {
+                    font-size: 1rem;
+                    min-height: 50px;
+                }
+            }
+        </style>
+    </section>
 
     <!-- Call to Action -->
     <section class="page-section bg-dark text-white">
