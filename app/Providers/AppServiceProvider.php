@@ -25,11 +25,15 @@ class AppServiceProvider extends ServiceProvider
         try {
             if (\Schema::hasTable('products')) {
                 $products = Product::all();
-                view()->share('products', $products);
+            } else {
+                $products = collect();
             }
         } catch (\Exception $e) {
             // Table doesn't exist yet or connection failed
-            view()->share('products', collect());
+            $products = collect();
         }
+        
+        // Always share products variable, even if empty
+        view()->share('products', $products);
     }
 }
