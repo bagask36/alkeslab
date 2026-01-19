@@ -1,5 +1,18 @@
 @extends('template.index')
-@section('title', 'Home')
+@section('title', 'Beranda')
+
+@push('css')
+    <style>
+        .client-image {
+            max-width: 100%;
+            /* Ensure image fits within the card */
+            height: auto;
+            /* Maintain aspect ratio */
+            object-fit: cover;
+            /* Ensure proper aspect ratio */
+        }
+    </style>
+@endpush
 @section('content')
     <!-- Landing -->
     <?php
@@ -7,162 +20,99 @@
     ?>
     <header class="py-4" style="background-image: url('{{ $imagePath }}');">
         <div class="container px-5 pb-5 text-center">
-            <h1 class="display-2 fw-bolder text-primary">PT. ALKESLAB PRIMATAMA</h1>
+            <h1 class="display-4 fw-bolder text-primary" id="about-title">
+                <span class="split-text">Distributor Alat Kesehatan</span>
+                <span class="split-text">PT Alkeslab Primatama</span>
+            </h1>
         </div>
     </header>
-    <!-- Open Section-->
-    <section class="bg-white py-5">
-        <div class="container px-5">
-            <div class="row gx-5 justify-content-center">
-                <div class="col-xxl-10">
-                    <div class="text-center my-5">
-                        <p class="lead mb-4">PT. Alkeslab Primatama adalah perusahaan yang bergerak dibidang
-                            penyedia Alat Kesehatan, Peralatan Medis & Laboratorium, Produksi Cairan & Bubuk Hemodialisa</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Produk Kami Section -->
-    <section class="bg-white py-5 bg-success">
+    <section class="bg-white py-5">
         <div class="text-center mb-5">
             <div class="button-area">
-                Produk Kami :
+                <h1 class="fw-bolder">Kategori Produk</h1>
             </div>
         </div>
-        <div class="container text-center my-5">
+        <div class="card-home-container">
+            @foreach ($product as $product)
+                <div class="card-home bg-light">
+                    <img src="{{ asset('storage/' . $product->icon) }}" alt="Card Image" class="card-home-image">
+                    <h3 class="card-home-title fw-bolder">{{ $product->description }}</h3>
+                    <a href="/produk-kami#{{ $product->slug }}">
+                        <button class="card-home-button bg-primary">Selengkapnya ></button></a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="bg-white py-5">
+        <div class="text-center mb-5">
+            <div class="button-area">
+                <h1 class="fw-bolder">Layanan</h1>
+            </div>
+        </div>
+        <div class="card-home-container">
+            @foreach ($layanan as $layanan)
+                <div class="card-home bg-light">
+                    <img src="{{ asset('storage/' . $layanan->image) }}" alt="Card Image" class="card-home-image">
+                    <h3 class="card-home-title fw-bolder">{{ $layanan->name }}</h3>
+                    <a href="#">
+                        <button class="card-home-button bg-primary">Selengkapnya ></button></a>
+                </div>
+            @endforeach
+        </div>
+
+    </section>
+    <section class="bg-white py-5">
+        <div class="text-center mb-5">
+            <div class="button-area">
+                <h1 class="fw-bolder">Klien Kami</h1>
+            </div>
+        </div>
+
+        <div class="container">
             <div class="row justify-content-center">
-                <div class="d-flex flex-wrap justify-content-center gap-5">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('storage/image.png') }}" class="card-img-top img-fluid"
-                                alt="Barang Medis Habis Pakai">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Barang Medis Habis Pakai</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
+                @foreach ($clients as $client)
+                    @if ($client->image_size === 'small' && ($client->id === 1 || $client->id === 2))
+                        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
+                            <img src="{{ asset('storage/' . $client->image) }}" class="img-fluid" alt="{{ $client->name }}"
+                                style="height: auto; object-fit: cover; border-radius:10px;" />
                         </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/alatkesehatan.png') }}" class="card-img-top img-fluid"
-                                alt="Alat Kesehatan">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Alat Kesehatan</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/furniture.png') }}" class="card-img-top img-fluid"
-                                alt="Furniture Rumah Sakit">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Furniture Rumah Sakit</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/image.png') }}" class="card-img-top img-fluid"
-                                alt="Linen">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Linen</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-2">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/laboratorium.png') }}" class="card-img-top img-fluid"
-                                alt="Laboratorium">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Laboratorium</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
             </div>
         </div>
-    </section>
 
-    <!-- Teknis Medis Section -->
-    <section class="bg-white py-5">
-        <div class="text-center mb-5">
-            <div class="button-area">
-                Teknis Medis Project :
-            </div>
-        </div>
-        <div class="container text-center mt-5">
-            <div class="d-flex flex-wrap justify-content-center gap-5">
-                <div class="row justify-content-center">
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/alatperbaikan.png') }}" class="card-img-top img-fluid"
-                                alt="Barang Perbaikan Alat Kesehatan">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Perbaikan Alat Kesehatan</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/alatmedis.png') }}" class="card-img-top img-fluid"
-                                alt="Services & Maintenance Alat Medis">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Services & Maintenance Alat Medis</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-md-4 mb-4">
-                        <div class="card-home position-relative bg-light">
-                            <img src="{{ asset('app/assets/content/instalasialat.png') }}" class="card-img-top img-fluid"
-                                alt="Instalansi Alat Medis">
-                            <div class="card-body d-flex flex-column justify-content-between">
-                                <h5 class="card-title fw-bolder">Instalansi Alat Medis</h5>
-                                <a href="#" class="btn btn-primary fixed-btn">Selengkapnya ></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Klien Kami Section -->
-    <section class="bg-white py-5">
-        <div class="text-center mb-5">
-            <div class="button-area">
-                Teknis Medis Project :
-            </div>
-        </div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('app/assets/content/radjakgroup.png') }}" class="img-fluid" alt="Klien 1"
-                        style="height: 250px; object-fit: cover;" />
-                </div>
-                <div class="col-md-6 mb-4 d-flex justify-content-center align-items-center">
-                    <img src="{{ asset('app/assets/content/univmht.png') }}" class="img-fluid" alt="Klien 2"
-                        style="height: 500x; object-fit: cover;" />
-                </div>
+            <div class="row justify-content-center">
+                @foreach ($clients as $client)
+                    @if ($client->image_size === 'small' && $client->id !== 1 && $client->id !== 2)
+                        <div class="col-md-4 mb-4 d-flex justify-content-center align-items-center">
+                            <!-- Adjusted column for 4 images -->
+                            <img src="{{ asset('storage/' . $client->image) }}" class="img-fluid client-image"
+                                alt="{{ $client->name }}" style="height: auto; object-fit: cover; border-radius:10px;" />
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
-        <div class="container">
-            <!-- Large Image -->
-            <div class="row">
-                <div class="col-12 mb-4">
-                    <img src="{{ asset('app/assets/content/img22.png') }}" class="img-fluid" alt="Klien Besar" />
+        @foreach ($clients as $client)
+            @if ($client->image_size === 'large')
+                <div class="container">
+                    <!-- Large Image Placeholder -->
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <img src="{{ asset('storage/' . $client->image) }}" class="img-fluid"
+                                alt="{{ $client->name }}" style="height: auto; object-fit: cover; border-radius:10px;" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            @endif
+        @endforeach
     </section>
-
+    <!-- Scroller Section -->
     <section class="scroll-section">
         <div class="scroll-container">
             <div class="scroll-content">
@@ -178,7 +128,4 @@
         </div>
     </section>
 
-
-
-    </main>
 @endsection
