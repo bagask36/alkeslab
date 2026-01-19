@@ -218,14 +218,18 @@
     <!-- Address Section -->
     <section class="page-section bg-primary" id="address">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Section -->
+                <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0">
                     <h2 class="text-white mt-0">Alamat Kami</h2>
-                    <hr class="divider divider-light" />
+                    <hr class="divider divider-light ms-lg-0" />
+                    <p class="text-white-75 mb-4">
+                        Kunjungi kantor dan gudang kami untuk melihat produk dan konsultasi langsung dengan tim kami.
+                    </p>
                 </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
+
+                <!-- Address Card -->
+                <div class="col-lg-8">
                     <div class="address-card">
                         <h3 class="text-center mb-4" style="color: #1e30f3;">
                             <i class="bi bi-building me-2"></i>HEAD OFFICE & WAREHOUSE

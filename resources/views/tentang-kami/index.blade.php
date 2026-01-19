@@ -569,24 +569,24 @@
     </section>
 
     <!-- Address Section -->
-    <section class="page-section bg-light text-primary" id="address" style="padding: 5rem 0;">
+    <section class="page-section bg-primary" id="address">
         <div class="container px-4 px-lg-5">
-            <!-- Title Row -->
-            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                <div class="col-12 text-center">
-                    <h2 class="address-section-title text-primary">Alamat Kami</h2>
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Section -->
+                <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0">
+                    <h2 class="text-white mt-0">Alamat Kami</h2>
+                    <hr class="divider divider-light ms-lg-0" />
+                    <p class="text-white-75 mb-4">
+                        Kunjungi kantor dan gudang kami untuk melihat produk dan konsultasi langsung dengan tim kami.
+                    </p>
                 </div>
-            </div>
-            
-            <!-- Card Row - Separate row below title -->
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-12 col-lg-10">
+
+                <!-- Address Card -->
+                <div class="col-lg-8">
                     <div class="address-card">
-                        <div class="address-card-header">
-                            <i class="bi bi-building"></i>
-                            <h3>HEAD OFFICE & WAREHOUSE</h3>
-                        </div>
-                        
+                        <h3 class="text-center mb-4" style="color: #1e30f3;">
+                            <i class="bi bi-building me-2"></i>HEAD OFFICE & WAREHOUSE
+                        </h3>
                         <div class="mb-4">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1034.9873891408463!2d106.83947878647712!3d-6.56998393584498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c694a19088e3%3A0xd66931f4835b2a77!2sPT.ALKESLAB%20PRIMATAMA!5e0!3m2!1sen!2sid!4v1728397491555!5m2!1sen!2sid"
@@ -598,31 +598,24 @@
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
                         </div>
-                        
-                        <div class="contact-info">
-                            <div class="contact-info-item">
+                        <div class="address-details">
+                            <p>
                                 <i class="bi bi-geo-alt-fill"></i>
-                                <p>
-                                    <strong>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
-                                    Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</strong>
-                                </p>
-                            </div>
-                            <div class="contact-info-item">
+                                <strong>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
+                                Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</strong>
+                            </p>
+                            <p>
                                 <i class="bi bi-telephone-fill"></i>
-                                <p>
-                                    <a href="tel:082280848541">
-                                        <strong>0822 8084 8541</strong> (Admin)
-                                    </a>
-                                </p>
-                            </div>
-                            <div class="contact-info-item">
+                                <a href="tel:082280848541" style="color: #1e30f3; text-decoration: none;">
+                                    <strong>0822 8084 8541</strong> (Admin)
+                                </a>
+                            </p>
+                            <p>
                                 <i class="bi bi-telephone-fill"></i>
-                                <p>
-                                    <a href="tel:082124529567">
-                                        <strong>0821 2452 9567</strong> (Sales Marketing)
-                                    </a>
-                                </p>
-                            </div>
+                                <a href="tel:082124529567" style="color: #1e30f3; text-decoration: none;">
+                                    <strong>0821 2452 9567</strong> (Sales Marketing)
+                                </a>
+                            </p>
                         </div>
                     </div>
                 </div>
