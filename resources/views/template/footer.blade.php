@@ -133,7 +133,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                <div class="col-12 text-center">
                     <p class="copyright-text">
                         © {{ date('Y') }} <strong>PT. ALKESLAB PRIMATAMA</strong>. All rights reserved.
                     </p>
@@ -392,14 +392,17 @@
     }
 
     .copyright-text {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.95rem;
         margin: 0;
+        line-height: 1.6;
+        letter-spacing: 0.3px;
     }
 
     .copyright-text strong {
         color: white;
-        font-weight: 600;
+        font-weight: 700;
+        letter-spacing: 0.5px;
     }
 
     /* Responsive Design */

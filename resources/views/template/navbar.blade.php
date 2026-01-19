@@ -1,106 +1,123 @@
-<!-- Top Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary py-2 top-navbar">
-    <div class="container px-4">
-        <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
-            <!-- Left side (Contact Info) -->
-            <div class="d-flex flex-column flex-sm-row align-items-center gap-2 gap-sm-3">
-                <a href="tel:02129098991" class="text-white text-decoration-none d-flex align-items-center gap-1 small">
-                    <i class="bi bi-telephone-fill"></i>
-                    <span>021-29098991</span>
-                </a>
-                <span class="text-white d-none d-sm-inline">|</span>
-                <a href="tel:02122968221" class="text-white text-decoration-none d-flex align-items-center gap-1 small">
-                    <i class="bi bi-telephone-fill"></i>
-                    <span>021-22968221</span>
-                </a>
-                <span class="text-white d-none d-sm-inline">|</span>
-                <a href="mailto:alkeslab.primatama@gmail.com" class="text-white text-decoration-none d-flex align-items-center gap-1 small">
-                    <i class="bi bi-envelope-fill"></i>
-                    <span class="d-none d-md-inline">alkeslab.primatama@gmail.com</span>
-                    <span class="d-md-none">Email</span>
-                </a>
-            </div>
+<!-- Unified Navbar -->
+<nav class="navbar-unified navbar-expand-lg navbar-light bg-white shadow-sm" id="mainNavbar">
+    <!-- Top Bar Section -->
+    <div class="navbar-top">
+        <div class="container px-4">
+            <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
+                <!-- Left side (Contact Info) -->
+                <div class="d-flex flex-column flex-sm-row align-items-center gap-2 gap-sm-3">
+                    <a href="tel:02129098991" class="navbar-top-link d-flex align-items-center gap-2">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>021-29098991</span>
+                    </a>
+                    <span class="navbar-top-separator d-none d-sm-inline">|</span>
+                    <a href="tel:02122968221" class="navbar-top-link d-flex align-items-center gap-2">
+                        <i class="bi bi-telephone-fill"></i>
+                        <span>021-22968221</span>
+                    </a>
+                </div>
 
-            <!-- Right side (Social Media) -->
-            <div class="d-flex align-items-center gap-2 social-icons">
-                <a href="https://tokopedia.link/alkeslabprimatama" class="text-white text-decoration-none" target="_blank" aria-label="Tokopedia">
-                    <img src="https://img.icons8.com/nolan/32/tokopedia.png" alt="Tokopedia" class="social-icon" />
-                </a>
-                <a href="https://shopee.co.id/alkeskitasemua" class="text-white text-decoration-none" target="_blank" aria-label="Shopee">
-                    <img src="https://img.icons8.com/ios-filled/32/FFFFFF/shopee.png" alt="Shopee" class="social-icon" />
-                </a>
-                <a href="https://www.instagram.com/alkeslabprimatama_official" class="text-white text-decoration-none" target="_blank" aria-label="Instagram">
-                    <img src="https://img.icons8.com/ios-filled/32/FFFFFF/instagram-new--v1.png" alt="Instagram" class="social-icon" />
-                </a>
-                <a href="https://www.tiktok.com/@alkeslabp" class="text-white text-decoration-none" target="_blank" aria-label="TikTok">
-                    <img src="https://img.icons8.com/ios-filled/32/FFFFFF/tiktok--v1.png" alt="TikTok" class="social-icon" />
-                </a>
+                <!-- Right side (Social Media) -->
+                <div class="d-flex align-items-center gap-3 navbar-top-social">
+                    <a href="https://tokopedia.link/alkeslabprimatama" 
+                       class="navbar-top-social-link" 
+                       target="_blank" 
+                       aria-label="Tokopedia"
+                       title="Tokopedia">
+                        <img src="https://img.icons8.com/nolan/28/tokopedia.png" alt="Tokopedia" class="navbar-top-social-icon" />
+                        <span class="d-none d-lg-inline">Tokopedia</span>
+                    </a>
+                    <a href="https://shopee.co.id/alkeskitasemua" 
+                       class="navbar-top-social-link" 
+                       target="_blank" 
+                       aria-label="Shopee"
+                       title="Shopee">
+                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/shopee.png" alt="Shopee" class="navbar-top-social-icon" />
+                        <span class="d-none d-lg-inline">Shopee</span>
+                    </a>
+                    <a href="https://www.instagram.com/alkeslabprimatama_official" 
+                       class="navbar-top-social-link" 
+                       target="_blank" 
+                       aria-label="Instagram"
+                       title="Instagram">
+                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/instagram-new--v1.png" alt="Instagram" class="navbar-top-social-icon" />
+                        <span class="d-none d-lg-inline">Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@alkeslabp" 
+                       class="navbar-top-social-link" 
+                       target="_blank" 
+                       aria-label="TikTok"
+                       title="TikTok">
+                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/tiktok--v1.png" alt="TikTok" class="navbar-top-social-icon" />
+                        <span class="d-none d-lg-inline">TikTok</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</nav>
 
-<!-- Main Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm main-navbar sticky-top">
-    <div class="container px-4">
-        <!-- Brand -->
-        <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
-            <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="navbar-logo me-2" style="height: 50px; width: auto;">
-            <span class="text-primary fw-bold d-none d-md-inline">PT. ALKESLAB PRIMATAMA</span>
-            <span class="text-primary fw-bold d-md-none"></span>
-        </a>
+    <!-- Main Navigation Section -->
+    <div class="navbar-main">
+        <div class="container px-4">
+            <!-- Brand -->
+            <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">
+                <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="navbar-logo me-2" style="height: 50px; width: auto;">
+                <span class="text-primary fw-bold d-none d-md-inline">PT. ALKESLAB PRIMATAMA</span>
+                <span class="text-primary fw-bold d-md-none"></span>
+            </a>
 
-        <!-- Mobile Toggler -->
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
-            aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <!-- Mobile Toggler -->
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+                aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Desktop Navigation -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('/') ? 'active' : '' }}" href="/">
-                        Beranda
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('tentang-kami') ? 'active' : '' }}" href="/tentang-kami">
-                        Tentang Kami
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link text-dark fw-semibold px-3 dropdown-toggle {{ request()->is('produk-kami*') ? 'active' : '' }}" 
-                       href="#" 
-                       id="navbarDropdown" 
-                       role="button"
-                       data-bs-toggle="dropdown" 
-                       aria-expanded="false">
-                        Produk
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="navbarDropdown">
-                        @forelse ($products as $product)
-                            <li>
-                                <a class="dropdown-item py-2 px-3" href="/produk-kami#{{ $product->slug }}">
-                                    {{ $product->description }}
-                                </a>
-                            </li>
-                        @empty
-                            <li><span class="dropdown-item-text text-muted py-2 px-3">Tidak ada produk</span></li>
-                        @endforelse
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('berita*') ? 'active' : '' }}" href="/berita">
-                        Berita
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('kontak-kami') ? 'active' : '' }}" href="/kontak-kami">
-                        Kontak
-                    </a>
-                </li>
-            </ul>
+            <!-- Desktop Navigation -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('/') ? 'active' : '' }}" href="/">
+                            Beranda
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('tentang-kami') ? 'active' : '' }}" href="/tentang-kami">
+                            Tentang Kami
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-dark fw-semibold px-3 dropdown-toggle {{ request()->is('produk-kami*') ? 'active' : '' }}" 
+                           href="#" 
+                           id="navbarDropdown" 
+                           role="button"
+                           data-bs-toggle="dropdown" 
+                           aria-expanded="false">
+                            Produk
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0" aria-labelledby="navbarDropdown">
+                            @forelse ($products as $product)
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/produk-kami#{{ $product->slug }}">
+                                        {{ $product->description }}
+                                    </a>
+                                </li>
+                            @empty
+                                <li><span class="dropdown-item-text text-muted py-2 px-3">Tidak ada produk</span></li>
+                            @endforelse
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('berita*') ? 'active' : '' }}" href="/berita">
+                            Berita
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark fw-semibold px-3 {{ request()->is('kontak-kami') ? 'active' : '' }}" href="/kontak-kami">
+                            Kontak
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>
@@ -168,31 +185,215 @@
 </div>
 
 <style>
-    /* Top Navbar Styles */
-    .top-navbar {
+    /* Reset body and html to remove gaps */
+    body {
+        margin: 0 !important;
+        padding: 0 !important;
+        padding-top: 0 !important;
+        margin-top: 0 !important;
+    }
+    
+    html {
+        margin: 0 !important;
+        padding: 0 !important;
+        scroll-padding-top: 0 !important;
+    }
+    
+    /* Remove any gap before navbar */
+    body > .navbar-unified {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Ensure content doesn't overlap navbar */
+    body > *:not(.navbar-unified) {
+        margin-top: 0 !important;
+    }
+    
+    /* Unified Navbar Container */
+    .navbar-unified {
+        position: sticky !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 1030 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        flex-direction: column;
+        width: 100% !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out !important;
+        will-change: transform;
+    }
+    
+    /* Navbar hidden state (scrolled down) */
+    .navbar-unified.navbar-hidden {
+        transform: translateY(-100%) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+    
+    /* Navbar visible state (scrolled up or at top) */
+    .navbar-unified.navbar-visible {
+        transform: translateY(0) !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    
+    /* Prevent navbar from being hidden */
+    .navbar-unified,
+    .navbar-unified * {
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Ensure navbar stays on top */
+    body > .navbar-unified,
+    body#page-top > .navbar-unified {
+        position: sticky !important;
+        top: 0 !important;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Override any conflicting styles from other CSS files */
+    #mainNavbar.navbar-unified,
+    nav.navbar-unified,
+    .navbar-unified.navbar {
+        position: sticky !important;
+        top: 0 !important;
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    
+    /* Override fixed position from app/css/styles.css */
+    .navbar-unified.navbar {
+        position: sticky !important;
+        top: 0 !important;
+    }
+    
+    /* Prevent any JavaScript from hiding navbar */
+    .navbar-unified[style*="display: none"],
+    .navbar-unified[style*="visibility: hidden"],
+    .navbar-unified[style*="opacity: 0"] {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Top Bar Section */
+    .navbar-top {
         font-size: 0.875rem;
-        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%) !important;
+        padding: 0.75rem 0;
+        width: 100%;
+        margin: 0 !important;
+        border: none;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 
-    .top-navbar a:hover {
-        opacity: 0.8;
-        transition: opacity 0.3s ease;
-    }
-
-    .social-icon {
-        width: 24px;
-        height: 24px;
-        transition: transform 0.2s ease;
-    }
-
-    .social-icon:hover {
-        transform: scale(1.1);
-    }
-
-    /* Main Navbar Styles */
-    .main-navbar {
+    .navbar-top-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
         transition: all 0.3s ease;
-        z-index: 1000;
+        padding: 0.25rem 0.5rem;
+        border-radius: 6px;
+    }
+
+    .navbar-top-link:hover {
+        color: white !important;
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-1px);
+    }
+
+    .navbar-top-link i {
+        font-size: 0.9rem;
+    }
+
+    .navbar-top-separator {
+        color: rgba(255, 255, 255, 0.4);
+        margin: 0 0.5rem;
+    }
+
+    .navbar-top-social {
+        gap: 0.75rem;
+    }
+
+    .navbar-top-social-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: rgba(255, 255, 255, 0.9) !important;
+        text-decoration: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+        padding: 0.4rem 0.75rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar-top-social-link:hover {
+        color: white !important;
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.3);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .navbar-top-social-icon {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-top-social-link:hover .navbar-top-social-icon {
+        transform: scale(1.15);
+    }
+
+    .navbar-top-social-link span {
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+
+    /* Main Navigation Section */
+    .navbar-main {
+        background: white !important;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 0 !important;
+        padding: 0.75rem 0;
+        width: 100%;
+        border: none;
+        display: flex !important;
+        align-items: center;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .navbar-main .container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* Ensure no gap between top and main sections */
+    .navbar-top + .navbar-main {
+        margin-top: 0;
+        padding-top: 0.75rem;
     }
 
     .navbar-logo {
@@ -268,21 +469,110 @@
         .navbar-brand span {
             font-size: 0.9rem;
         }
+
+        .navbar-top {
+            padding: 0.6rem 0;
+        }
+
+        .navbar-top-social-link span {
+            display: none;
+        }
+
+        .navbar-top-social-link {
+            padding: 0.35rem 0.6rem;
+        }
     }
 
     @media (max-width: 575.98px) {
-        .top-navbar .container {
+        .navbar-top .container {
             padding-left: 1rem;
             padding-right: 1rem;
         }
 
-        .social-icons {
+        .navbar-top {
+            padding: 0.5rem 0;
+            font-size: 0.8rem;
+        }
+
+        .navbar-top-link {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.4rem;
+        }
+
+        .navbar-top-social {
             gap: 0.5rem;
         }
 
-        .social-icon {
-            width: 20px;
-            height: 20px;
+        .navbar-top-social-link {
+            padding: 0.3rem 0.5rem;
+        }
+
+        .navbar-top-social-icon {
+            width: 18px;
+            height: 18px;
         }
     }
 </style>
+
+<!-- JavaScript for hide/show navbar on scroll -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const navbar = document.getElementById('mainNavbar');
+        if (!navbar) return;
+        
+        let lastScrollTop = 0;
+        let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+        let ticking = false;
+        
+        // Initialize navbar
+        navbar.style.position = 'sticky';
+        navbar.style.top = '0';
+        navbar.style.zIndex = '1030';
+        navbar.classList.add('navbar-visible');
+        
+        function handleScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    
+                    // Always show navbar at the top of the page
+                    if (currentScrollTop <= 50) {
+                        navbar.classList.remove('navbar-hidden');
+                        navbar.classList.add('navbar-visible');
+                        lastScrollTop = currentScrollTop;
+                        ticking = false;
+                        return;
+                    }
+                    
+                    // Calculate scroll direction
+                    const scrollDifference = Math.abs(currentScrollTop - lastScrollTop);
+                    
+                    // Only trigger if scroll difference is significant
+                    if (scrollDifference > scrollThreshold) {
+                        if (currentScrollTop > lastScrollTop) {
+                            // Scrolling down - hide navbar
+                            navbar.classList.remove('navbar-visible');
+                            navbar.classList.add('navbar-hidden');
+                        } else {
+                            // Scrolling up - show navbar
+                            navbar.classList.remove('navbar-hidden');
+                            navbar.classList.add('navbar-visible');
+                        }
+                        
+                        lastScrollTop = currentScrollTop;
+                    }
+                    
+                    ticking = false;
+                });
+                
+                ticking = true;
+            }
+        }
+        
+        // Add scroll event listener with passive option for better performance
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        
+        // Initial check
+        handleScroll();
+    });
+</script>
