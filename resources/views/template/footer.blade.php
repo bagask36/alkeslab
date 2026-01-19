@@ -138,11 +138,6 @@
                         © {{ date('Y') }} <strong>PT. ALKESLAB PRIMATAMA</strong>. All rights reserved.
                     </p>
                 </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="copyright-text">
-                        Made with <i class="bi bi-heart-fill text-danger"></i> in Indonesia
-                    </p>
-                </div>
             </div>
         </div>
     </div>

@@ -12,14 +12,40 @@
         background-attachment: fixed;
     }
     
-    /* Featured article */
+    .articles-section-label {
+        display: inline-block;
+        padding: 0.35rem 0.9rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #1e30f3;
+        background: rgba(30, 48, 243, 0.08);
+        margin-bottom: 0.75rem;
+    }
+    
+    .articles-heading {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.75rem;
+    }
+    
+    .articles-subtitle {
+        font-size: 0.98rem;
+        color: #6c757d;
+        margin-bottom: 1.5rem;
+    }
+    
     .featured-article {
         background: white;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
-        margin-bottom: 4rem;
+        margin: 0 auto 3rem;
+        max-width: 1100px;
     }
     
     .featured-article:hover {
@@ -28,8 +54,7 @@
     }
     
     .featured-article-image {
-        height: 100%;
-        min-height: 400px;
+        height: 320px;
         background-size: cover;
         background-position: center;
     }
@@ -72,7 +97,7 @@
     /* Article cards */
     .article-card {
         background: white;
-        border-radius: 15px;
+        border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         transition: all 0.3s ease;
@@ -88,7 +113,7 @@
     
     .article-card-image {
         width: 100%;
-        height: 250px;
+        height: 220px;
         object-fit: cover;
         transition: transform 0.3s ease;
     }
@@ -152,6 +177,20 @@
         color: #6c757d;
     }
     
+    @media (max-width: 991.98px) {
+        .featured-article {
+            margin-bottom: 2.5rem;
+        }
+        
+        .featured-article-image {
+            height: 220px;
+        }
+        
+        .featured-article-content {
+            padding: 2rem 1.5rem;
+        }
+    }
+    
     /* Pagination */
     .pagination {
         justify-content: center;
@@ -210,12 +249,13 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-8 text-center">
-                        <h2 class="mt-0">Berita Terbaru</h2>
-                        <hr class="divider" />
+                        <span class="articles-section-label">Berita</span>
+                        <h2 class="articles-heading">Berita Terbaru</h2>
+                        <p class="articles-subtitle">Ringkasan berita terbaru dan informasi penting dari Alkeslab Primatama</p>
                     </div>
                 </div>
-                <div class="row gx-0">
-                    <div class="col-lg-12">
+                <div class="row gx-0 justify-content-center">
+                    <div class="col-lg-10">
                         <div class="featured-article">
                             <div class="row g-0">
                                 <div class="col-lg-6">
@@ -241,13 +281,13 @@
         </section>
     @endif
 
-    <!-- Articles List Section -->
-    <section class="page-section bg-light" id="articles">
+    <section class="page-section py-5" id="articles" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                 <div class="col-lg-8 text-center">
-                    <h2 class="mt-0">Daftar Berita</h2>
-                    <hr class="divider" />
+                    <span class="articles-section-label">Berita</span>
+                    <h2 class="articles-heading">Daftar Berita</h2>
+                    <p class="articles-subtitle">Kumpulan artikel, informasi produk, dan update terbaru seputar alat kesehatan</p>
                 </div>
             </div>
             @if($articles->count() > 0 || (isset($latest_post) && $latest_post))
