@@ -371,136 +371,160 @@
 
     <!-- ScrollReveal Initialization -->
     <script>
-        // Initialize ScrollReveal when DOM is ready
+        // Wait for ScrollReveal library to load
         function initScrollReveal() {
+            // Check if ScrollReveal is loaded
+            if (typeof ScrollReveal === 'undefined') {
+                // Retry after a short delay if not loaded yet
+                setTimeout(initScrollReveal, 100);
+                return;
+            }
+
+            // Create ScrollReveal instance with default config
+            const sr = ScrollReveal({
+                origin: 'bottom',
+                distance: '30px',
+                duration: 1000,
+                delay: 100,
+                reset: false,
+                easing: 'ease-out',
+                mobile: true,
+                viewFactor: 0.15,
+                viewOffset: { top: 0, right: 0, bottom: 50, left: 0 }
+            });
+
+            // Animate sections
+            sr.reveal('.page-section', {
+                interval: 100
+            });
+
+            // Animate headings
+            sr.reveal('h1, h2, h3, .berita-heading, .clients-heading, .articles-heading, .about-title, .address-section-title', {
+                origin: 'top',
+                distance: '40px',
+                duration: 1200,
+                delay: 150
+            });
+
+            // Animate cards
+            sr.reveal('.berita-card, .article-card, .product-card, .service-card, .category-card, .client-item, .feature-card, .vision-mission-card, .address-card, .clients-card, .project-card', {
+                origin: 'bottom',
+                distance: '30px',
+                duration: 800,
+                delay: 100,
+                interval: 150
+            });
+
+            // Animate featured content
+            sr.reveal('.berita-featured, .featured-article', {
+                origin: 'left',
+                distance: '50px',
+                duration: 1200,
+                delay: 200
+            });
+
+            // Animate images
+            sr.reveal('.berita-card-image-container, .product-image-container, .category-image-wrapper, .service-icon-wrapper, .portfolio-box', {
+                origin: 'bottom',
+                distance: '30px',
+                duration: 1000,
+                delay: 150,
+                scale: 0.95
+            });
+
+            // Animate buttons and links
+            sr.reveal('.btn, .berita-featured-link, .product-whatsapp-btn, .category-button, .product-card-button', {
+                origin: 'bottom',
+                distance: '20px',
+                duration: 800,
+                delay: 300
+            });
+
+            // Animate badges and labels
+            sr.reveal('.berita-label, .berita-featured-badge, .berita-card-badge, .clients-section-label, .articles-section-label', {
+                origin: 'top',
+                distance: '20px',
+                duration: 600,
+                delay: 100,
+                scale: 0.8
+            });
+
+            // Animate text content
+            sr.reveal('.berita-subtitle, .clients-subtitle, .articles-subtitle, .about-description, p.lead, .berita-featured-text, .berita-card-text', {
+                origin: 'bottom',
+                distance: '25px',
+                duration: 900,
+                delay: 200
+            });
+
+            // Animate pagination
+            sr.reveal('.berita-pagination, .pagination', {
+                origin: 'bottom',
+                distance: '30px',
+                duration: 800,
+                delay: 400
+            });
+
+            // Animate meta information
+            sr.reveal('.berita-card-meta, .article-meta, .contact-info, .article-meta-info', {
+                origin: 'bottom',
+                distance: '20px',
+                duration: 700,
+                delay: 250
+            });
+
+            // Animate empty states
+            sr.reveal('.berita-empty, .text-center.py-5', {
+                origin: 'bottom',
+                distance: '40px',
+                duration: 1000,
+                delay: 200
+            });
+
+            // Animate grid items with stagger
+            sr.reveal('.row .col-lg-4, .row .col-lg-6, .row .col-md-6, .row .col-lg-3', {
+                origin: 'bottom',
+                distance: '30px',
+                duration: 800,
+                delay: 100,
+                interval: 100
+            });
+
+            // Animate list items
+            sr.reveal('.list-group-item, .legalitas-item, .related-article-item', {
+                origin: 'left',
+                distance: '30px',
+                duration: 700,
+                delay: 100,
+                interval: 80
+            });
+
+            // Animate clients grid
+            sr.reveal('.clients-grid .client-item', {
+                origin: 'bottom',
+                distance: '25px',
+                duration: 700,
+                delay: 100,
+                interval: 100
+            });
+        }
+
+        // Initialize ScrollReveal when DOM and scripts are ready
+        function waitForScrollReveal() {
             if (typeof ScrollReveal !== 'undefined') {
-                // Create ScrollReveal instance with default config
-                const sr = ScrollReveal({
-                    origin: 'bottom',
-                    distance: '30px',
-                    duration: 1000,
-                    delay: 100,
-                    reset: false,
-                    easing: 'ease-out',
-                    mobile: true,
-                    viewFactor: 0.2,
-                    viewOffset: { top: 0, right: 0, bottom: 0, left: 0 }
-                });
-
-                // Animate sections
-                sr.reveal('.page-section', {
-                    interval: 100
-                });
-
-                // Animate headings
-                sr.reveal('h1, h2, h3, .berita-heading, .clients-heading, .articles-heading', {
-                    origin: 'top',
-                    distance: '40px',
-                    duration: 1200,
-                    delay: 150
-                });
-
-                // Animate cards
-                sr.reveal('.berita-card, .article-card, .product-card, .service-card, .category-card, .client-item, .feature-card, .vision-mission-card, .address-card, .clients-card', {
-                    origin: 'bottom',
-                    distance: '30px',
-                    duration: 800,
-                    delay: 100,
-                    interval: 150
-                });
-
-                // Animate featured content
-                sr.reveal('.berita-featured, .featured-article', {
-                    origin: 'left',
-                    distance: '50px',
-                    duration: 1200,
-                    delay: 200
-                });
-
-                // Animate images
-                sr.reveal('img, .berita-card-image-container, .product-image-container, .category-image-wrapper, .service-icon-wrapper', {
-                    origin: 'bottom',
-                    distance: '30px',
-                    duration: 1000,
-                    delay: 150,
-                    scale: 0.9
-                });
-
-                // Animate buttons and links
-                sr.reveal('.btn, .berita-featured-link, .product-whatsapp-btn, .category-button, .product-card-button', {
-                    origin: 'bottom',
-                    distance: '20px',
-                    duration: 800,
-                    delay: 300
-                });
-
-                // Animate badges and labels
-                sr.reveal('.berita-label, .berita-featured-badge, .berita-card-badge, .clients-section-label, .articles-section-label', {
-                    origin: 'top',
-                    distance: '20px',
-                    duration: 600,
-                    delay: 100,
-                    scale: 0.8
-                });
-
-                // Animate text content
-                sr.reveal('.berita-subtitle, .clients-subtitle, .articles-subtitle, .about-description, p.lead', {
-                    origin: 'bottom',
-                    distance: '25px',
-                    duration: 900,
-                    delay: 200
-                });
-
-                // Animate pagination
-                sr.reveal('.berita-pagination, .pagination', {
-                    origin: 'bottom',
-                    distance: '30px',
-                    duration: 800,
-                    delay: 400
-                });
-
-                // Animate meta information
-                sr.reveal('.berita-card-meta, .article-meta, .contact-info', {
-                    origin: 'bottom',
-                    distance: '20px',
-                    duration: 700,
-                    delay: 250
-                });
-
-                // Animate empty states
-                sr.reveal('.berita-empty, .text-center.py-5', {
-                    origin: 'bottom',
-                    distance: '40px',
-                    duration: 1000,
-                    delay: 200
-                });
-
-                // Animate grid items with stagger
-                sr.reveal('.row .col-lg-4, .row .col-lg-6, .row .col-md-6', {
-                    origin: 'bottom',
-                    distance: '30px',
-                    duration: 800,
-                    delay: 100,
-                    interval: 100
-                });
-
-                // Animate navigation items (if needed)
-                sr.reveal('.navbar-nav .nav-item', {
-                    origin: 'top',
-                    distance: '20px',
-                    duration: 600,
-                    delay: 50,
-                    interval: 50
-                });
+                initScrollReveal();
+            } else {
+                setTimeout(waitForScrollReveal, 50);
             }
         }
 
-        // Initialize ScrollReveal when DOM is ready
+        // Start initialization
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initScrollReveal);
+            document.addEventListener('DOMContentLoaded', function() {
+                setTimeout(waitForScrollReveal, 200);
+            });
         } else {
-            // If DOM is already loaded, wait a bit for other scripts
-            setTimeout(initScrollReveal, 100);
+            setTimeout(waitForScrollReveal, 200);
         }
     </script>
 
