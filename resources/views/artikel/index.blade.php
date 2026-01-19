@@ -434,9 +434,15 @@
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
                     <div class="col-lg-10 text-center">
-                        <span class="berita-label">Berita</span>
-                        <h2 class="berita-heading">Berita Terbaru</h2>
-                        <p class="berita-subtitle">Ringkasan berita terbaru dan informasi penting dari Alkeslab Primatama</p>
+                        <span class="berita-label">
+                            Berita
+                        </span>
+                        <h2 class="berita-heading">
+                            Berita Terbaru
+                        </h2>
+                        <p class="berita-subtitle">
+                            Ringkasan berita terbaru dan informasi penting dari Alkeslab Primatama
+                        </p>
                     </div>
                 </div>
                 <div class="row gx-0 justify-content-center">
@@ -450,13 +456,17 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="berita-featured-content">
-                                        <span class="berita-featured-badge">{{ $latest_post->category }}</span>
+                                        <span class="berita-featured-badge">
+                                            {{ $latest_post->category }}
+                                        </span>
                                         <h2 class="berita-featured-title">
                                             <a href="{{ route('artikel.detail', $latest_post->slug) }}">
                                                 {{ $latest_post->title }}
                                             </a>
                                         </h2>
-                                        <p class="berita-featured-text">{!! Str::limit(strip_tags($latest_post->desc), 200, '...') !!}</p>
+                                        <p class="berita-featured-text">
+                                            {!! Str::limit(strip_tags($latest_post->desc), 200, '...') !!}
+                                        </p>
                                         <a href="{{ route('artikel.detail', $latest_post->slug) }}" class="berita-featured-link">
                                             Baca selengkapnya <i class="bi bi-arrow-right"></i>
                                         </a>
@@ -472,13 +482,22 @@
 
     <section class="berita-section-bg" id="articles">
         <div class="container px-4 px-lg-5">
+            <!-- Title Section - Separate Row -->
             <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                <div class="col-lg-10 text-center">
-                    <span class="berita-label">Berita</span>
-                    <h2 class="berita-heading">Daftar Berita</h2>
-                    <p class="berita-subtitle">Kumpulan artikel, informasi produk, dan update terbaru seputar alat kesehatan</p>
+                <div class="col-12 text-center">
+                    <span class="berita-label">
+                        Berita
+                    </span>
+                    <h2 class="berita-heading">
+                        Daftar Berita
+                    </h2>
+                    <p class="berita-subtitle">
+                        Kumpulan artikel, informasi produk, dan update terbaru seputar alat kesehatan
+                    </p>
                 </div>
             </div>
+            
+            <!-- Articles Grid - Separate Row Below -->
             @if($articles->count() > 0 || (isset($latest_post) && $latest_post))
                 <div class="row gx-4 gx-lg-5">
                     @if(isset($latest_post) && $latest_post && !$articles->contains('id', $latest_post->id))
@@ -490,7 +509,9 @@
                                          class="berita-card-image">
                                 </div>
                                 <div class="berita-card-body">
-                                    <span class="berita-card-badge">{{ $latest_post->category }}</span>
+                                    <span class="berita-card-badge">
+                                        {{ $latest_post->category }}
+                                    </span>
                                     <h3 class="berita-card-title">
                                         <a href="{{ route('artikel.detail', $latest_post->slug) }}">
                                             {{ $latest_post->title }}
@@ -502,8 +523,12 @@
                                 </div>
                                 <div class="berita-card-footer">
                                     <div class="berita-card-meta">
-                                        <div class="berita-card-meta-author">Admin</div>
-                                        <div class="berita-card-meta-date">{{ $latest_post->created_at->format('d M Y') }}</div>
+                                        <div class="berita-card-meta-author">
+                                            Admin
+                                        </div>
+                                        <div class="berita-card-meta-date">
+                                            {{ $latest_post->created_at->format('d M Y') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -519,7 +544,9 @@
                                          class="berita-card-image">
                                 </div>
                                 <div class="berita-card-body">
-                                    <span class="berita-card-badge">{{ $article->category }}</span>
+                                    <span class="berita-card-badge">
+                                        {{ $article->category }}
+                                    </span>
                                     <h3 class="berita-card-title">
                                         <a href="{{ route('artikel.detail', $article->slug) }}">
                                             {{ $article->title }}
@@ -531,8 +558,12 @@
                                 </div>
                                 <div class="berita-card-footer">
                                     <div class="berita-card-meta">
-                                        <div class="berita-card-meta-author">Admin</div>
-                                        <div class="berita-card-meta-date">{{ $article->created_at->format('d M Y') }}</div>
+                                        <div class="berita-card-meta-author">
+                                            Admin
+                                        </div>
+                                        <div class="berita-card-meta-date">
+                                            {{ $article->created_at->format('d M Y') }}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -542,7 +573,9 @@
             @else
                 <div class="berita-empty">
                     <i class="bi bi-newspaper berita-empty-icon"></i>
-                    <p class="berita-empty-text">Tidak ada berita tersedia saat ini</p>
+                    <p class="berita-empty-text">
+                        Tidak ada berita tersedia saat ini
+                    </p>
                 </div>
             @endif
             
@@ -552,27 +585,37 @@
                     <ul class="pagination berita-pagination">
                         @if ($articles->onFirstPage())
                             <li class="page-item disabled">
-                                <span class="page-link">Sebelumnya</span>
+                                <span class="page-link">
+                                    Sebelumnya
+                                </span>
                             </li>
                         @else
                             <li class="page-item">
-                                <a class="page-link" href="{{ $articles->previousPageUrl() }}">Sebelumnya</a>
+                                <a class="page-link" href="{{ $articles->previousPageUrl() }}">
+                                    Sebelumnya
+                                </a>
                             </li>
                         @endif
 
                         @for ($i = 1; $i <= $articles->lastPage(); $i++)
                             <li class="page-item {{ $articles->currentPage() == $i ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $articles->url($i) }}">{{ $i }}</a>
+                                <a class="page-link" href="{{ $articles->url($i) }}">
+                                    {{ $i }}
+                                </a>
                             </li>
                         @endfor
 
                         @if ($articles->hasMorePages())
                             <li class="page-item">
-                                <a class="page-link" href="{{ $articles->nextPageUrl() }}">Selanjutnya</a>
+                                <a class="page-link" href="{{ $articles->nextPageUrl() }}">
+                                    Selanjutnya
+                                </a>
                             </li>
                         @else
                             <li class="page-item disabled">
-                                <span class="page-link">Selanjutnya</span>
+                                <span class="page-link">
+                                    Selanjutnya
+                                </span>
                             </li>
                         @endif
                     </ul>
