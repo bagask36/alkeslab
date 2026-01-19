@@ -580,49 +580,55 @@
                     </p>
                 </div>
             @endif
-            
-            <!-- Pagination -->
-            @if($articles->hasPages())
-                <nav aria-label="Page navigation">
-                    <ul class="pagination berita-pagination">
-                        @if ($articles->onFirstPage())
-                            <li class="page-item disabled">
-                                <span class="page-link">
-                                    Sebelumnya
-                                </span>
-                            </li>
-                        @else
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $articles->previousPageUrl() }}">
-                                    Sebelumnya
-                                </a>
-                            </li>
-                        @endif
-
-                        @for ($i = 1; $i <= $articles->lastPage(); $i++)
-                            <li class="page-item {{ $articles->currentPage() == $i ? 'active' : '' }}">
-                                <a class="page-link" href="{{ $articles->url($i) }}">
-                                    {{ $i }}
-                                </a>
-                            </li>
-                        @endfor
-
-                        @if ($articles->hasMorePages())
-                            <li class="page-item">
-                                <a class="page-link" href="{{ $articles->nextPageUrl() }}">
-                                    Selanjutnya
-                                </a>
-                            </li>
-                        @else
-                            <li class="page-item disabled">
-                                <span class="page-link">
-                                    Selanjutnya
-                                </span>
-                            </li>
-                        @endif
-                    </ul>
-                </nav>
-            @endif
         </div>
+        
+        <!-- Pagination - Separate Row -->
+        @if($articles->hasPages())
+            <div class="container px-4 px-lg-5">
+                <div class="row">
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination berita-pagination">
+                                @if ($articles->onFirstPage())
+                                    <li class="page-item disabled">
+                                        <span class="page-link">
+                                            Sebelumnya
+                                        </span>
+                                    </li>
+                                @else
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $articles->previousPageUrl() }}">
+                                            Sebelumnya
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @for ($i = 1; $i <= $articles->lastPage(); $i++)
+                                    <li class="page-item {{ $articles->currentPage() == $i ? 'active' : '' }}">
+                                        <a class="page-link" href="{{ $articles->url($i) }}">
+                                            {{ $i }}
+                                        </a>
+                                    </li>
+                                @endfor
+
+                                @if ($articles->hasMorePages())
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $articles->nextPageUrl() }}">
+                                            Selanjutnya
+                                        </a>
+                                    </li>
+                                @else
+                                    <li class="page-item disabled">
+                                        <span class="page-link">
+                                            Selanjutnya
+                                        </span>
+                                    </li>
+                                @endif
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        @endif
     </section>
 @endsection
