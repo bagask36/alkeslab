@@ -1,178 +1,258 @@
 @extends('template.index')
-
 @section('title', 'Produk Kami')
 
 @push('css')
-    <style>
-        /* Add this to your custom CSS file */
-        .img-fluid {
-            max-width: 100%;
-            /* Prevents the image from overflowing its container */
-            height: auto;
-            /* Ensures the image maintains its aspect ratio */
-        }
-
-        .product-image {
-            max-width: 800px;
-            /* Set a maximum width for large images */
-            width: 100%;
-            /* Ensure the image is responsive */
-            height: auto;
-            /* Keep aspect ratio intact */
-            object-fit: cover;
-            /* Crop the image to fit the container if needed */
-        }
-
-        .btn-success {
-            transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .btn-success:hover {
-            transform: scale(1.05);
-            background-color: #218838;
-            /* Change color */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            color: white !important;
-        }
-    </style>
+<style>
+    /* Masthead customization */
+    .masthead {
+        background: linear-gradient(135deg, rgba(30, 48, 243, 0.9) 0%, rgba(26, 40, 217, 0.9) 100%),
+                    url('{{ asset('app/assets/content/img3.png') }}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    
+    /* Product section */
+    .product-section {
+        padding: 80px 0;
+        scroll-margin-top: 100px;
+    }
+    
+    .product-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+    
+    .product-header h2 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #212529;
+        margin-bottom: 1rem;
+    }
+    
+    .product-image-container {
+        position: relative;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        margin-bottom: 2rem;
+    }
+    
+    .product-image-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(30, 48, 243, 0.2);
+    }
+    
+    .product-image-container img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+    
+    .product-image-container:hover img {
+        transform: scale(1.05);
+    }
+    
+    .product-whatsapp-btn {
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+    }
+    
+    .product-whatsapp-btn:hover {
+        background: linear-gradient(135deg, #128C7E 0%, #25D366 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        color: white;
+    }
+    
+    /* Project section */
+    .project-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+    
+    .project-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+    
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .project-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    .project-card-body {
+        padding: 1.5rem;
+        text-align: center;
+    }
+    
+    .project-card-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #212529;
+        margin: 0;
+    }
+    
+    .project-card-large {
+        grid-column: 1 / -1;
+    }
+    
+    .project-card-large img {
+        height: 400px;
+    }
+</style>
 @endpush
 
 @section('content')
-    <!-- Landing -->
-    <?php
-    $imagePath = asset('app/assets/content/img3.png');
-    ?>
-    <header class="py-4" style="background-image: url('{{ $imagePath }}');">
-        <div class="container px-5 pb-5 text-center">
-            <h1 class="display-4 fw-bolder text-primary" id="about-title">
-                <span class="split-text">Produk</span>
-                <span class="split-text">Kami</span>
-            </h1>
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">Produk Kami</h1>
+                    <hr class="divider divider-light" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 mb-5">Berbagai kategori produk alat kesehatan berkualitas untuk memenuhi kebutuhan medis Anda</p>
+                </div>
+            </div>
         </div>
     </header>
 
-    @foreach ($products as $product)
-        <section class="bg-white py-5" id="{{ $product->slug }}">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center mb-5 mt-5">
-                        <!-- Display the product description in the h1 -->
-                        <h1 class="fw-bold text-secondary">
-                            <span style="color:black">
-                                {{ $product->description }}
-                            </span>
-                        </h1>
+    <!-- Products Section -->
+    @if($products->count() > 0)
+        @foreach ($products as $product)
+            <section class="page-section product-section" id="{{ $product->slug }}">
+                <div class="container px-4 px-lg-5">
+                    <div class="product-header">
+                        <h2>{{ $product->description }}</h2>
+                        <hr class="divider" />
                     </div>
-                    <div class="col-12 mb-4 text-center">
-                        <!-- Display the product image and center it using Bootstrap classes -->
-                        <a href="{{ $product->whatsapp_link }}" target="_blank">
-                            <img src="{{ asset('storage/' . $product->image) }}"
-                                class="img-fluid product-image d-block mx-auto" alt="{{ $product->description }}" />
-                        </a>
+                    <div class="row gx-4 gx-lg-5 justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="product-image-container">
+                                <a href="{{ $product->whatsapp_link }}" target="_blank">
+                                    <img src="{{ asset('storage/' . $product->image) }}" 
+                                         alt="{{ $product->description }}" 
+                                         class="img-fluid">
+                                </a>
+                            </div>
+                            <div class="text-center">
+                                <a href="{{ $product->whatsapp_link }}" 
+                                   class="product-whatsapp-btn" 
+                                   target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                    Tanya di WhatsApp
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-12 text-center">
-                        <!-- WhatsApp link below the image -->
-                        <a href="{{ $product->whatsapp_link }}" class="btn btn-success mt-3" target="_blank">
-                            <i class="fab fa-whatsapp" style="margin-right: 5px;"></i>
-                            Tanya di WhatsApp
-                        </a>
-                    </div>
-
+                </div>
+            </section>
+        @endforeach
+    @else
+        <section class="page-section">
+            <div class="container px-4 px-lg-5">
+                <div class="text-center py-5">
+                    <i class="bi bi-box-seam" style="font-size: 4rem; color: #6c757d; opacity: 0.5;"></i>
+                    <p class="text-muted mt-3">Tidak ada produk tersedia saat ini</p>
                 </div>
             </div>
         </section>
-    @endforeach
+    @endif
 
-    <!-- Teknis Medis Project -->
-    <section class="bg-white py-5" id="teknis-medis-project">
-        <div class="text-center mb-5">
-            <div class="button-area">
-                <h1 class="fw-bolder">TEKNIS MEDIS PROJECT</h1>
-            </div>
-        </div>
-
-        <div class="text-center mb-5 mt-5">
-            <h1 class="fw-bold text-secondary">
-                <span style="color:black">
-                    <h1 class="fw-bolder">PERBAIKAN ALAT MEDIS | SERVICES & MAINTENANCE ALAT MEDIS | INSTALANSI ALAT MEDIS
-                    </h1>
-                </span>
-            </h1>
-        </div>
-
-        <div class="container">
-            <div class="row">
-                <!-- Loop through teknis for small images -->
-                <div class="container">
-                    <div class="row">
-                        @foreach ($teknis as $teknisItem)
-                            @if ($teknisItem->image_size === 'small')
-                                <div class="col-md-6 mb-4 d-flex flex-column justify-content-center align-items-center">
-                                    <img src="{{ asset('storage/' . $teknisItem->image) }}"
-                                        class="img-fluid product-image d-block mx-auto" alt="{{ $teknisItem->name }}" />
-                                    <p class="mt-2 text-center fw-bolder">{{ $teknisItem->name }}</p>
-                                </div>
-                            @endif
-                        @endforeach
+    <!-- Teknis Medis Project Section -->
+    @if($teknis->count() > 0)
+        <section class="page-section bg-primary" id="teknis-medis">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center mb-5">
+                        <h2 class="text-white mt-0">Teknis Medis Project</h2>
+                        <hr class="divider divider-light" />
+                        <p class="text-white-75 mb-4">Perbaikan Alat Medis | Services & Maintenance Alat Medis | Instalasi Alat Medis</p>
                     </div>
                 </div>
-
-                <!-- Loop through teknis for large images -->
-                @foreach ($teknis as $teknisItem)
-                    @if ($teknisItem->image_size === 'large')
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12 mb-4 d-flex flex-column justify-content-center align-items-center">
-                                    <img src="{{ asset('storage/' . $teknisItem->image) }}" class="img-fluid"
-                                        alt="{{ $teknisItem->name }}" class="img-fluid product-image d-block mx-auto" alt="{{ $teknisItem->name }}" />
-                                    <!-- Adjust height for large images -->
-                                    <p class="mt-2 text-center fw-bolder">{{ $teknisItem->name }}</p>
+                <div class="project-grid">
+                    @foreach ($teknis as $teknisItem)
+                        @if($teknisItem->image_size === 'large')
+                            <div class="project-card project-card-large">
+                                <img src="{{ asset('storage/' . $teknisItem->image) }}" 
+                                     alt="{{ $teknisItem->name }}">
+                                <div class="project-card-body">
+                                    <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
                                 </div>
                             </div>
-                        </div>
-                    @endif
-                @endforeach
-
+                        @else
+                            <div class="project-card">
+                                <img src="{{ asset('storage/' . $teknisItem->image) }}" 
+                                     alt="{{ $teknisItem->name }}">
+                                <div class="project-card-body">
+                                    <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 
-    <!-- Other Project -->
-    <section class="bg-white py-5">
-        <div class="text-center mb-5">
-            <div class="button-area">
-                <h1 class="fw-bolder">PROYEK LAINNYA</h1>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                @foreach ($teknis as $teknisItem)
-                    @if ($teknisItem->image_size === 'small')
-                        <div class="col-md-6 mb-4 d-flex flex-column justify-content-center align-items-center">
-                            <img src="{{ asset('storage/' . $teknisItem->image) }}"
-                                class="img-fluid product-image d-block mx-auto" alt="{{ $teknisItem->name }}" />
-                            <p class="mt-2 text-center fw-bolder">{{ $teknisItem->name }}</p>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-        </div>
-
-        <!-- New row for large images -->
-        <div class="row">
-            @foreach ($teknis as $teknisItem)
-                @if ($teknisItem->image_size === 'large')
-                    <div class="col-md-12 mb-4 d-flex flex-column justify-content-center align-items-center">
-                        <img src="{{ asset('storage/' . $teknisItem->image) }}"
-                            class="img-fluid product-image d-block mx-auto" alt="{{ $teknisItem->name }}" />
-                        <p class="mt-2 text-center fw-bolder">{{ $teknisItem->name }}</p>
+    <!-- Other Projects Section -->
+    @if($projects->count() > 0)
+        <section class="page-section" id="other-projects">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-lg-8 text-center mb-5">
+                        <h2 class="mt-0">Proyek Lainnya</h2>
+                        <hr class="divider" />
                     </div>
-                @endif
-            @endforeach
-        </div>
-
-    </section>
-
-
-
+                </div>
+                <div class="project-grid">
+                    @foreach ($projects as $project)
+                        @if($project->image_size === 'large')
+                            <div class="project-card project-card-large">
+                                <img src="{{ asset('storage/' . $project->image) }}" 
+                                     alt="{{ $project->name }}">
+                                <div class="project-card-body">
+                                    <h4 class="project-card-title">{{ $project->name }}</h4>
+                                </div>
+                            </div>
+                        @else
+                            <div class="project-card">
+                                <img src="{{ asset('storage/' . $project->image) }}" 
+                                     alt="{{ $project->name }}">
+                                <div class="project-card-body">
+                                    <h4 class="project-card-title">{{ $project->name }}</h4>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
 @endsection
