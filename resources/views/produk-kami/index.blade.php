@@ -130,6 +130,100 @@
     .project-card-large img {
         height: 400px;
     }
+    
+    /* Responsive Design */
+    @media (max-width: 991.98px) {
+        .masthead {
+            background-attachment: scroll;
+            padding: 4rem 0;
+        }
+        
+        .product-section {
+            padding: 60px 0;
+        }
+        
+        .product-header h2 {
+            font-size: 2rem;
+        }
+        
+        .product-header p {
+            font-size: 1rem;
+        }
+        
+        .product-whatsapp-btn {
+            padding: 12px 30px;
+            font-size: 0.95rem;
+        }
+        
+        .project-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .project-card-large img {
+            height: 300px;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .masthead {
+            padding: 3rem 0;
+            min-height: 50vh;
+        }
+        
+        .masthead h1 {
+            font-size: 2rem;
+        }
+        
+        .product-section {
+            padding: 40px 0;
+        }
+        
+        .product-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .product-header h2 {
+            font-size: 1.75rem;
+        }
+        
+        .product-header p {
+            font-size: 0.95rem;
+        }
+        
+        .product-image-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-whatsapp-btn {
+            padding: 10px 25px;
+            font-size: 0.9rem;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .project-grid {
+            grid-template-columns: 1fr;
+            gap: 1.25rem;
+        }
+        
+        .project-card img {
+            height: 200px;
+        }
+        
+        .project-card-large img {
+            height: 250px;
+        }
+        
+        .project-card-body {
+            padding: 1.25rem;
+        }
+        
+        .project-card-title {
+            font-size: 1rem;
+        }
+    }
 </style>
 @endpush
 

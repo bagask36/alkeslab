@@ -398,9 +398,49 @@
         }
     }
     
+    @media (max-width: 991.98px) {
+        .berita-masthead {
+            background-attachment: scroll;
+            padding: 4rem 0;
+        }
+        
+        .berita-masthead h1 {
+            font-size: 2.5rem !important;
+        }
+        
+        .berita-featured {
+            margin-bottom: 3rem;
+        }
+        
+        .berita-featured-image {
+            min-height: 350px;
+        }
+        
+        .berita-featured-content {
+            padding: 3rem 2.5rem;
+        }
+        
+        .berita-featured-title {
+            font-size: 2rem;
+        }
+        
+        .berita-card-image-container {
+            height: 220px;
+        }
+    }
+    
     @media (max-width: 767.98px) {
         .berita-masthead {
             min-height: 50vh;
+            padding: 3rem 0;
+        }
+        
+        .berita-masthead h1 {
+            font-size: 2rem !important;
+        }
+        
+        .berita-masthead p {
+            font-size: 1rem !important;
         }
         
         .berita-heading {
@@ -411,16 +451,31 @@
             font-size: 1rem;
         }
         
+        .berita-featured {
+            margin-bottom: 2rem;
+        }
+        
         .berita-featured-image {
             min-height: 300px;
         }
         
         .berita-featured-content {
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem;
         }
         
         .berita-featured-title {
             font-size: 1.75rem;
+        }
+        
+        .berita-featured-text {
+            font-size: 1rem;
+        }
+        
+        .berita-featured-link {
+            padding: 0.875rem 1.75rem;
+            font-size: 0.95rem;
+            width: 100%;
+            justify-content: center;
         }
         
         .berita-card-image-container {
@@ -431,8 +486,26 @@
             padding: 1.5rem;
         }
         
+        .berita-card-title {
+            font-size: 1.2rem;
+        }
+        
+        .berita-card-text {
+            font-size: 0.9rem;
+        }
+        
         .berita-card-footer {
             padding: 1.25rem 1.5rem;
+        }
+        
+        .berita-pagination {
+            margin: 3rem 0 2rem;
+        }
+        
+        .berita-pagination .page-link {
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            margin: 0 0.25rem;
         }
     }
 </style>

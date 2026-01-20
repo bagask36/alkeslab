@@ -108,16 +108,25 @@
         color: white;
         font-weight: 700;
         margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+    
+    .vision-mission-card p {
+        color: white;
+        font-size: 1.05rem;
+        line-height: 1.8;
     }
     
     .vision-mission-card ol,
     .vision-mission-card ul {
         color: white;
+        font-size: 1.05rem;
     }
     
     .vision-mission-card li {
         margin-bottom: 0.75rem;
-        line-height: 1.6;
+        line-height: 1.7;
+        font-size: 1.05rem;
     }
     
     /* Legalitas section */
@@ -379,6 +388,204 @@
     .contact-info-item a:hover {
         color: #ff6b35;
     }
+    
+    /* Responsive Design */
+    @media (max-width: 991.98px) {
+        .masthead {
+            background-attachment: scroll;
+            padding: 4rem 0;
+        }
+        
+        .about-title {
+            font-size: 2rem;
+        }
+        
+        .about-description {
+            font-size: 1rem;
+        }
+        
+        .feature-card {
+            padding: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+        }
+        
+        .vision-mission-card {
+            padding: 2.5rem 2rem;
+        }
+        
+        .vision-mission-card h3 {
+            font-size: 1.75rem;
+        }
+        
+        .vision-mission-card p,
+        .vision-mission-card ol,
+        .vision-mission-card ul {
+            font-size: 1rem;
+        }
+        
+        .vision-mission-card li {
+            font-size: 1rem;
+        }
+        
+        .legalitas-card {
+            padding: 2rem;
+        }
+        
+        .legalitas-item {
+            padding: 0.875rem 1.25rem;
+            font-size: 0.95rem;
+        }
+        
+        .address-card {
+            padding: 2rem;
+        }
+        
+        .address-card iframe {
+            height: 300px;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .masthead {
+            padding: 3rem 0;
+            min-height: 50vh;
+        }
+        
+        .masthead h1 {
+            font-size: 2rem;
+        }
+        
+        .about-title {
+            font-size: 1.75rem;
+        }
+        
+        .about-description {
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+        
+        .feature-card {
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            font-size: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.05rem;
+        }
+        
+        .feature-card p {
+            font-size: 0.9rem;
+        }
+        
+        /* Vision, Mission, Legalitas - 2 baris di mobile */
+        #vision .row,
+        #mission .row,
+        #legalitas .row {
+            flex-direction: column;
+        }
+        
+        #vision .col-lg-4,
+        #mission .col-lg-4,
+        #legalitas .col-lg-4 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        #vision h2,
+        #mission h2,
+        #legalitas h2 {
+            margin-bottom: 1rem !important;
+        }
+        
+        #vision .divider,
+        #mission .divider,
+        #legalitas .divider {
+            display: block !important;
+            margin: 0 auto 1rem;
+        }
+        
+        .vision-mission-card {
+            padding: 2rem 1.5rem;
+        }
+        
+        .vision-mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .vision-mission-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .vision-mission-card ol,
+        .vision-mission-card ul {
+            font-size: 0.95rem;
+            padding-left: 1.5rem;
+        }
+        
+        .vision-mission-card li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.625rem;
+        }
+        
+        .legalitas-card {
+            padding: 1.5rem;
+        }
+        
+        .legalitas-card h3 {
+            font-size: 1.3rem;
+        }
+        
+        .legalitas-item {
+            padding: 0.75rem 1rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.875rem;
+        }
+        
+        .legalitas-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .legalitas-item a {
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .client-item {
+            padding: 0.75rem;
+        }
+        
+        .address-card {
+            padding: 1.5rem;
+        }
+        
+        .address-card h3 {
+            font-size: 1.1rem;
+        }
+        
+        .address-card iframe {
+            height: 250px;
+        }
+        
+        .address-details p {
+            font-size: 0.9rem;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+    }
 </style>
 @endpush
 
@@ -437,14 +644,14 @@
     <!-- Vision Section -->
     <section class="page-section bg-primary" id="vision">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
-                    <h2 class="text-white mt-0">Visi</h2>
-                    <hr class="divider divider-light" />
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Column -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="text-white mt-0 mb-3 mb-lg-0">Visi</h2>
+                    <hr class="divider divider-light d-none d-lg-block" />
                 </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
+                <!-- Content Column -->
+                <div class="col-lg-8">
                     <div class="vision-mission-card text-center">
                         <h3 class="mb-0">Menjadi perusahaan manufaktur dan distributor alat kesehatan yang handal dan terpercaya.</h3>
                     </div>
@@ -456,14 +663,14 @@
     <!-- Mission Section -->
     <section class="page-section" id="mission">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
-                    <h2 class="mt-0">Misi</h2>
-                    <hr class="divider" />
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Column -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="mt-0 mb-3 mb-lg-0">Misi</h2>
+                    <hr class="divider d-none d-lg-block" />
                 </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
+                <!-- Content Column -->
+                <div class="col-lg-8">
                     <div class="vision-mission-card">
                         <h3 class="text-center mb-4">Misi Kami</h3>
                         <ol class="mb-0 ps-4">
@@ -481,15 +688,16 @@
     <!-- Legalitas Section -->
     <section class="page-section bg-primary" id="legalitas">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-8 text-center mb-5">
-                    <h2 class="text-white mt-0">Legalitas</h2>
-                    <hr class="divider divider-light" />
-                    <p class="text-white-75">Dokumen legalitas dan sertifikat perusahaan kami</p>
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Column -->
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h2 class="text-white mt-0 mb-3 mb-lg-0">Legalitas</h2>
+                    <hr class="divider divider-light d-none d-lg-block" />
+                    <p class="text-white-75 d-none d-lg-block">Dokumen legalitas dan sertifikat perusahaan kami</p>
+                    <p class="text-white-75 d-lg-none mb-0">Dokumen legalitas dan sertifikat perusahaan kami</p>
                 </div>
-            </div>
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
+                <!-- Content Column -->
+                <div class="col-lg-8">
                     <div class="vision-mission-card">
                         @if ($legalitasDocuments->isEmpty())
                             <p class="text-center text-white-75 mb-0">Tidak ada dokumen legalitas tersedia saat ini</p>

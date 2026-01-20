@@ -153,9 +153,13 @@
         }
 
         .article-body {
-            font-size: 1.1rem;
-            line-height: 1.9;
+            font-size: 1.05rem !important;
+            line-height: 1.8;
             color: #4a5568;
+        }
+        
+        .article-body * {
+            font-size: inherit !important;
         }
 
         .article-body h1,
@@ -169,15 +173,28 @@
         }
 
         .article-body h2 {
-            font-size: 1.75rem;
+            font-size: 1.75rem !important;
         }
 
         .article-body h3 {
-            font-size: 1.5rem;
+            font-size: 1.5rem !important;
+        }
+        
+        .article-body h4 {
+            font-size: 1.25rem !important;
         }
 
         .article-body p {
             margin-bottom: 1.5rem;
+            font-size: 1.05rem !important;
+        }
+        
+        .article-body div {
+            font-size: 1.05rem !important;
+        }
+        
+        .article-body span {
+            font-size: 1.05rem !important;
         }
 
         .article-body img {
@@ -192,10 +209,12 @@
         .article-body ol {
             margin: 1.5rem 0;
             padding-left: 2rem;
+            font-size: 1.05rem !important;
         }
 
         .article-body li {
             margin-bottom: 0.75rem;
+            font-size: 1.05rem !important;
         }
 
         .article-body a {
@@ -383,6 +402,25 @@
             border: none;
         }
 
+        /* Desktop View - Larger Font */
+        @media (min-width: 992px) {
+            .article-body {
+                font-size: 1.1rem !important;
+            }
+            
+            .article-body p,
+            .article-body div,
+            .article-body span,
+            .article-body li {
+                font-size: 1.1rem !important;
+            }
+            
+            .article-body ul,
+            .article-body ol {
+                font-size: 1.1rem !important;
+            }
+        }
+        
         @media (max-width: 991.98px) {
             .article-header {
                 height: 350px;
@@ -426,7 +464,14 @@
             }
 
             .article-body {
-                font-size: 1rem;
+                font-size: 0.9rem !important;
+            }
+            
+            .article-body p,
+            .article-body div,
+            .article-body span,
+            .article-body li {
+                font-size: 0.9rem !important;
             }
         }
     </style>

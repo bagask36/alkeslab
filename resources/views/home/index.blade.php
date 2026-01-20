@@ -244,6 +244,98 @@
         transform: translateX(5px);
         color: white;
     }
+    
+    /* Responsive Design */
+    @media (max-width: 991.98px) {
+        .masthead {
+            background-attachment: scroll;
+            padding: 4rem 0;
+        }
+        
+        .clients-heading {
+            font-size: 1.75rem;
+        }
+        
+        .clients-subtitle {
+            font-size: 0.95rem;
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+        }
+        
+        .category-card {
+            margin-bottom: 1.5rem;
+        }
+        
+        .category-title {
+            font-size: 1.05rem;
+        }
+        
+        .product-card {
+            margin-bottom: 1.5rem;
+        }
+    }
+    
+    @media (max-width: 767.98px) {
+        .masthead {
+            padding: 3rem 0;
+            min-height: 50vh;
+        }
+        
+        .masthead h1 {
+            font-size: 2rem;
+        }
+        
+        .masthead p {
+            font-size: 1rem;
+        }
+        
+        .clients-heading {
+            font-size: 1.5rem;
+        }
+        
+        .clients-subtitle {
+            font-size: 0.9rem;
+        }
+        
+        .clients-meta {
+            font-size: 0.85rem;
+        }
+        
+        .service-icon {
+            font-size: 2rem;
+        }
+        
+        .category-card {
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+        
+        .category-image {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .category-title {
+            font-size: 1rem;
+            min-height: auto;
+        }
+        
+        .product-card {
+            margin-bottom: 1.25rem;
+        }
+        
+        .product-card-button {
+            padding: 0.75rem 1.5rem;
+            font-size: 0.9rem;
+            width: 100%;
+        }
+        
+        .portfolio-box {
+            margin-bottom: 1.5rem;
+        }
+    }
 </style>
 @endpush
 
