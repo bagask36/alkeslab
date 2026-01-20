@@ -67,12 +67,23 @@
         box-shadow: 0 30px 80px rgba(30, 48, 243, 0.15), 0 0 0 1px rgba(30, 48, 243, 0.1);
     }
     
+    .berita-featured .row {
+        align-items: stretch;
+    }
+    
     .berita-featured-image {
-        height: 450px;
+        min-height: 100%;
+        height: 100%;
         background-size: cover;
         background-position: center;
         position: relative;
         overflow: hidden;
+    }
+    
+    .berita-featured-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
     
     .berita-featured-image::before {
@@ -91,14 +102,17 @@
     .berita-featured-badge {
         background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
         color: white;
-        padding: 0.6rem 1.5rem;
-        font-size: 0.8rem;
+        padding: 0.7rem 1rem;
+        font-size: 0.75rem;
         font-weight: 700;
         letter-spacing: 0.5px;
-        border-radius: 12px;
+        border-radius: 50px;
         display: inline-block;
         margin-bottom: 1.75rem;
-        box-shadow: 0 4px 12px rgba(30, 48, 243, 0.3);
+        box-shadow: 0 4px 15px rgba(30, 48, 243, 0.35);
+        text-transform: uppercase;
+        line-height: 1;
+        text-align: center;
     }
     
     .berita-featured-title {
@@ -129,24 +143,36 @@
     }
     
     .berita-featured-link {
-        color: #1e30f3;
+        color: #ffffff;
         text-decoration: none;
         font-weight: 700;
-        font-size: 1.05rem;
+        font-size: 1rem;
         display: inline-flex;
         align-items: center;
         gap: 0.75rem;
         transition: all 0.3s ease;
-        padding: 0.75rem 1.5rem;
-        border-radius: 12px;
-        background: rgba(30, 48, 243, 0.05);
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+        box-shadow: 0 4px 15px rgba(30, 48, 243, 0.3);
+        margin-top: 1rem;
     }
     
     .berita-featured-link:hover {
         color: #ffffff;
-        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+        background: linear-gradient(135deg, #1a28d9 0%, #1625c7 100%);
         gap: 1rem;
-        box-shadow: 0 4px 12px rgba(30, 48, 243, 0.3);
+        box-shadow: 0 6px 20px rgba(30, 48, 243, 0.4);
+        transform: translateY(-2px);
+    }
+    
+    .berita-featured-link i {
+        font-size: 1.1rem;
+        transition: transform 0.3s ease;
+    }
+    
+    .berita-featured-link:hover i {
+        transform: translateX(4px);
     }
     
     /* Article Grid Cards - Modern Design */
@@ -356,7 +382,7 @@
         }
         
         .berita-featured-image {
-            height: 320px;
+            min-height: 350px;
         }
         
         .berita-featured-content {
@@ -386,7 +412,7 @@
         }
         
         .berita-featured-image {
-            height: 280px;
+            min-height: 300px;
         }
         
         .berita-featured-content {
@@ -432,8 +458,9 @@
     @if(isset($latest_post) && $latest_post)
         <section class="page-section" id="featured" style="padding: 6rem 0;">
             <div class="container px-4 px-lg-5">
+                <!-- Title Section - Separate Row -->
                 <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                    <div class="col-lg-10 text-center">
+                    <div class="col-12 text-center">
                         <span class="berita-label">
                             Berita
                         </span>
@@ -445,6 +472,10 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            
+            <div class="container px-4 px-lg-5">
+                <!-- Featured Content - Separate Row Below -->
                 <div class="row gx-0 justify-content-center">
                     <div class="col-lg-11">
                         <div class="berita-featured">

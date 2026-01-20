@@ -67,7 +67,7 @@
             </a>
 
             <!-- Mobile Toggler -->
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar"
                 aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -425,6 +425,64 @@
         height: 2px;
         background-color: var(--bs-primary);
         border-radius: 2px;
+    }
+
+    /* Navbar Toggler Styles */
+    .navbar-toggler {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 0.75rem;
+        background-color: transparent;
+        border: 2px solid #1e30f3 !important;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1050;
+        position: relative;
+    }
+
+    .navbar-toggler:hover {
+        background-color: #1e30f3;
+        border-color: #1e30f3;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.25rem rgba(30, 48, 243, 0.25);
+        outline: none;
+    }
+
+    .navbar-toggler-icon {
+        display: inline-block;
+        width: 1.5em;
+        height: 1.5em;
+        vertical-align: middle;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2830, 48, 243, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+    }
+
+    .navbar-toggler:hover .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* Hide toggler on desktop (lg and above) */
+    @media (min-width: 992px) {
+        .navbar-toggler {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+    }
+
+    /* Ensure toggler is visible on mobile */
+    @media (max-width: 991.98px) {
+        .navbar-toggler {
+            display: flex !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
     }
 
     /* Dropdown Styles */
