@@ -20,7 +20,7 @@
         position: relative;
     }
     
-    /* Modern overlay dengan kombinasi biru-putih yang elegan */
+    /* Overlay kehitaman tipis untuk readability */
     header.masthead::before,
     .masthead::before {
         content: '';
@@ -29,28 +29,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(
-            135deg, 
-            rgba(30, 48, 243, 0.5) 0%, 
-            rgba(30, 48, 243, 0.45) 50%,
-            rgba(30, 48, 243, 0.5) 100%
-        );
-        pointer-events: none;
-        z-index: 1;
-    }
-    
-    /* Subtle gradient overlay untuk depth */
-    header.masthead::after,
-    .masthead::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.15) 100%),
-            radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+        background: rgba(0, 0, 0, 0.55);
         pointer-events: none;
         z-index: 1;
     }

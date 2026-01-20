@@ -5,11 +5,30 @@
 <style>
     /* Masthead customization */
     .masthead {
-        background: linear-gradient(135deg, rgba(30, 48, 243, 0.9) 0%, rgba(26, 40, 217, 0.9) 100%),
-                    url('{{ asset('app/assets/content/tentangkami.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        background-image: url('{{ asset('new-template/image/kontak.png') }}') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        position: relative;
+    }
+    
+    /* Overlay kehitaman tipis untuk readability */
+    .masthead::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.55);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .masthead > * {
+        position: relative;
+        z-index: 2;
     }
     
     /* Section Label */
