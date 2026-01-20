@@ -6,7 +6,14 @@
                 <!-- Company Info -->
                 <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                     <div class="footer-brand">
-                        <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="footer-logo mb-3">
+                        @php
+                            $logoPath = asset('app/assets/logo.png');
+                        @endphp
+                        <img src="{{ $logoPath }}" 
+                             alt="Logo PT. ALKESLAB PRIMATAMA" 
+                             class="footer-logo mb-3"
+                             loading="eager"
+                             style="display: block !important; max-width: 100%; height: auto; visibility: visible !important; opacity: 1 !important;">
                         <h3 class="footer-company-name">PT. ALKESLAB PRIMATAMA</h3>
                     </div>
                     <p class="footer-description">
@@ -190,8 +197,23 @@
     .footer-logo {
         height: 60px;
         width: auto;
-        filter: brightness(0) invert(1);
+        max-width: 200px;
         transition: transform 0.3s ease;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        object-fit: contain;
+        position: relative;
+        z-index: 10;
+        background: white;
+        padding: 8px;
+        border-radius: 8px;
+    }
+    
+    /* Ensure logo container is visible */
+    .footer-brand img.footer-logo {
+        display: inline-block !important;
+        vertical-align: middle;
     }
 
     .footer-logo:hover {
