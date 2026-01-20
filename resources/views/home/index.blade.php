@@ -10,12 +10,55 @@
     }
     
     /* Masthead customization */
+    header.masthead,
     .masthead {
-        background: linear-gradient(135deg, rgba(30, 48, 243, 0.9) 0%, rgba(26, 40, 217, 0.9) 100%),
-                    url('{{ asset('app/assets/content/mask-group.png') }}');
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
+        background-image: url('{{ asset('new-template/image/home.png') }}') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;
+        background-repeat: no-repeat !important;
+        position: relative;
+    }
+    
+    /* Modern overlay dengan kombinasi biru-putih yang elegan */
+    header.masthead::before,
+    .masthead::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg, 
+            rgba(30, 48, 243, 0.5) 0%, 
+            rgba(30, 48, 243, 0.45) 50%,
+            rgba(30, 48, 243, 0.5) 100%
+        );
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    /* Subtle gradient overlay untuk depth */
+    header.masthead::after,
+    .masthead::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: 
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, transparent 40%, transparent 60%, rgba(0, 0, 0, 0.15) 100%),
+            radial-gradient(ellipse at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    header.masthead > *,
+    .masthead > * {
+        position: relative;
+        z-index: 2;
     }
     
     /* Portfolio section untuk produk */
@@ -658,9 +701,9 @@
             }
             
             .category-card:hover .category-image-wrapper {
-                background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
-                transform: scale(1.1) rotate(5deg);
-                box-shadow: 0 8px 25px rgba(30, 48, 243, 0.3);
+                background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+                transform: scale(1.05);
+                box-shadow: 0 8px 25px rgba(30, 48, 243, 0.2);
             }
             
             .category-image {
@@ -668,10 +711,6 @@
                 height: 100%;
                 object-fit: contain;
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            }
-            
-            .category-card:hover .category-image {
-                filter: brightness(0) invert(1);
             }
             
             .category-title {
