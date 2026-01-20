@@ -181,129 +181,81 @@
         font-size: 1.3rem;
     }
     
-    /* Address Section Modern */
-    .address-section-modern {
-        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 50%, #1826c2 100%);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .address-section-modern::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: 
-            radial-gradient(circle at 20% 30%, rgba(226, 30, 128, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 80% 70%, rgba(30, 48, 243, 0.1) 0%, transparent 50%);
-        pointer-events: none;
-    }
-    
-    .address-card-modern {
+    /* Address section - Same as tentang-kami */
+    .address-card {
         background: white;
-        border-radius: 24px;
-        padding: 0;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-        transition: all 0.4s ease;
-        overflow: hidden;
-        position: relative;
-        z-index: 1;
+        border-radius: 20px;
+        padding: 2.75rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
     }
     
-    .address-card-modern:hover {
+    .address-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
     }
     
-    .address-card-header-modern {
-        background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
-        padding: 2rem;
-        text-align: center;
-        color: white;
+    .address-card iframe {
+        border-radius: 15px;
+        width: 100%;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
     
-    .address-card-header-modern h3 {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin: 0;
+    .address-details {
+        margin-top: 1.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e9ecef;
+    }
+    
+    .address-details p {
+        margin-bottom: 0.75rem;
+        color: #6c757d;
+        font-size: 1rem;
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
     }
     
-    .address-card-header-modern i {
-        font-size: 1.75rem;
+    .address-details i {
+        color: var(--bs-primary);
     }
     
-    .address-card-body-modern {
-        padding: 2.5rem;
+    /* Ensure title and content are always on separate rows */
+    #contact-methods .container > .row:first-child,
+    #address .container > .row:first-child {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 3rem !important;
     }
     
-    .address-card-body-modern iframe {
-        border-radius: 16px;
-        width: 100%;
-        height: 400px;
-        border: none;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        margin-bottom: 2rem;
+    #contact-methods .container > .container,
+    #address .container > .row:last-child {
+        display: block !important;
+        width: 100% !important;
+        margin-top: 0 !important;
     }
     
-    .address-details-modern {
-        padding-top: 2rem;
-        border-top: 2px solid #f0f0f0;
-    }
-    
-    .address-detail-item {
-        display: flex;
-        align-items: flex-start;
-        gap: 1rem;
-        padding: 1rem;
-        border-radius: 12px;
-        margin-bottom: 1rem;
-        transition: all 0.3s ease;
-        background: #f8f9ff;
-    }
-    
-    .address-detail-item:last-child {
-        margin-bottom: 0;
-    }
-    
-    .address-detail-item:hover {
-        background: linear-gradient(135deg, rgba(30, 48, 243, 0.05) 0%, rgba(30, 48, 243, 0.02) 100%);
-        transform: translateX(5px);
-    }
-    
-    .address-detail-item i {
-        color: #1e30f3;
-        font-size: 1.5rem;
-        margin-top: 0.25rem;
-        flex-shrink: 0;
-    }
-    
-    .address-detail-item-content {
-        flex: 1;
-    }
-    
-    .address-detail-item-content strong {
-        display: block;
-        color: #2c3e50;
-        font-size: 1.05rem;
-        margin-bottom: 0.5rem;
-    }
-    
-    .address-detail-item-content a {
-        color: #1e30f3;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.05rem;
-        transition: color 0.3s ease;
-    }
-    
-    .address-detail-item-content a:hover {
-        color: #1a28d9;
+    /* Ensure contact cards are always in 1 row on desktop */
+    @media (min-width: 992px) {
+        /* Force grid layout */
+        #contact-cards-row {
+            display: grid !important;
+            grid-template-columns: 1fr 1fr 1fr !important;
+            gap: 1.5rem !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        
+        /* Reset Bootstrap column behavior */
+        #contact-cards-row > div.col-lg-4 {
+            width: 100% !important;
+            max-width: 100% !important;
+            flex: none !important;
+            float: none !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
     }
     
     /* Responsive Design */
@@ -315,6 +267,17 @@
         
         .contact-section-heading {
             font-size: 2rem;
+        }
+        
+        /* Allow cards to wrap on tablet and mobile */
+        #contact-cards-row {
+            flex-wrap: wrap !important;
+        }
+        
+        #contact-cards-row > div {
+            flex: 0 0 auto !important;
+            max-width: 100% !important;
+            width: 100% !important;
         }
         
         .contact-card-modern {
@@ -334,12 +297,12 @@
             font-size: 2rem;
         }
         
-        .address-card-body-modern {
+        .address-card {
             padding: 2rem;
         }
         
-        .address-card-body-modern iframe {
-            height: 350px;
+        .address-card iframe {
+            height: 300px;
         }
     }
     
@@ -391,35 +354,39 @@
             font-size: 0.95rem;
         }
         
+        /* Smaller font for email address on mobile */
+        .contact-info-item-modern a[href^="mailto:"] {
+            font-size: 0.675rem !important;
+            word-break: break-word;
+        }
+        
+        .contact-info-item-modern a[href^="mailto:"] span {
+            font-size: 0.675rem !important;
+            line-height: 1.4;
+        }
+        
         .whatsapp-btn-modern {
             padding: 0.875rem 1.5rem;
             font-size: 0.95rem;
         }
         
-        .address-card-header-modern {
+        .address-card {
             padding: 1.5rem;
         }
         
-        .address-card-header-modern h3 {
-            font-size: 1.3rem;
+        .address-card h3 {
+            font-size: 1.1rem;
         }
         
-        .address-card-body-modern {
-            padding: 1.5rem;
+        .address-card iframe {
+            height: 250px;
         }
         
-        .address-card-body-modern iframe {
-            height: 300px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .address-detail-item {
+        .address-details p {
+            font-size: 0.9rem;
             flex-direction: column;
             align-items: flex-start;
-        }
-        
-        .address-detail-item i {
-            margin-top: 0;
+            text-align: left;
         }
     }
 </style>
@@ -443,9 +410,10 @@
 
     <!-- Contact Methods Section -->
     <section class="page-section" id="contact-methods" style="padding: 6rem 0;">
+        <!-- Title Section - Separate Container -->
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
+                <div class="col-12 text-center">
                     <span class="contact-section-label">Kontak</span>
                     <h2 class="contact-section-heading">Hubungi Kami</h2>
                     <p class="contact-section-subtitle">
@@ -453,10 +421,13 @@
                     </p>
                 </div>
             </div>
-            
-            <div class="row gx-4 gx-lg-5">
+        </div>
+        
+        <!-- Content Section - Separate Container Below -->
+        <div class="container px-4 px-lg-5" style="max-width: 1200px;">
+            <div class="row gx-4 gx-lg-5 justify-content-center" id="contact-cards-row">
                 <!-- Telepon -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <div class="contact-card-modern">
                         <div class="contact-card-header">
                             <div class="contact-icon-wrapper">
@@ -482,7 +453,7 @@
                 </div>
 
                 <!-- WhatsApp -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <div class="contact-card-modern">
                         <div class="contact-card-header">
                             <div class="contact-icon-wrapper" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);">
@@ -504,7 +475,7 @@
                 </div>
 
                 <!-- Email -->
-                <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 mb-4">
                     <div class="contact-card-modern">
                         <div class="contact-card-header">
                             <div class="contact-icon-wrapper">
@@ -527,61 +498,42 @@
     </section>
 
     <!-- Address Section -->
-    <section class="page-section address-section-modern" id="address" style="padding: 6rem 0;">
+    <section class="page-section bg-primary" id="address">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
-                <div class="col-lg-8 text-center">
-                    <span class="contact-section-label" style="background: rgba(255, 255, 255, 0.2); color: white;">
-                        Lokasi
-                    </span>
-                    <h2 class="text-white mt-0" style="font-size: 2.5rem; font-weight: 800;">Alamat Kami</h2>
-                    <p class="text-white-75 mb-0" style="font-size: 1.1rem;">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <!-- Title Section -->
+                <div class="col-lg-4 text-center text-lg-start mb-5 mb-lg-0">
+                    <h2 class="text-white mt-0">Alamat Kami</h2>
+                    <hr class="divider divider-light ms-lg-0" />
+                    <p class="text-white-75 mb-4">
                         Kunjungi kantor dan gudang kami untuk melihat produk dan konsultasi langsung dengan tim kami.
                     </p>
                 </div>
-            </div>
-            
-            <div class="row gx-4 gx-lg-5 justify-content-center">
-                <div class="col-lg-10">
-                    <div class="address-card-modern">
-                        <div class="address-card-header-modern">
-                            <h3>
-                                <i class="bi bi-building"></i>
-                                HEAD OFFICE & WAREHOUSE
-                            </h3>
-                        </div>
-                        <div class="address-card-body-modern">
+
+                <!-- Address Card -->
+                <div class="col-lg-8">
+                    <div class="address-card">
+                        <h3 class="text-center mb-4" style="color: #1e30f3;">
+                            <i class="bi bi-building me-2"></i>HEAD OFFICE & WAREHOUSE
+                        </h3>
+                        <div class="mb-4">
                             <iframe
                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1034.9873891408463!2d106.83947878647712!3d-6.56998393584498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c694a19088e3%3A0xd66931f4835b2a77!2sPT.ALKESLAB%20PRIMATAMA!5e0!3m2!1sen!2sid!4v1728397491555!5m2!1sen!2sid"
+                                width="100%" 
+                                height="350" 
+                                style="border:0; border-radius: 15px;" 
                                 allowfullscreen="" 
                                 loading="lazy"
                                 referrerpolicy="no-referrer-when-downgrade">
                             </iframe>
+                        </div>
+                        <div class="address-details">
+                            <p>
+                                <i class="bi bi-geo-alt-fill"></i>
+                                <strong>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
+                                Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</strong>
+                            </p>
                             
-                            <div class="address-details-modern">
-                                <div class="address-detail-item">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <div class="address-detail-item-content">
-                                        <strong>Alamat</strong>
-                                        <span>Jl. Grand Sentul City Blok C4-02 No. 10 RT. 02/RW. 01<br>
-                                        Desa Cadas Ngampar Kec. Sukaraja - Kab. Bogor</span>
-                                    </div>
-                                </div>
-                                <div class="address-detail-item">
-                                    <i class="bi bi-telephone-fill"></i>
-                                    <div class="address-detail-item-content">
-                                        <strong>Telepon Admin</strong>
-                                        <a href="tel:082280848541">0822 8084 8541</a>
-                                    </div>
-                                </div>
-                                <div class="address-detail-item">
-                                    <i class="bi bi-telephone-fill"></i>
-                                    <div class="address-detail-item-content">
-                                        <strong>Telepon Sales Marketing</strong>
-                                        <a href="tel:082124529567">0821 2452 9567</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
