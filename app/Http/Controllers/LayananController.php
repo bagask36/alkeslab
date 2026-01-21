@@ -86,7 +86,7 @@ class LayananController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Layanan $layanan)
     {
         return view('back.layanan.edit', compact('layanan'));
     }

@@ -1,6 +1,6 @@
 @extends('back.layout')
 
-@section('title', 'Buat Artikel Baru')
+@section('title', 'Edit Artikel')
 
 @section('content')
     <div class="space-y-8 max-w-5xl mx-auto">
@@ -10,15 +10,16 @@
                 <flux:icon icon="arrow-left" class="w-5 h-5" />
             </flux:button>
             <div class="flex-1">
-                <flux:heading size="xl" class="!mb-1">Buat Artikel Baru</flux:heading>
-                <flux:subheading class="!mt-0">Tambah artikel dan berita baru untuk perusahaan</flux:subheading>
+                <flux:heading size="xl" class="!mb-1">Edit Artikel</flux:heading>
+                <flux:subheading class="!mt-0">Edit artikel dan berita</flux:subheading>
             </div>
         </div>
 
         <!-- Form -->
         <flux:card class="!p-8 !shadow-lg !border-zinc-200 dark:!border-zinc-700">
-            <form action="{{ route('articles.store') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
+            <form action="{{ route('articles.update', $article->id) }}" method="POST" enctype="multipart/form-data" class="space-y-8">
                 @csrf
+                @method('PUT')
 
                 <!-- Basic Information Section -->
                 <div class="space-y-6">
@@ -31,21 +32,21 @@
                         <!-- Title -->
                         <flux:field class="md:col-span-2">
                             <flux:label class="!text-sm !font-semibold">Judul Artikel</flux:label>
-                            <flux:input name="title" value="{{ old('title') }}" placeholder="Masukkan judul artikel" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600" />
+                            <flux:input name="title" value="{{ old('title', $article->title) }}" placeholder="Masukkan judul artikel" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600" />
                             <flux:error name="title" />
                         </flux:field>
 
                         <!-- Category -->
                         <flux:field>
                             <flux:label class="!text-sm !font-semibold">Kategori</flux:label>
-                            <flux:input name="category" value="{{ old('category') }}" placeholder="Masukkan kategori artikel" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600" />
+                            <flux:input name="category" value="{{ old('category', $article->category) }}" placeholder="Masukkan kategori artikel" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600" />
                             <flux:error name="category" />
                         </flux:field>
 
                         <!-- Status -->
                         <flux:field>
                             <flux:label class="!text-sm !font-semibold">Status</flux:label>
-                            <flux:select name="status" value="{{ old('status', 'draft') }}" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600">
+                            <flux:select name="status" value="{{ old('status', $article->status) }}" required class="!rounded-xl !border-zinc-300 dark:!border-zinc-600">
                                 <option value="draft">Draft</option>
                                 <option value="published">Published</option>
                                 <option value="archived">Archived</option>
@@ -65,7 +66,7 @@
                     <!-- Description -->
                     <flux:field>
                         <flux:label class="!text-sm !font-semibold">Deskripsi</flux:label>
-                        <textarea id="desc" name="desc" class="hidden">{{ old('desc') }}</textarea>
+                        <textarea id="desc" name="desc" class="hidden">{{ old('desc', $article->desc) }}</textarea>
                         <div id="editor" class="rounded-xl border border-zinc-300 dark:border-zinc-600 overflow-hidden" style="min-height: 400px;"></div>
                         <flux:error name="desc" />
                         <flux:description class="!mt-2">Anda dapat menggunakan oembed untuk video YouTube dengan format: &lt;oembed url="https://youtu.be/VIDEO_ID"&gt;&lt;/oembed&gt;</flux:description>
@@ -82,6 +83,12 @@
                     <!-- Photo -->
                     <flux:field>
                         <flux:label class="!text-sm !font-semibold">Foto Artikel</flux:label>
+                        @if($article->photo)
+                            <div class="mb-4 p-4 bg-zinc-50 dark:bg-zinc-800/50 rounded-xl border border-zinc-200 dark:border-zinc-700">
+                                <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-3">Foto saat ini:</p>
+                                <img src="{{ asset('storage/' . $article->photo) }}" alt="Current photo" class="max-w-xs rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm">
+                            </div>
+                        @endif
                         <div class="mt-2">
                             <label for="photo" class="flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-zinc-300 dark:border-zinc-600 rounded-xl cursor-pointer bg-zinc-50 dark:bg-zinc-800/50 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
@@ -92,10 +99,12 @@
                                 <input id="photo" type="file" name="photo" accept="image/*" class="hidden" />
                             </label>
                             <div id="photo-preview" class="mt-4 hidden">
-                                <img id="photo-preview-img" src="" alt="Preview" class="max-w-xs rounded-lg border border-zinc-200 dark:border-zinc-700">
+                                <p class="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">Preview foto baru:</p>
+                                <img id="photo-preview-img" src="" alt="Preview" class="max-w-xs rounded-lg border border-zinc-200 dark:border-zinc-700 shadow-sm">
                             </div>
                         </div>
                         <flux:error name="photo" />
+                        <flux:description class="!mt-2">Kosongkan jika tidak ingin mengubah foto</flux:description>
                     </flux:field>
                 </div>
 
@@ -107,7 +116,7 @@
                     </flux:button>
                     <flux:button type="submit" class="!px-8 !py-2.5 !rounded-xl !shadow-md hover:!shadow-lg transition-all">
                         <flux:icon icon="check" class="w-4 h-4" />
-                        Simpan Artikel
+                        Update Artikel
                     </flux:button>
                 </div>
             </form>
@@ -177,19 +186,21 @@
             const photoPreview = document.getElementById('photo-preview');
             const photoPreviewImg = document.getElementById('photo-preview-img');
 
-            photoInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        photoPreviewImg.src = e.target.result;
-                        photoPreview.classList.remove('hidden');
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    photoPreview.classList.add('hidden');
-                }
-            });
+            if (photoInput) {
+                photoInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            photoPreviewImg.src = e.target.result;
+                            photoPreview.classList.remove('hidden');
+                        };
+                        reader.readAsDataURL(file);
+                    } else {
+                        photoPreview.classList.add('hidden');
+                    }
+                });
+            }
         });
     </script>
     @endpush
