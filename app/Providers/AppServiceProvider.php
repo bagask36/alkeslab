@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         // Share 'products' data with all views
         try {
-            if (\Schema::hasTable('products')) {
+            if (Schema::hasTable('products')) {
                 $products = Product::all();
             } else {
                 $products = collect();
@@ -39,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
 
         // Share contact settings with all views
         try {
-            if (\Schema::hasTable('settings')) {
+            if (Schema::hasTable('settings')) {
                 // Get WhatsApp data
                 $whatsappRaw = json_decode(Setting::get('whatsapp', '[]'), true) ?: [];
                 $whatsapp = [];
