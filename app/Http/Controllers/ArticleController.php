@@ -14,16 +14,18 @@ class ArticleController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $data = Article::select('id', 'title', 'category', 'status', 'created_at')->latest()->get();
+            $data = Article::select(['id', 'title', 'category', 'status', 'created_at'])
+                ->latest()
+                ->get();
     
             return DataTables::of($data)
                 ->addIndexColumn()
-                ->addColumn('publish_date', function ($row) {
-                    return $row->created_at->format('d-m-Y');
+                ->addColumn('publish_date', function ($article) {
+                    return $article->created_at->format('d-m-Y');
                 })
-                ->addColumn('action', function ($row) {
-                    return '<a href="'.route('articles.edit', $row->id).'" class="btn btn-primary btn-sm mr-2">Edit</a>
-                            <form action="'.route('articles.destroy', $row->id).'" method="POST" style="display:inline;">
+                ->addColumn('action', function ($article) {
+                    return '<a href="'.route('articles.edit', $article->id).'" class="btn btn-primary btn-sm mr-2">Edit</a>
+                            <form action="'.route('articles.destroy', $article->id).'" method="POST" style="display:inline;">
                                 '.csrf_field().'
                                 '.method_field('DELETE').'
                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm(\'Are you sure?\')">Delete</button>
@@ -55,24 +57,21 @@ class ArticleController extends Controller
 
         $descWithEmbed = $this->convertOembedToIframe($request->desc);
 
-        // Membuat artikel baru
-        $article = new Article();
-        $article->title = $request->title;
-        $article->desc = $descWithEmbed; // Simpan deskripsi yang sudah dimodifikasi
-        $article->category = $request->category;
-        $article->status = $request->status;
-
-        // Membuat slug otomatis dari title
-        $article->slug = Str::slug($request->title); // Membuat slug dari judul
+        // Membuat artikel baru menggunakan Eloquent mass assignment
+        $articleData = [
+            'title' => $request->title,
+            'desc' => $descWithEmbed,
+            'category' => $request->category,
+            'status' => $request->status,
+            'slug' => Str::slug($request->title),
+            'user_id' => auth()->id(),
+        ];
 
         if ($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('photos', 'public');
-            $article->photo = $path;
+            $articleData['photo'] = $request->file('photo')->store('photos', 'public');
         }
 
-        $article->user_id = auth()->id();
-        $article->status = $request->status; 
-        $article->save();
+        $article = Article::create($articleData);
 
         return redirect()->route('articles.index')->with('success', 'Article created successfully.');
     }
@@ -101,14 +100,14 @@ class ArticleController extends Controller
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Mengupdate data artikel
-        $article->title = $request->title;
-        $article->desc = $this->convertOembedToIframe($request->desc); // Mengonversi oembed ke iframe
-        $article->category = $request->category;
-        $article->status = $request->status;
-
-        // Membuat slug otomatis dari title
-        $article->slug = Str::slug($request->title);
+        // Mengupdate data artikel menggunakan Eloquent mass assignment
+        $updateData = [
+            'title' => $request->title,
+            'desc' => $this->convertOembedToIframe($request->desc),
+            'category' => $request->category,
+            'status' => $request->status,
+            'slug' => Str::slug($request->title),
+        ];
 
         // Mengupload foto jika ada
         if ($request->hasFile('photo')) {
@@ -118,12 +117,11 @@ class ArticleController extends Controller
             }
 
             // Simpan foto baru
-            $path = $request->file('photo')->store('photos', 'public');
-            $article->photo = $path;
+            $updateData['photo'] = $request->file('photo')->store('photos', 'public');
         }
 
-        // Simpan perubahan
-        $article->save();
+        // Update menggunakan Eloquent
+        $article->update($updateData);
 
         return redirect()->route('articles.index')->with('success', 'Article updated successfully.');
     }

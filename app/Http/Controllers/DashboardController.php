@@ -5,39 +5,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Client; 
-use App\Models\Product; 
-use Illuminate\Support\Facades\DB; // Import the DB facade
+use App\Models\Product;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Count articles by status
+        // Count articles by status using Eloquent
         $totalArticles = Article::count();
-        $publishedArticles = Article::where('status', 'published')->count();
-        $draftArticles = Article::where('status', 'draft')->count();
-        $archivedArticles = Article::where('status', 'archived')->count();
+        $publishedArticles = Article::byStatus('published')->count();
+        $draftArticles = Article::byStatus('draft')->count();
+        $archivedArticles = Article::byStatus('archived')->count();
 
         // Total client pictures and products
-        $totalClientPictures = Client::count(); // Adjust if necessary
-        $totalProducts = Product::count(); // Adjust if necessary
+        $totalClientPictures = Client::count();
+        $totalProducts = Product::count();
 
-        // Get articles count grouped by published date
-        $articlesByDate = Article::select(DB::raw('DATE(created_at) as publish_date'), DB::raw('count(*) as total'))
-            ->where('status', 'published')
-            ->groupBy('publish_date')
-            ->orderBy('publish_date')
+        // Get articles count grouped by published date using Eloquent scopes
+        $articlesByDate = Article::published()
+            ->groupedByDate()
             ->get();
 
-        // Get articles count grouped by category
-        $articlesByCategory = Article::select('category', DB::raw('count(*) as total'))
-            ->where('status', 'published') // Assuming you want only published articles
-            ->groupBy('category')
+        // Get articles count grouped by category using Eloquent scopes
+        $articlesByCategory = Article::published()
+            ->groupedByCategory()
             ->get();
 
         // Prepare data for the date chart
-        $labels = $articlesByDate->pluck('publish_date')->map(function ($date) {
-            return \Carbon\Carbon::parse($date)->format('Y-m-d'); // Format the date
+        $labels = $articlesByDate->map(function ($item) {
+            return Carbon::parse($item->publish_date)->format('Y-m-d');
         });
         $data = $articlesByDate->pluck('total');
 
@@ -51,8 +48,8 @@ class DashboardController extends Controller
             'publishedArticles', 
             'draftArticles', 
             'archivedArticles', 
-            'totalClientPictures', // Include this variable
-            'totalProducts',       // Include this variable
+            'totalClientPictures',
+            'totalProducts',
             'labels', 
             'data',
             'categoryLabels',

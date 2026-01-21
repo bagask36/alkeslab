@@ -31,6 +31,15 @@
         z-index: 2;
     }
     
+    /* Mobile view optimization */
+    @media (max-width: 768px) {
+        .masthead {
+            background-attachment: scroll !important;
+            background-position: center center !important;
+            background-size: cover !important;
+        }
+    }
+    
     /* About Section Title */
     .about-title {
         font-size: 2.5rem;

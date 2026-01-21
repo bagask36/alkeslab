@@ -45,6 +45,17 @@
         z-index: 2;
     }
     
+    /* Mobile view optimization */
+    @media (max-width: 768px) {
+        .masthead::after {
+            background-attachment: scroll !important;
+            background-position: center center !important;
+            background-size: cover !important;
+            filter: blur(3px);
+            transform: scale(1.05);
+        }
+    }
+    
     /* Product section */
     .product-section {
         padding: 80px 0;

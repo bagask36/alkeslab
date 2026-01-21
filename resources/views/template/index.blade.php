@@ -43,6 +43,8 @@
       gtag('config', 'G-WSSQP5VKY7');
     </script>
 
+    @livewireStyles
+    
     @stack('css')
     
     <style>
@@ -528,6 +530,8 @@
         }
     </script>
 
+    @livewireScripts
+    
     @stack('js')
 </body>
 </html>

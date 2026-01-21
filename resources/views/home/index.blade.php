@@ -40,6 +40,16 @@
         z-index: 2;
     }
     
+    /* Mobile view optimization */
+    @media (max-width: 768px) {
+        header.masthead,
+        .masthead {
+            background-attachment: scroll !important;
+            background-position: center center !important;
+            background-size: cover !important;
+        }
+    }
+    
     /* Portfolio section untuk produk */
     .portfolio-box {
         position: relative;

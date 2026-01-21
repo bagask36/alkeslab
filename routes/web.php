@@ -64,9 +64,10 @@ Route::get('/berita', [PostArticleController::class, 'index'])->name('artikel.in
 Route::get('/berita/{slug}', [PostDetailController::class, 'show'])->name('artikel.detail');
 
 
-// Rute untuk login
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login'); // Rute untuk menampilkan form login
-Route::post('/login', [LoginController::class, 'login']); // Rute untuk memproses login
+// Rute untuk login dengan Livewire
+Route::get('/login', function () {
+    return view('livewire.login-page');
+})->name('login')->middleware('guest');
 
 // Rute untuk dashboard dan artikel
 Route::middleware(['auth'])->group(function () {

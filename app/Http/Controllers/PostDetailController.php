@@ -9,12 +9,14 @@ class PostDetailController extends Controller
 {
     public function show($slug)
     {
-        // Fetch the article by slug with status published
-        $article = Article::where('slug', $slug)->where('status', 'published')->firstOrFail();
+        // Menggunakan Eloquent scopes untuk query yang lebih clean
+        $article = Article::published()
+            ->bySlug($slug)
+            ->firstOrFail();
     
-        // Fetch 6 other articles that are published
-        $other_articles = Article::where('id', '!=', $article->id)
-            ->where('status', 'published') // Hanya ambil artikel yang published
+        // Menggunakan Eloquent scopes untuk mendapatkan artikel lainnya
+        $other_articles = Article::published()
+            ->where('id', '!=', $article->id)
             ->latest()
             ->take(6)
             ->get();
