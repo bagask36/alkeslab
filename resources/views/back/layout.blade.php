@@ -243,18 +243,6 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
     
     <!-- Main Content -->
     <flux:main class="max-w-full px-6 lg:px-8">
-        @if (session('success'))
-            <flux:callout variant="success" class="mb-6">
-                {{ session('success') }}
-            </flux:callout>
-        @endif
-        
-        @if (session('error'))
-            <flux:callout variant="danger" class="mb-6">
-                {{ session('error') }}
-            </flux:callout>
-        @endif
-        
         @yield('content')
     </flux:main>
     
@@ -263,11 +251,94 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
         @csrf
     </form>
     
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- Flux UI Scripts -->
     @fluxScripts
     
     @livewireScripts
     
     @stack('scripts')
+    
+    <!-- SweetAlert Integration Script -->
+    <script>
+        // Success Message
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                confirmButtonColor: '#10b981',
+                confirmButtonText: 'OK',
+                timer: 3000,
+                timerProgressBar: true,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false
+            });
+        @endif
+
+        // Error Message
+        @if (session('error'))
+            Swal.fire({
+                icon: 'error',
+                title: 'Error!',
+                text: '{{ session('error') }}',
+                confirmButtonColor: '#ef4444',
+                confirmButtonText: 'OK'
+            });
+        @endif
+
+        // Delete Confirmation Function
+        function confirmDelete(event, message = 'Apakah Anda yakin ingin menghapus item ini?') {
+            event.preventDefault();
+            const form = event.target.closest('form');
+            
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: message,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#ef4444',
+                cancelButtonColor: '#6b7280',
+                confirmButtonText: 'Ya, Hapus!',
+                cancelButtonText: 'Batal',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        // Logout Confirmation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle logout from sidebar items
+            const logoutItems = document.querySelectorAll('[onclick*="logout-form"]');
+            logoutItems.forEach(item => {
+                const originalOnclick = item.getAttribute('onclick');
+                item.removeAttribute('onclick');
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Logout?',
+                        text: 'Apakah Anda yakin ingin logout?',
+                        icon: 'question',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ef4444',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Logout',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            document.getElementById('logout-form').submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
 </body>
 </html>

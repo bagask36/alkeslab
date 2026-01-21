@@ -106,8 +106,7 @@
                                 
                                 <form action="{{ route('products.destroy', $product->id) }}" 
                                       method="POST" 
-                                      class="flex-1" 
-                                      onsubmit="return confirm('Apakah Anda yakin ingin menghapus produk ini?');">
+                                      class="flex-1 delete-form">
                                     @csrf
                                     @method('DELETE')
                                     <flux:button type="submit" variant="danger" size="sm" class="w-full">
@@ -138,4 +137,32 @@
             </flux:card>
         @endif
     </div>
+
+    @push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle delete forms with SweetAlert
+            document.querySelectorAll('.delete-form').forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Apakah Anda yakin?',
+                        text: 'Apakah Anda yakin ingin menghapus produk ini?',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#ef4444',
+                        cancelButtonColor: '#6b7280',
+                        confirmButtonText: 'Ya, Hapus!',
+                        cancelButtonText: 'Batal',
+                        reverseButtons: true
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+    @endpush
 @endsection
