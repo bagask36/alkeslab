@@ -24,10 +24,10 @@
         bottom: 0;
         background-image: url('{{ asset('new-template/image/berita.png') }}') !important;
         background-size: cover !important;
-        background-position: center !important;
+        background-position: 30% center !important;
         background-attachment: fixed !important;
         background-repeat: no-repeat !important;
-        filter: blur(5px);
+        filter: blur(10px);
         transform: scale(1.1);
         z-index: 0;
     }
@@ -54,9 +54,9 @@
     @media (max-width: 768px) {
         .berita-masthead::after {
             background-attachment: scroll !important;
-            background-position: center center !important;
+            background-position: 30% center !important;
             background-size: cover !important;
-            filter: blur(3px);
+            filter: blur(8px);
             transform: scale(1.05);
         }
     }

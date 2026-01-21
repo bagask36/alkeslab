@@ -19,10 +19,10 @@
         bottom: 0;
         background-image: url('{{ asset('new-template/image/produk.png') }}') !important;
         background-size: cover !important;
-        background-position: center !important;
+        background-position: 30% center !important;
         background-attachment: fixed !important;
         background-repeat: no-repeat !important;
-        filter: blur(5px);
+        filter: blur(10px);
         transform: scale(1.1);
         z-index: 0;
     }
@@ -49,9 +49,9 @@
     @media (max-width: 768px) {
         .masthead::after {
             background-attachment: scroll !important;
-            background-position: center center !important;
+            background-position: 30% center !important;
             background-size: cover !important;
-            filter: blur(3px);
+            filter: blur(8px);
             transform: scale(1.05);
         }
     }
@@ -128,12 +128,68 @@
         color: white;
     }
     
-    /* Project section */
+    /* Project section - Force vertical layout */
+    #teknis-medis,
+    #other-projects {
+        display: block !important;
+    }
+    
+    #teknis-medis .container,
+    #other-projects .container {
+        display: block !important;
+        flex-direction: column !important;
+    }
+    
+    #teknis-medis .container > *,
+    #other-projects .container > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        float: none !important;
+    }
+    
+    .teknis-title-section,
+    .projects-title-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 3rem;
+        text-align: center;
+        display: block !important;
+        float: none !important;
+        clear: both !important;
+        flex: none !important;
+    }
+    
+    .teknis-cards-section,
+    .projects-cards-section {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        float: none !important;
+        clear: both !important;
+        flex: none !important;
+    }
+    
     .project-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
-        margin-top: 3rem;
+        margin-top: 0;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Center small cards on desktop */
+    @media (min-width: 992px) {
+        .project-grid {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 400px));
+            justify-content: center;
+        }
+        
+        .project-card:not(.project-card-large) {
+            max-width: 400px;
+            width: 100%;
+        }
     }
     
     .project-card {
@@ -154,6 +210,7 @@
         height: 250px;
         object-fit: cover;
     }
+    
     
     .project-card-body {
         padding: 1.5rem;
@@ -199,9 +256,44 @@
             font-size: 0.95rem;
         }
         
+        #teknis-medis .container,
+        #other-projects .container {
+            display: block !important;
+            flex-direction: column !important;
+        }
+        
+        #teknis-medis .container > *,
+        #other-projects .container > * {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+            float: none !important;
+        }
+        
+        .teknis-title-section,
+        .projects-title-section {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-bottom: 2rem !important;
+            display: block !important;
+            float: none !important;
+            clear: both !important;
+        }
+        
+        .teknis-cards-section,
+        .projects-cards-section {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+            float: none !important;
+            clear: both !important;
+        }
+        
         .project-grid {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr !important;
             gap: 1.5rem;
+            width: 100% !important;
+            max-width: 100% !important;
         }
         
         .project-card-large img {
@@ -247,9 +339,76 @@
             justify-content: center;
         }
         
+        /* Force vertical layout for project sections on mobile */
+        #teknis-medis,
+        #other-projects {
+            display: block !important;
+        }
+        
+        #teknis-medis .container,
+        #other-projects .container {
+            display: block !important;
+            flex-direction: column !important;
+            flex-wrap: nowrap !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+        
+        #teknis-medis .container > *,
+        #other-projects .container > * {
+            width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+            float: none !important;
+            flex: none !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+        }
+        
+        .teknis-title-section,
+        .projects-title-section {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-bottom: 2rem !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+            float: none !important;
+            clear: both !important;
+            flex: none !important;
+            order: 1 !important;
+            position: relative !important;
+        }
+        
+        .teknis-cards-section,
+        .projects-cards-section {
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding: 0 !important;
+            display: block !important;
+            float: none !important;
+            clear: both !important;
+            flex: none !important;
+            order: 2 !important;
+            position: relative !important;
+        }
+        
         .project-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
             gap: 1.25rem;
+            width: 100% !important;
+            max-width: 100% !important;
+            margin-top: 0 !important;
+            display: grid !important;
+        }
+        
+        .project-card {
+            width: 100% !important;
+            max-width: 100% !important;
+            float: none !important;
         }
         
         .project-card img {
@@ -339,33 +498,35 @@
     @if($teknis->count() > 0)
         <section class="page-section bg-primary" id="teknis-medis">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center mb-5">
-                        <h2 class="text-white mt-0">Teknis Medis Project</h2>
-                        <hr class="divider divider-light" />
-                        <p class="text-white-75 mb-4">Perbaikan Alat Medis | Services & Maintenance Alat Medis | Instalasi Alat Medis</p>
-                    </div>
+                <!-- Title Section - Full Width -->
+                <div class="teknis-title-section">
+                    <h2 class="text-white mt-0 text-center">Teknis Medis Project</h2>
+                    <hr class="divider divider-light" />
+                    <p class="text-white-75 mb-4 text-center">Perbaikan Alat Medis | Services & Maintenance Alat Medis | Instalasi Alat Medis</p>
                 </div>
-                <div class="project-grid">
-                    @foreach ($teknis as $teknisItem)
-                        @if($teknisItem->image_size === 'large')
-                            <div class="project-card project-card-large">
-                                <img src="{{ asset('storage/' . $teknisItem->image) }}" 
-                                     alt="{{ $teknisItem->name }}">
-                                <div class="project-card-body">
-                                    <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
+                <!-- Cards Section - Full Width Below Title -->
+                <div class="teknis-cards-section">
+                    <div class="project-grid">
+                        @foreach ($teknis as $teknisItem)
+                            @if($teknisItem->image_size === 'large')
+                                <div class="project-card project-card-large">
+                                    <img src="{{ asset('storage/' . $teknisItem->image) }}" 
+                                         alt="{{ $teknisItem->name }}">
+                                    <div class="project-card-body">
+                                        <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="project-card">
-                                <img src="{{ asset('storage/' . $teknisItem->image) }}" 
-                                     alt="{{ $teknisItem->name }}">
-                                <div class="project-card-body">
-                                    <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
+                            @else
+                                <div class="project-card">
+                                    <img src="{{ asset('storage/' . $teknisItem->image) }}" 
+                                         alt="{{ $teknisItem->name }}">
+                                    <div class="project-card-body">
+                                        <h4 class="project-card-title">{{ $teknisItem->name }}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </section>
@@ -375,32 +536,34 @@
     @if($projects->count() > 0)
         <section class="page-section" id="other-projects">
             <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5 justify-content-center">
-                    <div class="col-lg-8 text-center mb-5">
-                        <h2 class="mt-0">Proyek Lainnya</h2>
-                        <hr class="divider" />
-                    </div>
+                <!-- Title Section - Full Width -->
+                <div class="projects-title-section">
+                    <h2 class="mt-0 text-center">Proyek Lainnya</h2>
+                    <hr class="divider" />
                 </div>
-                <div class="project-grid">
-                    @foreach ($projects as $project)
-                        @if($project->image_size === 'large')
-                            <div class="project-card project-card-large">
-                                <img src="{{ asset('storage/' . $project->image) }}" 
-                                     alt="{{ $project->name }}">
-                                <div class="project-card-body">
-                                    <h4 class="project-card-title">{{ $project->name }}</h4>
+                <!-- Cards Section - Full Width Below Title -->
+                <div class="projects-cards-section">
+                    <div class="project-grid">
+                        @foreach ($projects as $project)
+                            @if($project->image_size === 'large')
+                                <div class="project-card project-card-large">
+                                    <img src="{{ asset('storage/' . $project->image) }}" 
+                                         alt="{{ $project->name }}">
+                                    <div class="project-card-body">
+                                        <h4 class="project-card-title">{{ $project->name }}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        @else
-                            <div class="project-card">
-                                <img src="{{ asset('storage/' . $project->image) }}" 
-                                     alt="{{ $project->name }}">
-                                <div class="project-card-body">
-                                    <h4 class="project-card-title">{{ $project->name }}</h4>
+                            @else
+                                <div class="project-card">
+                                    <img src="{{ asset('storage/' . $project->image) }}" 
+                                         alt="{{ $project->name }}">
+                                    <div class="project-card-body">
+                                        <h4 class="project-card-title">{{ $project->name }}</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                            @endif
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </section>

@@ -5,12 +5,26 @@
 <style>
     /* Masthead customization */
     .masthead {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    /* Background image dengan blur effect */
+    .masthead::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-image: url('{{ asset('new-template/image/tentang.png') }}') !important;
         background-size: cover !important;
-        background-position: center !important;
+        background-position: 30% center !important;
         background-attachment: fixed !important;
         background-repeat: no-repeat !important;
-        position: relative;
+        filter: blur(10px);
+        transform: scale(1.1);
+        z-index: 0;
     }
     
     /* Overlay kehitaman tipis untuk readability */
@@ -33,10 +47,12 @@
     
     /* Mobile view optimization */
     @media (max-width: 768px) {
-        .masthead {
+        .masthead::after {
             background-attachment: scroll !important;
-            background-position: center center !important;
+            background-position: 30% center !important;
             background-size: cover !important;
+            filter: blur(8px);
+            transform: scale(1.05);
         }
     }
     
