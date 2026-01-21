@@ -70,7 +70,7 @@
                             <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Gambar</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Nama</th>
                             <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Ukuran</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Aksi</th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Opsi</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
@@ -84,6 +84,8 @@
     @push('scripts')
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
     <script>
         $(document).ready(function() {
             $('#clients-table').DataTable({
@@ -130,22 +132,55 @@
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
                 dom: '<"flex flex-col sm:flex-row justify-between items-center mb-4"<"mb-2 sm:mb-0"l><"mb-2 sm:mb-0"f>>rt<"flex flex-col sm:flex-row justify-between items-center mt-4"<"mb-2 sm:mb-0"i><"mb-2 sm:mb-0"p>>',
             });
+            
+            tippy('[data-tooltip]', {
+                content: function(reference) {
+                    return reference.getAttribute('data-tooltip');
+                },
+                theme: 'light-border',
+                placement: 'top',
+            });
         });
     </script>
     @endpush
 
     @push('styles')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
     <style>
         #clients-table_wrapper .dataTables_filter input,
         #clients-table_wrapper .dataTables_length select {
-            @apply px-3 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white;
+            @apply px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent;
         }
         #clients-table_wrapper .dataTables_paginate .paginate_button {
-            @apply px-3 py-1 mx-1 rounded-lg text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700;
+            @apply px-3 py-1.5 mx-1 rounded-lg text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors;
         }
         #clients-table_wrapper .dataTables_paginate .paginate_button.current {
-            @apply bg-[var(--color-accent)] text-white;
+            @apply bg-[var(--color-accent)] text-white hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)];
+        }
+        #clients-table_wrapper .dataTables_info {
+            @apply text-sm text-zinc-600 dark:text-zinc-400;
+        }
+        #clients-table thead {
+            @apply bg-zinc-50 dark:bg-zinc-800/50;
+        }
+        #clients-table tbody tr {
+            @apply hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors;
+        }
+        #clients-table tbody td {
+            @apply border-b border-zinc-200 dark:border-zinc-700;
+        }
+        .action-icon {
+            @apply inline-flex items-center justify-center p-1.5 rounded-lg transition-all cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-700;
+        }
+        .action-icon svg {
+            @apply transition-transform;
+        }
+        .action-icon:hover svg {
+            @apply scale-110;
+        }
+        .action-icon-form {
+            @apply inline-flex;
         }
     </style>
     @endpush
