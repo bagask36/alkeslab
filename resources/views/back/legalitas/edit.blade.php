@@ -122,6 +122,7 @@
     @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Document Preview
             const docInput = document.getElementById('doc');
             const docPreview = document.getElementById('doc-preview');
             const docPreviewName = document.getElementById('doc-preview-name');
@@ -137,6 +138,35 @@
                     }
                 });
             }
+
+            // Radio Button Selection for Document Type
+            const typeRadios = document.querySelectorAll('input[name="type"]');
+            
+            // Initialize styling for checked radio on page load
+            typeRadios.forEach(radio => {
+                if (radio.checked) {
+                    const label = radio.closest('label');
+                    label.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    label.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                }
+            });
+            
+            // Handle radio button changes
+            typeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove active state from all labels
+                    document.querySelectorAll('input[name="type"]').forEach(r => {
+                        const label = r.closest('label');
+                        label.classList.remove('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                        label.classList.add('border-zinc-300', 'dark:border-zinc-600');
+                    });
+                    
+                    // Add active state to selected label
+                    const selectedLabel = this.closest('label');
+                    selectedLabel.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    selectedLabel.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                });
+            });
         });
     </script>
     @endpush

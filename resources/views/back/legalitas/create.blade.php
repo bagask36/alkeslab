@@ -102,7 +102,7 @@
                     </flux:button>
                     <flux:button type="submit" class="!px-8 !py-2.5 !rounded-xl !shadow-md hover:!shadow-lg transition-all">
                         <flux:icon icon="check" class="w-4 h-4" />
-                        Simpan Dokumen
+                        Simpan
                     </flux:button>
                 </div>
             </form>
@@ -112,18 +112,50 @@
     @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Document Preview
             const docInput = document.getElementById('doc');
             const docPreview = document.getElementById('doc-preview');
             const docPreviewName = document.getElementById('doc-preview-name');
 
-            docInput.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    docPreviewName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
-                    docPreview.classList.remove('hidden');
-                } else {
-                    docPreview.classList.add('hidden');
+            if (docInput) {
+                docInput.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        docPreviewName.textContent = file.name + ' (' + (file.size / 1024 / 1024).toFixed(2) + ' MB)';
+                        docPreview.classList.remove('hidden');
+                    } else {
+                        docPreview.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Radio Button Selection for Document Type
+            const typeRadios = document.querySelectorAll('input[name="type"]');
+            
+            // Initialize styling for checked radio on page load
+            typeRadios.forEach(radio => {
+                if (radio.checked) {
+                    const label = radio.closest('label');
+                    label.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    label.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
                 }
+            });
+            
+            // Handle radio button changes
+            typeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove active state from all labels
+                    document.querySelectorAll('input[name="type"]').forEach(r => {
+                        const label = r.closest('label');
+                        label.classList.remove('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                        label.classList.add('border-zinc-300', 'dark:border-zinc-600');
+                    });
+                    
+                    // Add active state to selected label
+                    const selectedLabel = this.closest('label');
+                    selectedLabel.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    selectedLabel.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                });
             });
         });
     </script>

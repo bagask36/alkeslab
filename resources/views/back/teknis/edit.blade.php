@@ -110,6 +110,7 @@
     @push('scripts')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Photo Preview
             const photoInput = document.getElementById('photo');
             const photoPreview = document.getElementById('photo-preview');
             const photoPreviewImg = document.getElementById('photo-preview-img');
@@ -129,6 +130,35 @@
                     }
                 });
             }
+
+            // Radio Button Selection for Image Size
+            const imageSizeRadios = document.querySelectorAll('input[name="image_size"]');
+            
+            // Initialize styling for checked radio on page load
+            imageSizeRadios.forEach(radio => {
+                if (radio.checked) {
+                    const label = radio.closest('label');
+                    label.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    label.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                }
+            });
+            
+            // Handle radio button changes
+            imageSizeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Remove active state from all labels
+                    document.querySelectorAll('input[name="image_size"]').forEach(r => {
+                        const label = r.closest('label');
+                        label.classList.remove('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                        label.classList.add('border-zinc-300', 'dark:border-zinc-600');
+                    });
+                    
+                    // Add active state to selected label
+                    const selectedLabel = this.closest('label');
+                    selectedLabel.classList.remove('border-zinc-300', 'dark:border-zinc-600');
+                    selectedLabel.classList.add('border-[var(--color-accent)]', 'bg-[var(--color-accent)]/5');
+                });
+            });
         });
     </script>
     @endpush

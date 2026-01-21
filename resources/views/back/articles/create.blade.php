@@ -107,7 +107,7 @@
                     </flux:button>
                     <flux:button type="submit" class="!px-8 !py-2.5 !rounded-xl !shadow-md hover:!shadow-lg transition-all">
                         <flux:icon icon="check" class="w-4 h-4" />
-                        Simpan Artikel
+                        Simpan
                     </flux:button>
                 </div>
             </form>
