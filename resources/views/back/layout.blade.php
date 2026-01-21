@@ -115,8 +115,8 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
         <flux:sidebar.nav>
             <flux:sidebar.item 
                 icon="arrow-right-end-on-rectangle" 
-                href="{{ route('logout') }}"
-                method="post"
+                href="#"
+                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                 variant="danger"
             >
                 Logout
@@ -133,8 +133,8 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
                 <flux:menu.item href="{{ route('dashboard') }}" icon="home">Dashboard</flux:menu.item>
                 <flux:menu.separator />
                 <flux:menu.item 
-                    href="{{ route('logout') }}"
-                    method="post"
+                    href="#"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                     icon="arrow-right-end-on-rectangle"
                     class="text-red-600 dark:text-red-400"
                 >
@@ -179,8 +179,8 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
                     <flux:menu.separator />
                     
                     <flux:menu.item 
-                        href="{{ route('logout') }}"
-                        method="post"
+                        href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="text-red-600 dark:text-red-400"
                     >
                         <flux:icon icon="arrow-right-end-on-rectangle" class="w-4 h-4" />
@@ -229,8 +229,8 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
                     <flux:menu.separator />
                     
                     <flux:menu.item 
-                        href="{{ route('logout') }}"
-                        method="post"
+                        href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                         class="text-red-600 dark:text-red-400"
                     >
                         <flux:icon icon="arrow-right-end-on-rectangle" class="w-4 h-4" />
@@ -242,7 +242,7 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
     </flux:header>
     
     <!-- Main Content -->
-    <flux:main container>
+    <flux:main class="max-w-full px-6 lg:px-8">
         @if (session('success'))
             <flux:callout variant="success" class="mb-6">
                 {{ session('success') }}
@@ -257,6 +257,11 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
         
         @yield('content')
     </flux:main>
+    
+    <!-- Logout Form -->
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+        @csrf
+    </form>
     
     <!-- Flux UI Scripts -->
     @fluxScripts
