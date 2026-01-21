@@ -6,51 +6,72 @@
             <div class="d-flex justify-content-between align-items-center w-100 flex-wrap">
                 <!-- Left side (Contact Info) -->
                 <div class="d-flex flex-column flex-sm-row align-items-center gap-2 gap-sm-3">
-                    <a href="tel:02129098991" class="navbar-top-link d-flex align-items-center gap-2">
-                        <i class="bi bi-telephone-fill"></i>
-                        <span>021-29098991</span>
-                    </a>
-                    <span class="navbar-top-separator d-none d-sm-inline">|</span>
-                    <a href="tel:02122968221" class="navbar-top-link d-flex align-items-center gap-2">
-                        <i class="bi bi-telephone-fill"></i>
-                        <span>021-22968221</span>
-                    </a>
+                    @forelse(array_slice($contactSettings['phone'] ?? [], 0, 2) as $phoneItem)
+                        @php
+                            $phoneNumber = $phoneItem['number'] ?? '';
+                            $formattedPhone = format_phone_number($phoneNumber);
+                            $cleanNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+                            if (substr($cleanNumber, 0, 2) === '62') {
+                                $cleanNumber = '0' . substr($cleanNumber, 2);
+                            } elseif (substr($cleanNumber, 0, 1) !== '0') {
+                                $cleanNumber = '0' . $cleanNumber;
+                            }
+                            $telLink = 'tel:' . $cleanNumber;
+                        @endphp
+                        <a href="{{ $telLink }}" class="navbar-top-link d-flex align-items-center gap-2">
+                            <i class="bi bi-telephone-fill"></i>
+                            <span>{{ $formattedPhone }}</span>
+                        </a>
+                        @if(!$loop->last)
+                            <span class="navbar-top-separator d-none d-sm-inline">|</span>
+                        @endif
+                    @empty
+                        <span class="navbar-top-link">Hubungi Kami</span>
+                    @endforelse
                 </div>
 
                 <!-- Right side (Social Media) -->
                 <div class="d-flex align-items-center gap-3 navbar-top-social">
-                    <a href="https://tokopedia.link/alkeslabprimatama" 
-                       class="navbar-top-social-link" 
-                       target="_blank" 
-                       aria-label="Tokopedia"
-                       title="Tokopedia">
-                        <img src="https://img.icons8.com/nolan/28/tokopedia.png" alt="Tokopedia" class="navbar-top-social-icon" />
-                        <span class="d-none d-lg-inline">Tokopedia</span>
-                    </a>
-                    <a href="https://shopee.co.id/alkeskitasemua" 
-                       class="navbar-top-social-link" 
-                       target="_blank" 
-                       aria-label="Shopee"
-                       title="Shopee">
-                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/shopee.png" alt="Shopee" class="navbar-top-social-icon" />
-                        <span class="d-none d-lg-inline">Shopee</span>
-                    </a>
-                    <a href="https://www.instagram.com/alkeslabprimatama_official" 
-                       class="navbar-top-social-link" 
-                       target="_blank" 
-                       aria-label="Instagram"
-                       title="Instagram">
-                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/instagram-new--v1.png" alt="Instagram" class="navbar-top-social-icon" />
-                        <span class="d-none d-lg-inline">Instagram</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@alkeslabp" 
-                       class="navbar-top-social-link" 
-                       target="_blank" 
-                       aria-label="TikTok"
-                       title="TikTok">
-                        <img src="https://img.icons8.com/ios-filled/28/FFFFFF/tiktok--v1.png" alt="TikTok" class="navbar-top-social-icon" />
-                        <span class="d-none d-lg-inline">TikTok</span>
-                    </a>
+                    @if(!empty($contactSettings['tokopedia'] ?? ''))
+                        <a href="{{ $contactSettings['tokopedia'] }}" 
+                           class="navbar-top-social-link" 
+                           target="_blank" 
+                           aria-label="Tokopedia"
+                           title="Tokopedia">
+                            <img src="https://img.icons8.com/nolan/28/tokopedia.png" alt="Tokopedia" class="navbar-top-social-icon" />
+                            <span class="d-none d-lg-inline">Tokopedia</span>
+                        </a>
+                    @endif
+                    @if(!empty($contactSettings['shopee'] ?? ''))
+                        <a href="{{ $contactSettings['shopee'] }}" 
+                           class="navbar-top-social-link" 
+                           target="_blank" 
+                           aria-label="Shopee"
+                           title="Shopee">
+                            <img src="https://img.icons8.com/ios-filled/28/FFFFFF/shopee.png" alt="Shopee" class="navbar-top-social-icon" />
+                            <span class="d-none d-lg-inline">Shopee</span>
+                        </a>
+                    @endif
+                    @if(!empty($contactSettings['instagram'] ?? ''))
+                        <a href="{{ $contactSettings['instagram'] }}" 
+                           class="navbar-top-social-link" 
+                           target="_blank" 
+                           aria-label="Instagram"
+                           title="Instagram">
+                            <img src="https://img.icons8.com/ios-filled/28/FFFFFF/instagram-new--v1.png" alt="Instagram" class="navbar-top-social-icon" />
+                            <span class="d-none d-lg-inline">Instagram</span>
+                        </a>
+                    @endif
+                    @if(!empty($contactSettings['tiktok'] ?? ''))
+                        <a href="{{ $contactSettings['tiktok'] }}" 
+                           class="navbar-top-social-link" 
+                           target="_blank" 
+                           aria-label="TikTok"
+                           title="TikTok">
+                            <img src="https://img.icons8.com/ios-filled/28/FFFFFF/tiktok--v1.png" alt="TikTok" class="navbar-top-social-icon" />
+                            <span class="d-none d-lg-inline">TikTok</span>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -103,20 +103,12 @@
             </flux:card>
         </div>
 
-        <!-- Info Card -->
-        <flux:card>
-            <div class="flex items-start gap-4">
-                <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex-shrink-0">
-                    <flux:icon icon="information-circle" class="w-5 h-5 text-blue-600 dark:text-blue-400" />
-                </div>
-                <div class="flex-1">
-                    <flux:heading size="sm" class="mb-2">Informasi</flux:heading>
-                    <flux:text class="text-sm text-zinc-600 dark:text-zinc-400">
-                        Untuk mengelola informasi kontak secara dinamis, Anda dapat membuat model dan controller untuk Address, Phone, dan SocialLink. 
-                        Saat ini informasi kontak dapat dikonfigurasi melalui database atau file konfigurasi sesuai kebutuhan.
-                    </flux:text>
-                </div>
-            </div>
-        </flux:card>
+        <!-- Action Button -->
+        <div class="flex justify-end">
+            <flux:button href="{{ route('contacts.edit') }}">
+                <flux:icon icon="pencil" class="w-4 h-4" />
+                Edit Pengaturan Kontak
+            </flux:button>
+        </div>
     </div>
 @endsection

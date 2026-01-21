@@ -464,18 +464,38 @@
                             <h3 class="contact-card-title">Telepon</h3>
                         </div>
                         <div class="contact-card-body">
-                            <div class="contact-info-item-modern">
-                                <a href="tel:02129098991">
-                                    <i class="bi bi-telephone-fill"></i>
-                                    <span>021-29098991</span>
-                                </a>
-                            </div>
-                            <div class="contact-info-item-modern">
-                                <a href="tel:02122968221">
-                                    <i class="bi bi-telephone-fill"></i>
-                                    <span>021-22968221</span>
-                                </a>
-                            </div>
+                            @forelse($phone as $item)
+                                @php
+                                    $phoneNumber = $item['number'] ?? '';
+                                    $phoneName = $item['name'] ?? '';
+                                    $formattedPhone = format_phone_number($phoneNumber);
+                                    // For tel: link, use original number but ensure it starts with 0
+                                    $cleanNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+                                    if (substr($cleanNumber, 0, 2) === '62') {
+                                        $cleanNumber = '0' . substr($cleanNumber, 2);
+                                    } elseif (substr($cleanNumber, 0, 1) !== '0') {
+                                        $cleanNumber = '0' . $cleanNumber;
+                                    }
+                                    $telLink = 'tel:' . $cleanNumber;
+                                @endphp
+                                <div class="contact-info-item-modern">
+                                    <a href="{{ $telLink }}">
+                                        <i class="bi bi-telephone-fill"></i>
+                                        <span>
+                                            @if($phoneName)
+                                                <strong>{{ $phoneName }}:</strong> 
+                                            @else
+                                                <strong>Telepon:</strong>
+                                            @endif
+                                            {{ $formattedPhone }}
+                                        </span>
+                                    </a>
+                                </div>
+                            @empty
+                                <div class="contact-info-item-modern">
+                                    <span style="color: #6c757d;">Belum ada nomor telepon</span>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -490,14 +510,28 @@
                             <h3 class="contact-card-title">WhatsApp</h3>
                         </div>
                         <div class="contact-card-body">
-                            <a href="https://api.whatsapp.com/send?phone=6282280848541" target="_blank" class="whatsapp-btn-modern mb-3">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>0822 8084 8541 (Admin)</span>
-                            </a>
-                            <a href="https://api.whatsapp.com/send?phone=6282260895899" target="_blank" class="whatsapp-btn-modern">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>0822 6089 5899 (Sales)</span>
-                            </a>
+                            @forelse($whatsapp as $item)
+                                @php
+                                    $waNumber = $item['number'] ?? '';
+                                    $waName = $item['name'] ?? '';
+                                    $formattedWA = format_whatsapp_number($waNumber);
+                                    $waLink = get_whatsapp_link($waNumber);
+                                @endphp
+                                <a href="{{ $waLink }}" target="_blank" class="whatsapp-btn-modern {{ !$loop->last ? 'mb-3' : '' }}">
+                                    <i class="fab fa-whatsapp"></i>
+                                    <span>
+                                        @if($waName)
+                                            {{ $waName }}: {{ $formattedWA }}
+                                        @else
+                                            {{ $formattedWA }}
+                                        @endif
+                                    </span>
+                                </a>
+                            @empty
+                                <div class="contact-info-item-modern">
+                                    <span style="color: #6c757d;">Belum ada nomor WhatsApp</span>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
@@ -512,12 +546,18 @@
                             <h3 class="contact-card-title">Email</h3>
                         </div>
                         <div class="contact-card-body">
-                            <div class="contact-info-item-modern">
-                                <a href="mailto:alkeslab.primatama@gmail.com">
-                                    <i class="bi bi-envelope-fill"></i>
-                                    <span>alkeslab.primatama@gmail.com</span>
-                                </a>
-                            </div>
+                            @forelse($email as $emailAddress)
+                                <div class="contact-info-item-modern">
+                                    <a href="mailto:{{ $emailAddress }}">
+                                        <i class="bi bi-envelope-fill"></i>
+                                        <span>{{ $emailAddress }}</span>
+                                    </a>
+                                </div>
+                            @empty
+                                <div class="contact-info-item-modern">
+                                    <span style="color: #6c757d;">Belum ada email</span>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

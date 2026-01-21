@@ -73,51 +73,57 @@
                 <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
                     <h5 class="footer-title">Kontak Kami</h5>
                     <ul class="footer-contact">
-                        <li>
-                            <a href="https://api.whatsapp.com/send?phone=6282280848541" target="_blank">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="contact-label">WhatsApp Admin</span>
-                                    <span class="contact-value">0822 8084 8541</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="https://api.whatsapp.com/send?phone=6282260895899" target="_blank">
-                                <i class="bi bi-whatsapp"></i>
-                                <div>
-                                    <span class="contact-label">WhatsApp Sales</span>
-                                    <span class="contact-value">0822 6089 5899</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tel:02129098991">
-                                <i class="bi bi-telephone-fill"></i>
-                                <div>
-                                    <span class="contact-label">Telepon</span>
-                                    <span class="contact-value">021-29098991</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="tel:02122968221">
-                                <i class="bi bi-telephone-fill"></i>
-                                <div>
-                                    <span class="contact-label">Telepon</span>
-                                    <span class="contact-value">021-22968221</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="mailto:alkeslab.primatama@gmail.com">
-                                <i class="bi bi-envelope-fill"></i>
-                                <div>
-                                    <span class="contact-label">Email</span>
-                                    <span class="contact-value">alkeslab.primatama@gmail.com</span>
-                                </div>
-                            </a>
-                        </li>
+                        @foreach($contactSettings['whatsapp'] ?? [] as $waItem)
+                            @php
+                                $waNumber = $waItem['number'] ?? '';
+                                $waName = $waItem['name'] ?? 'WhatsApp';
+                                $formattedWA = format_whatsapp_number($waNumber);
+                                $waLink = get_whatsapp_link($waNumber);
+                            @endphp
+                            <li>
+                                <a href="{{ $waLink }}" target="_blank">
+                                    <i class="bi bi-whatsapp"></i>
+                                    <div>
+                                        <span class="contact-label">{{ $waName ?: 'WhatsApp' }}</span>
+                                        <span class="contact-value">{{ $formattedWA }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                        @foreach($contactSettings['phone'] ?? [] as $phoneItem)
+                            @php
+                                $phoneNumber = $phoneItem['number'] ?? '';
+                                $phoneName = $phoneItem['name'] ?? 'Telepon';
+                                $formattedPhone = format_phone_number($phoneNumber);
+                                $cleanNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+                                if (substr($cleanNumber, 0, 2) === '62') {
+                                    $cleanNumber = '0' . substr($cleanNumber, 2);
+                                } elseif (substr($cleanNumber, 0, 1) !== '0') {
+                                    $cleanNumber = '0' . $cleanNumber;
+                                }
+                                $telLink = 'tel:' . $cleanNumber;
+                            @endphp
+                            <li>
+                                <a href="{{ $telLink }}">
+                                    <i class="bi bi-telephone-fill"></i>
+                                    <div>
+                                        <span class="contact-label">{{ $phoneName ?: 'Telepon' }}</span>
+                                        <span class="contact-value">{{ $formattedPhone }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                        @foreach($contactSettings['email'] ?? [] as $emailAddress)
+                            <li>
+                                <a href="mailto:{{ $emailAddress }}">
+                                    <i class="bi bi-envelope-fill"></i>
+                                    <div>
+                                        <span class="contact-label">Email</span>
+                                        <span class="contact-value">{{ $emailAddress }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 

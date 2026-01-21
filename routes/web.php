@@ -44,16 +44,10 @@ Route::get('/tentang-kami', [ClientPageController::class, 'tentangKamiIndex'])->
 
 Route::get('/produk-kami', [ProductPageController::class, 'index'])->name('produk-kami.index');
 
-Route::get('/kontak-kami', function () {
-    return view('kontak.index');
-});
+Route::get('/kontak-kami', [ContactController::class, 'frontend'])->name('kontak-kami');
 
 Route::get('/layanan-kami', function () {
     return view('layanan-kami.index');
-});
-
-Route::get('/kontak-kami', function () {
-    return view('kontak.index');
 });
 
 
@@ -76,6 +70,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('clients', ClientController::class);
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+    Route::get('/contacts/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+    Route::put('/contacts', [ContactController::class, 'update'])->name('contacts.update');
     Route::resource('projects', ProjectController::class);
     Route::resource('teknis', TeknisController::class)->parameters([
         'teknis' => 'tekni'
