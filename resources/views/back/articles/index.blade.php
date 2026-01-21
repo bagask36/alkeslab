@@ -61,23 +61,27 @@
         </div>
 
         <!-- DataTable -->
-        <flux:card>
-            <div class="overflow-x-auto">
-                <table id="articles-table" class="w-full">
-                    <thead>
-                        <tr class="border-b border-zinc-200 dark:border-zinc-700">
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">No</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Judul</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Kategori</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Tanggal</th>
-                            <th class="px-6 py-4 text-left text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Opsi</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-zinc-200 dark:divide-zinc-700">
-                        <!-- Data akan diisi oleh DataTables -->
-                    </tbody>
-                </table>
+        <flux:card class="overflow-hidden">
+            <div class="p-6">
+                <div class="overflow-x-auto -mx-6">
+                    <div class="inline-block min-w-full align-middle px-6">
+                        <table id="articles-table" class="min-w-full divide-y divide-zinc-200 dark:divide-zinc-700">
+                            <thead class="bg-gradient-to-r from-zinc-50 to-zinc-100 dark:from-zinc-800/50 dark:to-zinc-800/30">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">No</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Judul</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Kategori</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-4 text-left text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Tanggal</th>
+                                    <th class="px-6 py-4 text-center text-xs font-bold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Opsi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-zinc-900 divide-y divide-zinc-200 dark:divide-zinc-700">
+                                <!-- Data akan diisi oleh DataTables -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </flux:card>
     </div>
@@ -155,50 +159,192 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
     <style>
-        /* DataTable Styling */
+        /* DataTable Wrapper */
+        #articles-table_wrapper {
+            @apply space-y-4;
+        }
+        
+        /* Filter & Length Controls */
+        #articles-table_wrapper .dataTables_filter {
+            @apply mb-4;
+        }
+        #articles-table_wrapper .dataTables_filter label {
+            @apply flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300;
+        }
         #articles-table_wrapper .dataTables_filter input {
-            @apply px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent;
+            @apply px-4 py-2.5 border border-zinc-300 dark:border-zinc-600 rounded-xl bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white;
+            @apply focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent;
+            @apply shadow-sm transition-all duration-200;
+            min-width: 250px;
+        }
+        #articles-table_wrapper .dataTables_filter input:focus {
+            @apply shadow-md;
+        }
+        
+        #articles-table_wrapper .dataTables_length {
+            @apply mb-4;
+        }
+        #articles-table_wrapper .dataTables_length label {
+            @apply flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300;
         }
         #articles-table_wrapper .dataTables_length select {
-            @apply px-4 py-2 border border-zinc-300 dark:border-zinc-600 rounded-lg bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent;
+            @apply px-4 py-2.5 border border-zinc-300 dark:border-zinc-600 rounded-xl bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white;
+            @apply focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] focus:border-transparent;
+            @apply shadow-sm transition-all duration-200 cursor-pointer;
         }
-        #articles-table_wrapper .dataTables_paginate .paginate_button {
-            @apply px-3 py-1.5 mx-1 rounded-lg text-sm text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors;
-        }
-        #articles-table_wrapper .dataTables_paginate .paginate_button.current {
-            @apply bg-[var(--color-accent)] text-white hover:bg-[color-mix(in_oklab,_var(--color-accent),_transparent_10%)];
-        }
-        #articles-table_wrapper .dataTables_info {
-            @apply text-sm text-zinc-600 dark:text-zinc-400;
+        #articles-table_wrapper .dataTables_length select:focus {
+            @apply shadow-md;
         }
         
         /* Table Styling */
         #articles-table {
             @apply border-collapse;
         }
-        #articles-table thead {
-            @apply bg-zinc-50 dark:bg-zinc-800/50;
+        #articles-table thead th {
+            @apply relative;
+        }
+        #articles-table thead th:not(:last-child)::after {
+            content: '';
+            @apply absolute right-0 top-1/2 -translate-y-1/2 w-px h-6 bg-zinc-300 dark:bg-zinc-600;
         }
         #articles-table tbody tr {
-            @apply hover:bg-zinc-50 dark:hover:bg-zinc-800/30 transition-colors;
+            @apply transition-all duration-200;
+            @apply hover:bg-gradient-to-r hover:from-zinc-50 hover:to-transparent dark:hover:from-zinc-800/50 dark:hover:to-transparent;
+            @apply hover:shadow-sm;
         }
         #articles-table tbody td {
-            @apply border-b border-zinc-200 dark:border-zinc-700;
+            @apply px-6 py-4 text-sm;
+        }
+        #articles-table tbody tr:last-child td {
+            @apply border-b-0;
         }
         
-        /* Action Icons */
-        .action-icon {
-            @apply inline-flex items-center justify-center p-1.5 rounded-lg transition-all cursor-pointer;
-            @apply hover:bg-zinc-100 dark:hover:bg-zinc-700;
+        /* Pagination */
+        #articles-table_wrapper .dataTables_paginate {
+            @apply flex items-center justify-center gap-1 mt-6;
         }
-        .action-icon svg {
-            @apply transition-transform;
+        #articles-table_wrapper .dataTables_paginate .paginate_button {
+            @apply px-4 py-2 mx-0.5 rounded-lg text-sm font-medium text-zinc-700 dark:text-zinc-300;
+            @apply hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-all duration-200;
+            @apply border border-transparent hover:border-zinc-200 dark:hover:border-zinc-600;
+            @apply min-w-[2.5rem] text-center;
         }
-        .action-icon:hover svg {
-            @apply scale-110;
+        #articles-table_wrapper .dataTables_paginate .paginate_button:hover {
+            @apply transform scale-105 shadow-sm;
         }
-        .action-icon-form {
-            @apply inline-flex;
+        #articles-table_wrapper .dataTables_paginate .paginate_button.current {
+            @apply bg-[var(--color-accent)] text-white border-[var(--color-accent)];
+            @apply shadow-md hover:shadow-lg;
+        }
+        #articles-table_wrapper .dataTables_paginate .paginate_button.disabled {
+            @apply opacity-50 cursor-not-allowed hover:bg-transparent hover:scale-100 hover:shadow-none;
+        }
+        
+        /* Info */
+        #articles-table_wrapper .dataTables_info {
+            @apply text-sm text-zinc-600 dark:text-zinc-400 font-medium px-2;
+        }
+        
+        /* Processing Indicator */
+        #articles-table_wrapper .dataTables_processing {
+            @apply bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-xl shadow-lg border border-zinc-200 dark:border-zinc-700;
+            @apply text-zinc-700 dark:text-zinc-300 font-medium;
+        }
+        
+        /* Action Buttons */
+        .action-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 0.5rem !important;
+            font-weight: 500 !important;
+            transition: all 0.2s ease !important;
+            cursor: pointer !important;
+            border: 1px solid !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .action-btn-view {
+            background-color: rgb(239 246 255) !important;
+            color: rgb(37 99 235) !important;
+            border-color: rgb(191 219 254) !important;
+        }
+        .dark .action-btn-view {
+            background-color: rgba(30, 58, 138, 0.2) !important;
+            color: rgb(96 165 250) !important;
+            border-color: rgb(30 58 138) !important;
+        }
+        .action-btn-view:hover {
+            background-color: rgb(219 234 254) !important;
+            border-color: rgb(147 197 253) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-view:hover {
+            background-color: rgba(30, 58, 138, 0.3) !important;
+        }
+        .action-btn-edit {
+            background-color: rgb(254 252 232) !important;
+            color: rgb(202 138 4) !important;
+            border-color: rgb(253 230 138) !important;
+        }
+        .dark .action-btn-edit {
+            background-color: rgba(113, 63, 18, 0.2) !important;
+            color: rgb(250 204 21) !important;
+            border-color: rgb(113 63 18) !important;
+        }
+        .action-btn-edit:hover {
+            background-color: rgb(254 249 195) !important;
+            border-color: rgb(253 224 71) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-edit:hover {
+            background-color: rgba(113, 63, 18, 0.3) !important;
+        }
+        .action-btn-delete {
+            background-color: rgb(254 242 242) !important;
+            color: rgb(220 38 38) !important;
+            border-color: rgb(254 202 202) !important;
+        }
+        .dark .action-btn-delete {
+            background-color: rgba(127, 29, 29, 0.2) !important;
+            color: rgb(248 113 113) !important;
+            border-color: rgb(127 29 29) !important;
+        }
+        .action-btn-delete:hover {
+            background-color: rgb(254 226 226) !important;
+            border-color: rgb(252 165 165) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-delete:hover {
+            background-color: rgba(127, 29, 29, 0.3) !important;
+        }
+        .action-btn svg {
+            width: 16px !important;
+            height: 16px !important;
+            transition: transform 0.2s ease !important;
+        }
+        .action-btn:hover svg {
+            transform: scale(1.1) !important;
+        }
+        .action-btn-form {
+            display: inline-flex !important;
+        }
+        
+        /* Sort Icons */
+        #articles-table_wrapper .sorting,
+        #articles-table_wrapper .sorting_asc,
+        #articles-table_wrapper .sorting_desc {
+            @apply relative pr-6;
+        }
+        #articles-table_wrapper .sorting::after,
+        #articles-table_wrapper .sorting_asc::after,
+        #articles-table_wrapper .sorting_desc::after {
+            @apply absolute right-2 top-1/2 -translate-y-1/2;
         }
     </style>
     @endpush

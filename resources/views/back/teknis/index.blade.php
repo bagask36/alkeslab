@@ -170,17 +170,87 @@
         #teknis-table tbody td {
             @apply border-b border-zinc-200 dark:border-zinc-700;
         }
-        .action-icon {
-            @apply inline-flex items-center justify-center p-1.5 rounded-lg transition-all cursor-pointer hover:bg-zinc-100 dark:hover:bg-zinc-700;
+        .action-btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 0.5rem !important;
+            font-weight: 500 !important;
+            transition: all 0.2s ease !important;
+            cursor: pointer !important;
+            border: 1px solid !important;
+            padding: 0 !important;
+            margin: 0 !important;
         }
-        .action-icon svg {
-            @apply transition-transform;
+        .action-btn-view {
+            background-color: rgb(239 246 255) !important;
+            color: rgb(37 99 235) !important;
+            border-color: rgb(191 219 254) !important;
         }
-        .action-icon:hover svg {
-            @apply scale-110;
+        .dark .action-btn-view {
+            background-color: rgba(30, 58, 138, 0.2) !important;
+            color: rgb(96 165 250) !important;
+            border-color: rgb(30 58 138) !important;
         }
-        .action-icon-form {
-            @apply inline-flex;
+        .action-btn-view:hover {
+            background-color: rgb(219 234 254) !important;
+            border-color: rgb(147 197 253) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-view:hover {
+            background-color: rgba(30, 58, 138, 0.3) !important;
+        }
+        .action-btn-edit {
+            background-color: rgb(254 252 232) !important;
+            color: rgb(202 138 4) !important;
+            border-color: rgb(253 230 138) !important;
+        }
+        .dark .action-btn-edit {
+            background-color: rgba(113, 63, 18, 0.2) !important;
+            color: rgb(250 204 21) !important;
+            border-color: rgb(113 63 18) !important;
+        }
+        .action-btn-edit:hover {
+            background-color: rgb(254 249 195) !important;
+            border-color: rgb(253 224 71) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-edit:hover {
+            background-color: rgba(113, 63, 18, 0.3) !important;
+        }
+        .action-btn-delete {
+            background-color: rgb(254 242 242) !important;
+            color: rgb(220 38 38) !important;
+            border-color: rgb(254 202 202) !important;
+        }
+        .dark .action-btn-delete {
+            background-color: rgba(127, 29, 29, 0.2) !important;
+            color: rgb(248 113 113) !important;
+            border-color: rgb(127 29 29) !important;
+        }
+        .action-btn-delete:hover {
+            background-color: rgb(254 226 226) !important;
+            border-color: rgb(252 165 165) !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+        .dark .action-btn-delete:hover {
+            background-color: rgba(127, 29, 29, 0.3) !important;
+        }
+        .action-btn svg {
+            width: 16px !important;
+            height: 16px !important;
+            transition: transform 0.2s ease !important;
+        }
+        .action-btn:hover svg {
+            transform: scale(1.1) !important;
+        }
+        .action-btn-form {
+            display: inline-flex !important;
         }
     </style>
     @endpush
