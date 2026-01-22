@@ -1,19 +1,20 @@
-# Laravel Security - Prevent access to files outside public directory
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteRule ^(?!public/).*$ - [F,L]
-</IfModule>
-
-# Prevent directory listing
-Options -Indexes
-
-# Deny access to sensitive files
+# Laravel Security - Prevent access to sensitive files
 <FilesMatch "^\.">
     Order allow,deny
     Deny from all
 </FilesMatch>
 
-<FilesMatch "(^#.*#|\.(bak|conf|dist|fla|in[ci]|log|orig|psd|sh|sql|sw[op])|~)$">
+# Prevent access to composer files
+<FilesMatch "^(composer\.(json|lock)|package\.json|package-lock\.json)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
+
+# Prevent access to environment files
+<FilesMatch "^\.env">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes

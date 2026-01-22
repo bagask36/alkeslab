@@ -1,0 +1,49 @@
+==========================================
+FILE YANG PERLU DIUPLOAD KE CPANEL
+==========================================
+
+✅ UPLOAD FILE-FILE INI:
+
+FOLDER:
+- app/
+- bootstrap/
+- config/
+- database/
+- resources/
+- routes/
+- storage/
+- vendor/ (dari composer install --no-dev)
+- public/ (semua isi folder)
+
+FILE:
+- artisan
+- composer.json
+- composer.lock
+- .htaccess (file di root)
+- .env (BUAT BARU di server, jangan upload dari local!)
+
+==========================================
+
+❌ JANGAN UPLOAD:
+
+- .git/
+- .env (dari local)
+- node_modules/
+- .vscode/, .idea/, .fleet/
+- tests/ (opsional)
+- phpunit.xml (opsional)
+- .DS_Store
+- .phpunit.result.cache
+
+==========================================
+
+📋 LANGKAH SETELAH UPLOAD:
+
+1. Buat file .env di server (copy dari .env.example, lalu edit)
+2. Generate APP_KEY: php artisan key:generate
+3. Set permission: chmod -R 775 storage bootstrap/cache
+4. Buat storage link: php artisan storage:link
+5. Jalankan migration: php artisan migrate --force
+6. Optimize: php artisan config:cache && php artisan route:cache && php artisan view:cache
+
+==========================================
