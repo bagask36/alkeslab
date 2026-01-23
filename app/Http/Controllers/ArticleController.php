@@ -104,7 +104,7 @@ class ArticleController extends Controller
     // Menampilkan artikel tertentu
     public function show(Article $article)
     {
-        return view('back.articles.show', compact('article')); // Path yang benar
+        return view('back.articles.show', compact('article'));
     }
 
     // Menampilkan formulir untuk mengedit artikel
