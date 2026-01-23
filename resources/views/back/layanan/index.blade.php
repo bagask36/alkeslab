@@ -84,17 +84,40 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script>
-        $(document).ready(function() {
-            $('#layanan-table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: {
-                    url: "{{ route('layanan.index') }}",
-                    type: 'GET',
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest'
-                    }
-                },
+        window.addEventListener('load', function() {
+            if (typeof jQuery === 'undefined') {
+                console.error('jQuery is not loaded');
+                return;
+            }
+
+            jQuery(document).ready(function($) {
+                if (typeof $.fn.DataTable === 'undefined') {
+                    console.error('DataTables is not loaded');
+                    return;
+                }
+
+                if ($('#layanan-table').length === 0) {
+                    console.error('Table #layanan-table not found');
+                    return;
+                }
+
+                console.log('Initializing Layanan DataTable...');
+                console.log('AJAX URL:', "{{ route('layanan.index') }}");
+                
+                $('#layanan-table').DataTable({
+                    processing: true,
+                    serverSide: true,
+                    ajax: {
+                        url: "{{ route('layanan.index') }}",
+                        type: 'GET',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        },
+                        error: function(xhr, error, thrown) {
+                            console.error('DataTables AJAX Error:', error);
+                            console.error('Response:', xhr.responseText);
+                        }
+                    },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'px-6 py-4 whitespace-nowrap text-sm text-zinc-900 dark:text-zinc-300' },
                     { data: 'image', name: 'image', orderable: false, searchable: false, className: 'px-6 py-4' },
@@ -107,20 +130,28 @@
                         className: 'px-6 py-4 whitespace-nowrap text-sm'
                     }
                 ],
-                language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/id.json'
-                },
-                pageLength: 10,
-                lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
-                dom: '<"flex flex-col sm:flex-row justify-between items-center mb-4"<"mb-2 sm:mb-0"l><"mb-2 sm:mb-0"f>>rt<"flex flex-col sm:flex-row justify-between items-center mt-4"<"mb-2 sm:mb-0"i><"mb-2 sm:mb-0"p>>',
-            });
-            
-            tippy('[data-tooltip]', {
-                content: function(reference) {
-                    return reference.getAttribute('data-tooltip');
-                },
-                theme: 'light-border',
-                placement: 'top',
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/id.json'
+                    },
+                    pageLength: 10,
+                    lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
+                    dom: '<"flex flex-col sm:flex-row justify-between items-center mb-4"<"mb-2 sm:mb-0"l><"mb-2 sm:mb-0"f>>rt<"flex flex-col sm:flex-row justify-between items-center mt-4"<"mb-2 sm:mb-0"i><"mb-2 sm:mb-0"p>>',
+                    initComplete: function() {
+                        console.log('Layanan DataTable initialized successfully');
+                    }
+                }).on('xhr.dt', function (e, settings, json, xhr) {
+                    console.log('Layanan DataTables AJAX request completed:', xhr.status);
+                });
+                
+                if (typeof tippy !== 'undefined') {
+                    tippy('[data-tooltip]', {
+                        content: function(reference) {
+                            return reference.getAttribute('data-tooltip');
+                        },
+                        theme: 'light-border',
+                        placement: 'top',
+                    });
+                }
             });
         });
     </script>
