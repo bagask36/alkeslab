@@ -22,6 +22,88 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
     @livewireStyles
     
     @stack('styles')
+    
+    <style>
+        /* Mobile Responsive Styles */
+        @media (max-width: 1023px) {
+            /* Sidebar mobile adjustments */
+            [x-data*="sidebar"] {
+                z-index: 50;
+            }
+            
+            /* Sidebar overlay on mobile */
+            [x-data*="sidebar"]::before {
+                content: '';
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 49;
+                opacity: 0;
+                transition: opacity 0.3s;
+                pointer-events: none;
+            }
+            
+            /* Header sticky on mobile */
+            flux-header {
+                position: sticky;
+                top: 0;
+                z-index: 40;
+            }
+            
+            /* Main content padding on mobile */
+            flux-main {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+            }
+            
+            /* Sidebar brand text smaller on mobile */
+            flux-sidebar-brand {
+                font-size: 0.875rem;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            /* Smaller padding on very small screens */
+            flux-main {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+                padding-top: 0.75rem;
+                padding-bottom: 0.75rem;
+            }
+            
+            /* Compact header on mobile */
+            flux-header {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+            
+            /* Sidebar items more compact */
+            flux-sidebar-item {
+                padding: 0.5rem;
+            }
+            
+            /* Hide sidebar brand name on very small screens */
+            flux-sidebar-brand span {
+                display: none;
+            }
+        }
+        
+        /* Ensure sidebar doesn't overlap content on mobile */
+        @media (max-width: 1023px) {
+            body:has([x-data*="sidebar"][x-show*="true"]) flux-main {
+                overflow-x: hidden;
+            }
+        }
+        
+        /* Smooth transitions */
+        flux-sidebar,
+        flux-header,
+        flux-main {
+            transition: all 0.3s ease;
+        }
+    </style>
 </head>
 <body class="antialiased bg-zinc-50 dark:bg-zinc-900 min-h-screen">
     <!-- Sidebar -->
@@ -32,6 +114,7 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
                 logo="{{ asset('app/assets/logo.png') }}" 
                 name="PT. ALKESLAB PRIMATAMA"
                 alt="Logo"
+                class="flex-shrink-0"
             />
             <flux:sidebar.collapse class="lg:hidden" />
         </flux:sidebar.header>
@@ -145,14 +228,67 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
     </flux:sidebar>
     
     <!-- Mobile Header -->
-    <flux:header class="lg:hidden bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
+    <flux:header class="lg:hidden bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700 sticky top-0 z-50">
         <flux:sidebar.toggle />
+        <div class="flex items-center gap-2 flex-1 min-w-0">
+            <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="h-6 w-auto flex-shrink-0">
+            <h1 class="text-sm font-semibold text-zinc-900 dark:text-white truncate">Admin Panel</h1>
+        </div>
+        <div class="flex items-center gap-2">
+            <!-- Dark Mode Toggle -->
+            <button 
+                type="button"
+                class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
+                @click="darkMode = !darkMode"
+                title="Toggle Dark Mode"
+            >
+                <flux:icon icon="sun" class="w-5 h-5 dark:hidden" />
+                <flux:icon icon="moon" class="w-5 h-5 hidden dark:block" />
+            </button>
+            
+            <!-- User Menu -->
+            <flux:dropdown>
+                <flux:button variant="ghost" class="flex items-center gap-1 sm:gap-2 p-2">
+                    <flux:icon icon="user" class="w-5 h-5 flex-shrink-0" />
+                    <span class="hidden sm:inline text-sm font-medium text-zinc-700 dark:text-zinc-300 truncate max-w-[100px]">
+                        {{ auth()->user()->name ?? 'Admin' }}
+                    </span>
+                    <flux:icon icon="chevron-down" class="w-4 h-4 hidden sm:block flex-shrink-0" />
+                </flux:button>
+                
+                <flux:menu>
+                    <flux:menu.item href="{{ route('dashboard') }}">
+                        <flux:icon icon="home" class="w-4 h-4" />
+                        Dashboard
+                    </flux:menu.item>
+                    
+                    <flux:menu.separator />
+                    
+                    <flux:menu.item 
+                        href="#"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="text-red-600 dark:text-red-400"
+                    >
+                        <flux:icon icon="arrow-right-end-on-rectangle" class="w-4 h-4" />
+                        Logout
+                    </flux:menu.item>
+                </flux:menu>
+            </flux:dropdown>
+        </div>
+    </flux:header>
+    
+    <!-- Desktop Header -->
+    <flux:header class="hidden lg:flex bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="h-8 w-auto">
+            <h1 class="text-lg font-semibold text-zinc-900 dark:text-white">Admin Panel</h1>
+        </div>
         <flux:spacer />
         <div class="flex items-center gap-3">
             <!-- Dark Mode Toggle -->
             <button 
                 type="button"
-                class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
                 @click="darkMode = !darkMode"
                 title="Toggle Dark Mode"
             >
@@ -191,58 +327,8 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
         </div>
     </flux:header>
     
-    <!-- Desktop Header -->
-    <flux:header class="hidden lg:flex bg-white dark:bg-zinc-800 border-b border-zinc-200 dark:border-zinc-700">
-        <div class="flex items-center gap-3">
-            <img src="{{ asset('app/assets/logo.png') }}" alt="Logo" class="h-8 w-auto">
-            <h1 class="text-lg font-semibold text-zinc-900 dark:text-white">Admin Panel</h1>
-        </div>
-        <flux:spacer />
-        <div class="flex items-center gap-3">
-            <!-- Dark Mode Toggle -->
-            <button 
-                type="button"
-                class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-700"
-                @click="darkMode = !darkMode"
-                title="Toggle Dark Mode"
-            >
-                <flux:icon icon="sun" class="w-5 h-5 dark:hidden" />
-                <flux:icon icon="moon" class="w-5 h-5 hidden dark:block" />
-            </button>
-            
-            <!-- User Menu -->
-            <flux:dropdown>
-                <flux:button variant="ghost" class="flex items-center gap-2">
-                    <flux:icon icon="user" class="w-5 h-5" />
-                    <span class="hidden sm:inline text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                        {{ auth()->user()->name ?? 'Admin' }}
-                    </span>
-                    <flux:icon icon="chevron-down" class="w-4 h-4" />
-                </flux:button>
-                
-                <flux:menu>
-                    <flux:menu.item href="{{ route('dashboard') }}">
-                        <flux:icon icon="home" class="w-4 h-4" />
-                        Dashboard
-                    </flux:menu.item>
-                    
-                    <flux:menu.separator />
-                    
-                    <flux:menu.item 
-                        href="#"
-                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                        class="text-red-600 dark:text-red-400"
-                    >
-                        <flux:icon icon="arrow-right-end-on-rectangle" class="w-4 h-4" />
-                        Logout
-                    </flux:menu.item>
-                </flux:menu>
-            </flux:dropdown>
-        </div>
-    </flux:header>
-    
     <!-- Main Content -->
-    <flux:main class="max-w-full px-6 lg:px-8">
+    <flux:main class="max-w-full px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
         @yield('content')
     </flux:main>
     
