@@ -237,6 +237,95 @@
             font-style: italic;
         }
 
+        /* Hashtags Section */
+        .hashtags-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .hashtags-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .hashtags-title i {
+            color: #1e30f3;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hashtags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.875rem;
+            align-items: center;
+        }
+
+        .hashtag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.625rem 1.25rem;
+            background: linear-gradient(135deg, #1e30f3 0%, #1a28d9 100%);
+            color: white !important;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(30, 48, 243, 0.2);
+            transition: opacity 0.2s ease;
+        }
+
+        .hashtag-badge:hover {
+            color: white !important;
+        }
+
+        .hashtag-badge-text {
+            display: inline-block;
+            color: white !important;
+            transition: color 0.2s ease;
+        }
+
+        .hashtag-badge:hover .hashtag-badge-text {
+            color: white !important;
+        }
+
+        /* Responsive Hashtags */
+        @media (max-width: 767.98px) {
+            .hashtags-section {
+                margin-top: 2rem;
+                padding-top: 1.5rem;
+            }
+
+            .hashtags-title {
+                font-size: 1.1rem;
+                margin-bottom: 1rem;
+            }
+
+            .hashtags-title i {
+                font-size: 1.3rem;
+            }
+
+            .hashtags-container {
+                gap: 0.625rem;
+            }
+
+            .hashtag-badge {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
         /* Share Buttons */
         .share-section {
             margin-top: 3rem;
@@ -535,6 +624,33 @@
                         <div class="article-body">
                             {!! $article->desc !!}
                         </div>
+
+                        <!-- Hashtags Section -->
+                        @if($article->hashtags)
+                        <div class="hashtags-section">
+                            <h5 class="hashtags-title">
+                                <i class="bi bi-hash"></i>
+                                <span>Tag Artikel</span>
+                            </h5>
+                            <div class="hashtags-container">
+                                @php
+                                    $hashtags = explode(' ', trim($article->hashtags));
+                                    $hashtags = array_filter($hashtags, function($tag) {
+                                        return !empty(trim($tag));
+                                    });
+                                @endphp
+                                @foreach($hashtags as $tag)
+                                    @php
+                                        $cleanTag = ltrim(trim($tag), '#');
+                                        $hashtagText = $cleanTag;
+                                    @endphp
+                                    <span class="hashtag-badge">
+                                        <span class="hashtag-badge-text">#{{ $hashtagText }}</span>
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                        @endif
 
                         <!-- Share Buttons -->
                         <div class="share-section">

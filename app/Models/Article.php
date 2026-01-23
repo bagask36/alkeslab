@@ -18,6 +18,7 @@ class Article extends Model
         'photo',
         'slug',
         'status',
+        'hashtags',
         'user_id',
     ];
 

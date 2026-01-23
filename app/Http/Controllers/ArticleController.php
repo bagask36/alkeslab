@@ -75,7 +75,8 @@ class ArticleController extends Controller
             'desc' => 'required|string',
             'category' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'status' => 'required|in:draft,published,archived', // perbaikan status
+            'status' => 'required|in:draft,published,archived',
+            'hashtags' => 'nullable|string|max:500',
         ]);
 
         $descWithEmbed = $this->convertOembedToIframe($request->desc);
@@ -86,6 +87,7 @@ class ArticleController extends Controller
             'desc' => $descWithEmbed,
             'category' => $request->category,
             'status' => $request->status,
+            'hashtags' => $request->hashtags,
             'slug' => Str::slug($request->title),
             'user_id' => auth()->id(),
         ];
@@ -121,6 +123,7 @@ class ArticleController extends Controller
             'category' => 'required|string|max:255',
             'status' => 'required|in:draft,published,archived',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'hashtags' => 'nullable|string|max:500',
         ]);
 
         // Mengupdate data artikel menggunakan Eloquent mass assignment
@@ -129,6 +132,7 @@ class ArticleController extends Controller
             'desc' => $this->convertOembedToIframe($request->desc),
             'category' => $request->category,
             'status' => $request->status,
+            'hashtags' => $request->hashtags,
             'slug' => Str::slug($request->title),
         ];
 

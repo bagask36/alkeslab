@@ -96,7 +96,13 @@
             $('#articles-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('articles.index') }}",
+                ajax: {
+                    url: "{{ route('articles.index') }}",
+                    type: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'px-6 py-4 whitespace-nowrap text-sm text-zinc-900 dark:text-zinc-300' },
                     { data: 'title', name: 'title', className: 'px-6 py-4 text-sm font-medium text-zinc-900 dark:text-white' },
