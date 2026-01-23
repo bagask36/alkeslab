@@ -340,6 +340,17 @@ x-init="$watch('darkMode', value => localStorage.setItem('darkMode', value))">
     <!-- SweetAlert2 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
+    <!-- jQuery AJAX Setup -->
+    <script>
+        if (typeof jQuery !== 'undefined') {
+            $.ajaxSetup({
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            });
+        }
+    </script>
+    
     <!-- Flux UI Scripts -->
     @fluxScripts
     

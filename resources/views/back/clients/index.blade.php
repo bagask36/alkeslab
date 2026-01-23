@@ -91,11 +91,45 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
     <script>
-        $(document).ready(function() {
-            $('#clients-table').DataTable({
+        // Wait for all scripts to load
+        window.addEventListener('load', function() {
+            // Double check jQuery is loaded
+            if (typeof jQuery === 'undefined') {
+                console.error('jQuery is not loaded');
+                return;
+            }
+
+            // Use jQuery ready
+            jQuery(document).ready(function($) {
+                // Check if DataTables is loaded
+                if (typeof $.fn.DataTable === 'undefined') {
+                    console.error('DataTables is not loaded');
+                    return;
+                }
+
+                // Check if table exists
+                if ($('#clients-table').length === 0) {
+                    console.error('Table #clients-table not found');
+                    return;
+                }
+
+                console.log('Initializing DataTable...');
+                console.log('AJAX URL:', "{{ route('clients.index') }}");
+                
+                $('#clients-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('clients.index') }}",
+                ajax: {
+                    url: "{{ route('clients.index') }}",
+                    type: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    error: function(xhr, error, thrown) {
+                        console.error('DataTables AJAX Error:', error);
+                        console.error('Response:', xhr.responseText);
+                    }
+                },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'px-6 py-4 whitespace-nowrap text-sm text-zinc-900 dark:text-zinc-300' },
                     { data: 'image', name: 'image', orderable: false, searchable: false, className: 'px-6 py-4' },
@@ -135,14 +169,22 @@
                 pageLength: 10,
                 lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Semua"]],
                 dom: '<"flex flex-col sm:flex-row justify-between items-center mb-4"<"mb-2 sm:mb-0"l><"mb-2 sm:mb-0"f>>rt<"flex flex-col sm:flex-row justify-between items-center mt-4"<"mb-2 sm:mb-0"i><"mb-2 sm:mb-0"p>>',
+                initComplete: function() {
+                    console.log('DataTable initialized successfully');
+                }
+            }).on('xhr.dt', function (e, settings, json, xhr) {
+                console.log('DataTables AJAX request completed:', xhr.status);
             });
             
-            tippy('[data-tooltip]', {
-                content: function(reference) {
-                    return reference.getAttribute('data-tooltip');
-                },
-                theme: 'light-border',
-                placement: 'top',
+                if (typeof tippy !== 'undefined') {
+                    tippy('[data-tooltip]', {
+                        content: function(reference) {
+                            return reference.getAttribute('data-tooltip');
+                        },
+                        theme: 'light-border',
+                        placement: 'top',
+                    });
+                }
             });
         });
     </script>

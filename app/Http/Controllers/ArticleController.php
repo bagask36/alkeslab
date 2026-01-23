@@ -11,9 +11,9 @@ use Illuminate\Support\Str; // Tambahkan ini untuk menggunakan Str
 class ArticleController extends Controller
 {
     // Menampilkan semua artikel
-    public function index()
+    public function index(Request $request)
     {
-        if (request()->ajax()) {
+        if ($request->ajax()) {
             $data = Article::select(['id', 'title', 'category', 'status', 'created_at'])
                 ->latest()
                 ->get();

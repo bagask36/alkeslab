@@ -90,7 +90,13 @@
             $('#legalitas-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('legalitas.index') }}",
+                ajax: {
+                    url: "{{ route('legalitas.index') }}",
+                    type: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'px-6 py-4 whitespace-nowrap text-sm text-zinc-900 dark:text-zinc-300' },
                     { data: 'name', name: 'name', className: 'px-6 py-4 text-sm font-medium text-zinc-900 dark:text-white' },

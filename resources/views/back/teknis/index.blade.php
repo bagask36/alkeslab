@@ -91,7 +91,13 @@
             $('#teknis-table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('teknis.index') }}",
+                ajax: {
+                    url: "{{ route('teknis.index') }}",
+                    type: 'GET',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                },
                 columns: [
                     { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false, className: 'px-6 py-4 whitespace-nowrap text-sm text-zinc-900 dark:text-zinc-300' },
                     { data: 'image', name: 'image', orderable: false, searchable: false, className: 'px-6 py-4' },
